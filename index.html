@@ -1,22 +1,11 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-
 <meta charset="UTF-8">
-
-<meta
-name="viewport"
-content="width=device-width, initial-scale=1.0, viewport-fit=cover"
->
-
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>ASCEND — Life RPG</title>
 
 <style>
-
-/* =========================================================
-   ASCEND VISUAL SYSTEM
-========================================================= */
-
 *{
     box-sizing:border-box;
     margin:0;
@@ -24,308 +13,290 @@ content="width=device-width, initial-scale=1.0, viewport-fit=cover"
 }
 
 :root{
-    --blue:#18d9ff;
-    --blue2:#0077ff;
-    --dark:#020914;
-    --panel:#031522;
-    --line:#075b78;
-    --text:#dff8ff;
-    --muted:#789cab;
-}
-
-html{
-    background:#020914;
+    --cyan:#24dcff;
+    --blue:#087cff;
+    --dark:#020712;
+    --panel:#061321;
+    --panel2:#091b2b;
+    --line:#0b6084;
+    --text:#e4faff;
+    --muted:#7899aa;
+    --glow:0 0 18px rgba(36,220,255,.35);
 }
 
 body{
-    font-family:
-        "Trebuchet MS",
-        Arial,
-        sans-serif;
-
-    background:
-        radial-gradient(
-            circle at 50% 0%,
-            #07304b 0%,
-            #020914 45%,
-            #01060c 100%
-        );
-
-    color:var(--text);
     min-height:100vh;
+    background:
+        radial-gradient(circle at top,#07304b 0%,#020712 48%,#01040a 100%);
+    color:var(--text);
+    font-family:"Trebuchet MS",Arial,sans-serif;
     overflow-x:hidden;
 }
 
-/* futuristic grid */
-
-body:before{
+body::before{
     content:"";
     position:fixed;
     inset:0;
-
     background:
-        linear-gradient(
-            rgba(0,180,255,.035) 1px,
-            transparent 1px
-        ),
-        linear-gradient(
-            90deg,
-            rgba(0,180,255,.035) 1px,
-            transparent 1px
-        );
-
+        linear-gradient(rgba(36,220,255,.035) 1px,transparent 1px),
+        linear-gradient(90deg,rgba(36,220,255,.035) 1px,transparent 1px);
     background-size:35px 35px;
     pointer-events:none;
     z-index:-1;
 }
 
-body:after{
-    content:"";
-    position:fixed;
-    inset:0;
-
-    background:
-        linear-gradient(
-            rgba(40,210,255,.025) 50%,
-            transparent 50%
-        );
-
-    background-size:100% 4px;
-    pointer-events:none;
-    z-index:100;
-    opacity:.35;
-}
-
 .app{
     width:100%;
-    max-width:1150px;
+    max-width:1100px;
     margin:auto;
+    padding:12px;
+}
+
+/* ================= HEADER ================= */
+
+.header{
+    border:1px solid #087fa7;
+    background:rgba(2,14,25,.94);
     padding:18px;
+    box-shadow:var(--glow);
 }
 
-header{
-    border:1px solid #0aa4d4;
-    background:rgba(2,18,31,.92);
-    padding:25px;
-    margin-bottom:18px;
-
-    box-shadow:
-        0 0 35px rgba(0,190,255,.14),
-        inset 0 0 25px rgba(0,160,255,.03);
-}
-
-.system{
-    color:var(--blue);
-    font-size:11px;
+.system-label{
+    color:var(--cyan);
+    font-size:10px;
     letter-spacing:4px;
-    font-weight:bold;
 }
 
-h1{
-    margin-top:5px;
-
-    font-size:clamp(34px,7vw,64px);
-
-    letter-spacing:9px;
-
-    color:#8cecff;
-
-    text-shadow:
-        0 0 8px #00bfff,
-        0 0 25px #0077ff;
+.logo{
+    font-size:42px;
+    letter-spacing:8px;
+    color:#a5f4ff;
+    text-shadow:0 0 8px #00bfff,0 0 25px #0077ff;
 }
 
-.subtitle{
-    color:#6d9cac;
-    margin-top:7px;
-    letter-spacing:2px;
+.player-name{
+    color:#70a7b8;
     font-size:12px;
+    letter-spacing:2px;
+}
+
+/* ================= NAV ================= */
+
+.nav{
+    display:flex;
+    gap:4px;
+    margin-top:12px;
+    overflow-x:auto;
+}
+
+.nav button{
+    flex:1;
+    min-width:105px;
+    margin:0;
+    padding:12px 8px;
+    border:1px solid #07526e;
+    background:#03111d;
+    color:#64b9cf;
+}
+
+.nav button.active{
+    color:white;
+    border-color:var(--cyan);
+    background:#06324a;
+    box-shadow:0 0 12px rgba(0,200,255,.2);
+}
+
+/* ================= SCREENS ================= */
+
+.screen{
+    display:none;
+    margin-top:14px;
+}
+
+.screen.active{
+    display:block;
 }
 
 .grid{
     display:grid;
     grid-template-columns:repeat(2,1fr);
-    gap:15px;
+    gap:12px;
 }
 
 .card{
     border:1px solid var(--line);
-    background:
-        linear-gradient(
-            145deg,
-            rgba(4,27,42,.96),
-            rgba(1,13,23,.96)
-        );
-
-    padding:20px;
-
-    box-shadow:
-        0 0 20px rgba(0,150,255,.06),
-        inset 0 0 20px rgba(0,150,255,.025);
+    background:linear-gradient(145deg,rgba(5,24,40,.96),rgba(2,12,22,.96));
+    padding:18px;
 }
 
 .full{
     grid-column:1/-1;
 }
 
-.card h2{
-    color:#55ddff;
-    font-size:16px;
+.card-title{
+    color:var(--cyan);
+    font-size:14px;
     letter-spacing:2px;
-    margin-bottom:15px;
-}
-
-.card h3{
-    color:#4fdcff;
-    margin-bottom:5px;
+    margin-bottom:14px;
 }
 
 .level{
-    color:white;
     font-size:34px;
-    margin:7px 0;
+    font-weight:bold;
 }
 
 .rank{
-    color:#45dcff;
-    font-size:12px;
+    color:#50dfff;
+    font-size:11px;
     letter-spacing:3px;
-    margin-bottom:12px;
+    margin:4px 0 12px;
 }
 
 .xpbar{
-    height:11px;
-    width:100%;
-    background:#061823;
-    border:1px solid #07516b;
-    overflow:hidden;
+    height:10px;
+    background:#03101b;
+    border:1px solid #07536d;
 }
 
 .xpfill{
     height:100%;
-    width:0%;
-
-    background:
-        linear-gradient(
-            90deg,
-            #006aff,
-            #21dfff
-        );
-
-    box-shadow:
-        0 0 15px #00c8ff;
-
+    background:linear-gradient(90deg,#006aff,#28e7ff);
+    box-shadow:0 0 15px #00c8ff;
     transition:.5s;
 }
 
 .xptext{
-    color:#78aab9;
-    font-size:12px;
-    margin-top:7px;
+    margin-top:6px;
+    font-size:11px;
+    color:var(--muted);
 }
 
 .small{
-    color:#6d95a4;
+    color:#7899aa;
     font-size:12px;
     line-height:1.55;
 }
 
+/* ================= BUTTONS ================= */
+
 button{
-    border:1px solid #11b9ef;
-
-    background:
-        linear-gradient(
-            180deg,
-            #06263a,
-            #031523
-        );
-
-    color:#6eeaff;
-
-    padding:11px 15px;
-
-    cursor:pointer;
-
+    border:1px solid #0baedb;
+    background:#041a2a;
+    color:#63e8ff;
+    padding:10px 14px;
     font-weight:bold;
     letter-spacing:1px;
-
-    margin-top:10px;
-
-    transition:.2s;
+    cursor:pointer;
+    margin-top:9px;
 }
 
 button:hover{
-    background:#073b55;
-
-    box-shadow:
-        0 0 18px rgba(0,210,255,.3);
+    background:#073650;
+    box-shadow:var(--glow);
 }
 
-button:active{
-    transform:scale(.98);
-}
+/* ================= FORMS ================= */
 
 input,
 textarea,
 select{
     width:100%;
-
-    background:#010b14;
-
-    color:#dff8ff;
-
-    border:1px solid #075a78;
-
-    padding:12px;
-
-    margin-top:8px;
-
+    background:#020b14;
+    color:#e4faff;
+    border:1px solid #07536d;
+    padding:11px;
+    margin:7px 0 12px;
     outline:none;
-
     font-family:inherit;
 }
 
 textarea{
+    min-height:80px;
     resize:vertical;
-    min-height:85px;
 }
 
-input:focus,
-textarea:focus,
-select:focus{
-    border-color:#20dcff;
-
-    box-shadow:
-        0 0 12px rgba(0,200,255,.15);
+label{
+    color:#82adbc;
+    font-size:11px;
 }
+
+/* ================= GOALS ================= */
 
 .goal{
-    border-left:3px solid #20dcff;
-
-    background:#031622;
-
-    padding:15px;
-
-    margin-top:12px;
+    border:1px solid #075775;
+    border-left:3px solid var(--cyan);
+    background:#03131f;
+    padding:14px;
+    margin-top:10px;
 }
 
 .goal-name{
-    color:white;
     font-size:18px;
+    color:white;
     font-weight:bold;
 }
 
-.goal-meta{
-    color:#35d9ff;
-    font-size:10px;
+.goal-type{
+    color:#39d9ff;
+    font-size:9px;
     letter-spacing:2px;
-    margin-top:5px;
+    margin-top:4px;
 }
 
 .goal-level{
-    color:#fff;
+    margin-top:9px;
+}
+
+.goal-xp{
+    margin-top:7px;
+}
+
+.goal-actions{
+    display:flex;
+    gap:7px;
+    flex-wrap:wrap;
+}
+
+/* ================= QUESTS ================= */
+
+.quest{
+    border:1px solid #075775;
+    background:#03131f;
+    padding:15px;
     margin-top:10px;
 }
+
+.quest.completed{
+    opacity:.45;
+}
+
+.quest-title{
+    color:#fff;
+    font-weight:bold;
+}
+
+.quest-desc{
+    color:#86aab8;
+    font-size:12px;
+    line-height:1.55;
+    margin-top:7px;
+}
+
+.tags{
+    display:flex;
+    gap:6px;
+    flex-wrap:wrap;
+    margin-top:9px;
+}
+
+.tag{
+    border:1px solid #075775;
+    padding:5px 7px;
+    color:#55ddff;
+    font-size:9px;
+}
+
+/* ================= SKILLS ================= */
 
 .skill{
     margin-top:10px;
@@ -334,164 +305,102 @@ select:focus{
 .skill-head{
     display:flex;
     justify-content:space-between;
-    font-size:12px;
-    color:#a8d6e1;
+    color:#a6d8e3;
+    font-size:11px;
 }
 
-.skillbar{
+.skill-bar{
     height:6px;
-    background:#061923;
+    background:#04121d;
     margin-top:5px;
 }
 
-.skillfill{
+.skill-fill{
     height:100%;
-    background:#16cdf5;
+    background:#19d3fa;
 }
 
-.milestone{
-    border:1px solid #074c64;
-    padding:12px;
-    margin-top:9px;
-    background:#02111c;
-}
+/* ================= ACHIEVEMENTS ================= */
 
-.milestone.done{
-    opacity:.5;
-}
-
-.quest{
-    border:1px solid #07506b;
-    background:#03131f;
-    padding:15px;
-    margin-top:11px;
-}
-
-.quest.completed{
-    opacity:.43;
-}
-
-.quest-title{
-    color:#fff;
-    font-weight:bold;
-}
-
-.quest-description{
-    color:#87acba;
-    font-size:13px;
-    line-height:1.55;
-    margin-top:7px;
-}
-
-.quest-meta{
-    display:flex;
-    gap:7px;
-    flex-wrap:wrap;
-    margin-top:10px;
-}
-
-.tag{
-    color:#48dcff;
-    border:1px solid #075774;
-    padding:5px 8px;
-    font-size:9px;
-    letter-spacing:1px;
-}
-
-.stat{
-    margin-top:12px;
-}
-
-.stat-head{
-    display:flex;
-    justify-content:space-between;
-    color:#a5d7e3;
-    font-size:12px;
-}
-
-.statbar{
-    height:7px;
-    background:#061a24;
-    margin-top:5px;
-}
-
-.statfill{
-    height:100%;
-    background:#16d1fa;
-}
-
-.notice{
-    border:1px solid #08789c;
+.achievement{
+    border:1px solid #075775;
     padding:13px;
-    background:#031a29;
-    color:#9edbe9;
-    line-height:1.5;
-    margin-top:10px;
+    margin-top:8px;
+    background:#03131f;
 }
 
-.warning{
-    border-color:#765c19;
-    color:#e7ca68;
+.locked{
+    opacity:.35;
 }
 
-.danger{
-    border-color:#7a2735;
-    color:#ff9ba6;
-}
+/* ================= PLAYER CREATION ================= */
 
-.overlay{
+#createScreen{
     position:fixed;
     inset:0;
-
-    background:rgba(0,8,16,.94);
-
-    display:none;
-
-    align-items:center;
+    background:
+        radial-gradient(circle at center,#06334d,#020712 65%);
+    display:flex;
     justify-content:center;
+    align-items:center;
+    padding:18px;
+    z-index:50;
+}
 
-    z-index:200;
+.create-box{
+    width:100%;
+    max-width:560px;
+    border:1px solid var(--cyan);
+    background:rgba(2,14,25,.97);
+    padding:28px;
+    box-shadow:0 0 45px rgba(0,210,255,.3);
+}
 
-    padding:20px;
+.create-title{
+    font-size:32px;
+    letter-spacing:6px;
+    color:#a5f4ff;
+    text-shadow:0 0 15px #00bfff;
+}
+
+.create-sub{
+    color:#729aaa;
+    font-size:12px;
+    margin:10px 0 20px;
+    line-height:1.6;
+}
+
+/* ================= MODAL ================= */
+
+.modal-bg{
+    position:fixed;
+    inset:0;
+    background:rgba(0,7,14,.92);
+    display:none;
+    justify-content:center;
+    align-items:center;
+    padding:18px;
+    z-index:100;
 }
 
 .modal{
-    width:100%;
     max-width:600px;
-
-    border:1px solid #1edcff;
-
+    width:100%;
+    border:1px solid var(--cyan);
     background:#031522;
-
-    padding:25px;
-
-    box-shadow:
-        0 0 50px rgba(0,200,255,.35);
+    padding:24px;
+    box-shadow:0 0 40px rgba(0,210,255,.3);
 }
 
-.modal h2{
-    color:#5ce8ff;
-    letter-spacing:3px;
-    margin-bottom:15px;
+.notice{
+    border:1px solid #086481;
+    background:#031b2a;
+    padding:13px;
+    color:#9ddbea;
+    line-height:1.55;
 }
 
-.modal-buttons{
-    display:flex;
-    gap:10px;
-    flex-wrap:wrap;
-}
-
-.hidden{
-    display:none!important;
-}
-
-.empty{
-    color:#618694;
-    padding:10px 0;
-}
-
-@media(max-width:750px){
-
+@media(max-width:700px){
     .grid{
         grid-template-columns:1fr;
     }
@@ -500,293 +409,506 @@ select:focus{
         grid-column:auto;
     }
 
-    .app{
-        padding:10px;
+    .logo{
+        font-size:34px;
     }
 
-    header{
-        padding:20px;
+    .nav button{
+        min-width:90px;
     }
-
 }
-
 </style>
-
 </head>
 
 <body>
 
+<!-- ================= CREATE PLAYER ================= -->
+
+<div id="createScreen">
+
+    <div class="create-box">
+
+        <div class="system-label">
+            ASCEND SYSTEM // INITIALIZATION
+        </div>
+
+        <div class="create-title">
+            ASCEND
+        </div>
+
+        <div class="create-sub">
+            Your life is the character.<br>
+            Your goals are the questlines.<br>
+            Your actions determine your progression.
+        </div>
+
+        <label>PLAYER NAME</label>
+        <input id="playerNameInput" placeholder="Enter your name">
+
+        <label>YOUR FIRST MAJOR GOAL</label>
+
+        <input
+            id="firstGoalInput"
+            placeholder="Example: Become a professional athlete"
+        >
+
+        <div class="small">
+            Examples: become a professional athlete,
+            become a business owner, become a pilot —
+            or enter absolutely any goal you want.
+        </div>
+
+        <button onclick="createPlayer()">
+            INITIALIZE PLAYER
+        </button>
+
+    </div>
+
+</div>
+
+
+<!-- ================= MAIN APP ================= -->
+
 <div class="app">
 
-<header>
+<header class="header">
 
-<div class="system">
-SYSTEM ONLINE // ASCEND ENGINE
-</div>
+    <div class="system-label">
+        SYSTEM ONLINE // PLAYER DATABASE ACTIVE
+    </div>
 
-<h1>ASCEND</h1>
+    <div class="logo">
+        ASCEND
+    </div>
 
-<div class="subtitle">
-TURN YOUR AMBITION INTO A PATH.
-</div>
+    <div class="player-name" id="headerPlayer">
+        PLAYER
+    </div>
 
 </header>
 
 
+<!-- ================= NAV ================= -->
+
+<div class="nav">
+
+    <button
+        id="nav-home"
+        class="active"
+        onclick="showScreen('home')">
+        HOME
+    </button>
+
+    <button
+        id="nav-quests"
+        onclick="showScreen('quests')">
+        QUESTS
+    </button>
+
+    <button
+        id="nav-missions"
+        onclick="showScreen('missions')">
+        MISSIONS
+    </button>
+
+    <button
+        id="nav-progress"
+        onclick="showScreen('progress')">
+        PROGRESS
+    </button>
+
+    <button
+        id="nav-achievements"
+        onclick="showScreen('achievements')">
+        ACHIEVEMENTS
+    </button>
+
+</div>
+
+
+<!-- ================= HOME ================= -->
+
+<section id="home" class="screen active">
+
 <div class="grid">
 
+    <div class="card">
 
-<!-- PLAYER -->
+        <div class="card-title">
+            PLAYER STATUS
+        </div>
 
-<div class="card">
+        <div class="level">
+            LEVEL <span id="playerLevel">1</span>
+        </div>
 
-<h2>PLAYER STATUS</h2>
+        <div class="rank" id="playerRank">
+            INITIATE
+        </div>
 
-<div class="level">
-LEVEL <span id="playerLevel">1</span>
-</div>
+        <div class="xpbar">
+            <div
+                id="playerXPFill"
+                class="xpfill">
+            </div>
+        </div>
 
-<div class="rank" id="playerRank">
-INITIATE
-</div>
+        <div
+            id="playerXPText"
+            class="xptext">
+            0 / 150 XP
+        </div>
 
-<div class="xpbar">
-<div class="xpfill" id="playerXPBar"></div>
-</div>
-
-<div class="xptext" id="playerXP">
-0 / 150 XP
-</div>
-
-<div class="stat">
-<div class="stat-head">
-<span>STREAK</span>
-<span id="streak">0</span>
-</div>
-</div>
-
-</div>
+    </div>
 
 
-<!-- CHARACTER STATS -->
+    <div class="card">
 
-<div class="card">
+        <div class="card-title">
+            SYSTEM STATUS
+        </div>
 
-<h2>CHARACTER STATS</h2>
+        <div class="small">
 
-<div id="stats"></div>
+            ACTIVE GOALS:
+            <strong id="goalCount">0</strong>
 
-</div>
+            <br><br>
+
+            MISSIONS COMPLETED:
+            <strong id="missionCount">0</strong>
+
+            <br><br>
+
+            CURRENT STREAK:
+            <strong id="streakCount">0</strong>
+
+        </div>
+
+    </div>
 
 
-<!-- CORE MISSION -->
+    <div class="card full">
 
-<div class="card full">
+        <div class="card-title">
+            CORE MISSION
+        </div>
 
-<h2>CORE MISSION</h2>
+        <div id="coreMission">
+        </div>
 
-<div id="coreMission"></div>
-
-</div>
+    </div>
 
 
-<!-- GOAL CREATION -->
+    <div class="card full">
 
-<div class="card full">
+        <div class="card-title">
+            ACTIVE GOALS
+        </div>
 
-<h2>CREATE YOUR PATH</h2>
+        <div id="homeGoals">
+        </div>
 
-<div class="small">
+    </div>
 
-ASCEND is not limited to predefined careers.
 
-Tell the System what you actually want to accomplish.
+    <div class="card full">
 
-It can be a career, skill, hobby, business, personal objective,
-creative pursuit, financial goal, or anything else you want to build.
+        <div class="card-title">
+            SYSTEM MESSAGE
+        </div>
 
-</div>
+        <div class="notice">
 
-<input
-id="goalName"
-placeholder="Example: Turn my photography hobby into a business"
->
+            Progress is not created by thinking about your
+            future. Progress is created by repeatedly doing
+            the actions required to build it.
 
-<label class="small">
-What is your current experience?
-</label>
+            <br><br>
 
-<select id="experience">
+            <strong>
+            Your next mission is waiting.
+            </strong>
 
-<option value="beginner">Beginner</option>
-<option value="some">Some experience</option>
-<option value="intermediate">Intermediate</option>
-<option value="advanced">Advanced</option>
+        </div>
 
-</select>
-
-<label class="small">
-How much time can you realistically dedicate each day?
-</label>
-
-<select id="time">
-
-<option value="15">15 minutes</option>
-<option value="30">30 minutes</option>
-<option value="60">1 hour</option>
-<option value="120">2 hours</option>
-<option value="180">3+ hours</option>
-
-</select>
-
-<label class="small">
-Why do you want to accomplish this?
-</label>
-
-<textarea
-id="goalWhy"
-placeholder="Tell ASCEND why this matters to you..."
-></textarea>
-
-<label class="small">
-What are you already good at?
-</label>
-
-<textarea
-id="strengths"
-placeholder="Examples: communication, drawing, athletic ability, cooking, organization..."
-></textarea>
-
-<button onclick="createPath()">
-GENERATE MY PATH
-</button>
+    </div>
 
 </div>
 
+</section>
 
-<!-- GOALS -->
 
-<div class="card full">
+<!-- ================= QUESTS ================= -->
 
-<h2>ACTIVE GOALS</h2>
+<section id="quests" class="screen">
 
-<div id="goals"></div>
+<div class="grid">
+
+    <div class="card full">
+
+        <div class="card-title">
+            QUESTLINES
+        </div>
+
+        <div class="small">
+            Each major goal becomes its own questline.
+            You can pursue multiple paths at the same time.
+        </div>
+
+        <div id="questList">
+        </div>
+
+    </div>
+
+
+    <div class="card full">
+
+        <div class="card-title">
+            CREATE NEW QUESTLINE
+        </div>
+
+        <label>
+            WHAT DO YOU WANT TO ACCOMPLISH?
+        </label>
+
+        <input
+            id="newGoal"
+            placeholder="Example: Turn my photography hobby into a business"
+        >
+
+        <label>
+            CURRENT EXPERIENCE
+        </label>
+
+        <select id="newExperience">
+
+            <option value="beginner">
+                Beginner
+            </option>
+
+            <option value="some">
+                Some experience
+            </option>
+
+            <option value="intermediate">
+                Intermediate
+            </option>
+
+            <option value="advanced">
+                Advanced
+            </option>
+
+        </select>
+
+        <label>
+            DAILY TIME
+        </label>
+
+        <select id="newTime">
+
+            <option value="15">
+                15 minutes
+            </option>
+
+            <option value="30">
+                30 minutes
+            </option>
+
+            <option value="60">
+                1 hour
+            </option>
+
+            <option value="120">
+                2 hours
+            </option>
+
+            <option value="180">
+                3+ hours
+            </option>
+
+        </select>
+
+        <label>
+            WHY DOES THIS MATTER?
+        </label>
+
+        <textarea
+            id="newWhy"
+            placeholder="Explain why you want to accomplish this."
+        ></textarea>
+
+        <label>
+            WHAT ARE YOU ALREADY GOOD AT?
+        </label>
+
+        <textarea
+            id="newStrengths"
+            placeholder="Skills, hobbies, experience, talents..."
+        ></textarea>
+
+        <button onclick="addGoal()">
+            CREATE QUESTLINE
+        </button>
+
+    </div>
+
+</div>
+
+</section>
+
+
+<!-- ================= MISSIONS ================= -->
+
+<section id="missions" class="screen">
+
+<div class="grid">
+
+    <div class="card full">
+
+        <div class="card-title">
+            TODAY'S MISSIONS
+        </div>
+
+        <div class="small">
+            Missions are generated from your actual goals,
+            current experience, available time, and progression.
+        </div>
+
+        <div id="dailyList">
+        </div>
+
+    </div>
+
+
+    <div class="card full">
+
+        <div class="card-title">
+            WEEKLY OBJECTIVES
+        </div>
+
+        <div id="weeklyList">
+        </div>
+
+    </div>
+
+
+    <div class="card full">
+
+        <div class="card-title">
+            GENERATE ADDITIONAL MISSION
+        </div>
+
+        <select id="missionGoalSelect">
+        </select>
+
+        <button onclick="generateExtraMission()">
+            GENERATE MISSION
+        </button>
+
+        <div id="extraMission">
+        </div>
+
+    </div>
+
+</div>
+
+</section>
+
+
+<!-- ================= PROGRESS ================= -->
+
+<section id="progress" class="screen">
+
+<div class="grid">
+
+    <div class="card full">
+
+        <div class="card-title">
+            CHARACTER DEVELOPMENT
+        </div>
+
+        <div id="stats">
+        </div>
+
+    </div>
+
+
+    <div class="card full">
+
+        <div class="card-title">
+            GOAL PROGRESSION
+        </div>
+
+        <div id="progressGoals">
+        </div>
+
+    </div>
+
+
+    <div class="card full">
+
+        <div class="card-title">
+            ROADMAP
+        </div>
+
+        <div id="roadmap">
+        </div>
+
+    </div>
+
+</div>
+
+</section>
+
+
+<!-- ================= ACHIEVEMENTS ================= -->
+
+<section id="achievements" class="screen">
+
+<div class="grid">
+
+    <div class="card full">
+
+        <div class="card-title">
+            ACHIEVEMENTS
+        </div>
+
+        <div id="achievementList">
+        </div>
+
+    </div>
+
+</div>
+
+</section>
+
 
 </div>
 
 
-<!-- TODAY -->
+<!-- ================= LEVEL UP ================= -->
 
-<div class="card full">
+<div id="levelModal" class="modal-bg">
 
-<h2>TODAY'S MISSIONS</h2>
+    <div class="modal">
 
-<div class="small">
+        <div class="system-label">
+            SYSTEM NOTIFICATION
+        </div>
 
-These missions are selected from your current goals and
-designed to move you forward rather than simply keep you busy.
+        <h2 style="color:#5ce8ff;margin:10px 0;">
+            LEVEL UP
+        </h2>
 
-</div>
+        <div id="levelMessage">
+        </div>
 
-<div id="dailyMissions"></div>
+        <button onclick="closeLevelModal()">
+            CONTINUE
+        </button>
 
-</div>
-
-
-<!-- WEEK -->
-
-<div class="card full">
-
-<h2>WEEKLY OBJECTIVES</h2>
-
-<div id="weeklyMissions"></div>
-
-</div>
-
-
-<!-- GENERATED -->
-
-<div class="card full">
-
-<h2>MISSION GENERATOR</h2>
-
-<select id="missionGoal"></select>
-
-<button onclick="generateMission()">
-GENERATE ADDITIONAL MISSION
-</button>
-
-<div id="generatedMission"></div>
-
-</div>
-
-
-<!-- MILESTONES -->
-
-<div class="card full">
-
-<h2>ROADMAP</h2>
-
-<div id="roadmap"></div>
-
-</div>
-
-
-<!-- ACHIEVEMENTS -->
-
-<div class="card full">
-
-<h2>ACHIEVEMENTS</h2>
-
-<div id="achievements"></div>
-
-</div>
-
-
-<!-- RESET -->
-
-<div class="card full">
-
-<h2>SYSTEM</h2>
-
-<div class="small">
-Progress is saved automatically on this device.
-</div>
-
-<button
-class="danger"
-onclick="resetGame()"
->
-RESET PLAYER
-</button>
-
-</div>
-
-
-</div>
-
-</div>
-
-
-<!-- LEVEL UP -->
-
-<div class="overlay" id="levelOverlay">
-
-<div class="modal">
-
-<div class="system">
-SYSTEM NOTIFICATION
-</div>
-
-<h2>LEVEL UP</h2>
-
-<div id="levelMessage"></div>
-
-<button onclick="closeOverlay()">
-CONTINUE
-</button>
-
-</div>
+    </div>
 
 </div>
 
@@ -794,17 +916,16 @@ CONTINUE
 <script>
 
 /* =========================================================
-   ASCEND CORE DATA
+   SAVE DATA
 ========================================================= */
 
-const STORAGE_KEY="ASCEND_FULL_RPG";
+const SAVE_KEY = "ASCEND_PLAYER_V3";
 
 
 let game =
-JSON.parse(
-    localStorage.getItem(STORAGE_KEY)
-) ||
+JSON.parse(localStorage.getItem(SAVE_KEY)) ||
 {
+    player:null,
 
     level:1,
 
@@ -812,19 +933,19 @@ JSON.parse(
 
     streak:0,
 
-    lastQuestDate:null,
+    lastCompletedDate:null,
 
-    completedQuests:0,
+    missionsCompleted:0,
 
     goals:[],
-
-    dailyDate:null,
 
     dailyMissions:[],
 
     weeklyMissions:[],
 
-    generatedMission:null,
+    dailyDate:null,
+
+    extraMission:null,
 
     achievements:[],
 
@@ -833,39 +954,425 @@ JSON.parse(
         knowledge:1,
         skill:1,
         health:1,
-        career:1,
-        creativity:1
+        creativity:1,
+        career:1
     }
-
 };
 
 
 /* =========================================================
-   LEVELING
+   PLAYER CREATION
 ========================================================= */
 
-function xpRequired(level){
+function createPlayer(){
 
-    if(level<=1) return 150;
-    if(level===2) return 200;
-    if(level===3) return 275;
-    if(level===4) return 350;
-    if(level===5) return 450;
-    if(level===6) return 550;
-    if(level===7) return 675;
-    if(level===8) return 800;
-    if(level===9) return 950;
-    if(level===10) return 1100;
+    const name =
+        document.getElementById(
+            "playerNameInput"
+        ).value.trim();
 
-    return Math.round(
-        1100 +
-        Math.pow(level-10,1.35)*350
+    const goal =
+        document.getElementById(
+            "firstGoalInput"
+        ).value.trim();
+
+
+    if(!name || !goal){
+
+        alert(
+            "Enter your player name and first goal."
+        );
+
+        return;
+    }
+
+
+    game.player=name;
+
+
+    createGoalObject(
+        goal,
+        "beginner",
+        30,
+        "",
+        ""
     );
+
+
+    save();
+
+    document.getElementById(
+        "createScreen"
+    ).style.display="none";
+
+    render();
 
 }
 
 
-function rankName(level){
+/* =========================================================
+   GOAL ANALYZER
+========================================================= */
+
+function analyzeGoal(goal){
+
+    const text=goal.toLowerCase();
+
+    const domains=[];
+
+
+    if(
+        /baseball|basketball|football|soccer|athlete|sport|runner|swim|fitness|pitcher|catcher/.test(text)
+    )
+        domains.push("performance");
+
+
+    if(
+        /business|brand|company|entrepreneur|wealth|money|financial|freelance|startup|owner/.test(text)
+    )
+        domains.push("business");
+
+
+    if(
+        /chef|cook|cooking|baking|culinary|restaurant/.test(text)
+    )
+        domains.push("craft");
+
+
+    if(
+        /tattoo|drawing|painting|artist|photography|design|music|musician|creative/.test(text)
+    )
+        domains.push("creative");
+
+
+    if(
+        /language|japanese|spanish|french|german|korean|chinese|italian|learn/.test(text)
+    )
+        domains.push("learning");
+
+
+    if(
+        /pilot|aviation|airplane|flight/.test(text)
+    )
+        domains.push("professional");
+
+
+    if(
+        /coding|program|developer|software|app|website|technology|engineering/.test(text)
+    )
+        domains.push("technical");
+
+
+    if(!domains.length)
+        domains.push("general");
+
+
+    return [...new Set(domains)];
+}
+
+
+/* =========================================================
+   CREATE GOAL
+========================================================= */
+
+function createGoalObject(
+    name,
+    experience,
+    time,
+    why,
+    strengths
+){
+
+    const goal={
+
+        id:Date.now()+Math.random(),
+
+        name:name,
+
+        experience:experience,
+
+        time:Number(time),
+
+        why:why,
+
+        strengths:strengths,
+
+        domains:analyzeGoal(name),
+
+        level:1,
+
+        xp:0,
+
+        completed:0,
+
+        created:new Date().toISOString(),
+
+        roadmap:buildRoadmap(name)
+
+    };
+
+
+    game.goals.push(goal);
+
+    game.dailyDate=null;
+
+    game.dailyMissions=[];
+
+    game.weeklyMissions=[];
+
+    return goal;
+}
+
+
+function addGoal(){
+
+    const name=
+        document.getElementById(
+            "newGoal"
+        ).value.trim();
+
+
+    if(!name){
+
+        alert("Enter a goal.");
+
+        return;
+    }
+
+
+    createGoalObject(
+
+        name,
+
+        document.getElementById(
+            "newExperience"
+        ).value,
+
+        document.getElementById(
+            "newTime"
+        ).value,
+
+        document.getElementById(
+            "newWhy"
+        ).value.trim(),
+
+        document.getElementById(
+            "newStrengths"
+        ).value.trim()
+
+    );
+
+
+    document.getElementById("newGoal").value="";
+    document.getElementById("newWhy").value="";
+    document.getElementById("newStrengths").value="";
+
+
+    save();
+    render();
+
+    showScreen("quests");
+}
+
+
+/* =========================================================
+   ROADMAP
+========================================================= */
+
+function buildRoadmap(goal){
+
+    const domains=analyzeGoal(goal);
+
+    const phases=[];
+
+
+    phases.push({
+        name:"FOUNDATION",
+        description:
+        "Learn the fundamentals and establish the habits required to begin progressing.",
+        skills:[
+            "Fundamentals",
+            "Consistency",
+            "Knowledge"
+        ]
+    });
+
+
+    if(domains.includes("performance")){
+
+        phases.push({
+            name:"PERFORMANCE DEVELOPMENT",
+            description:
+            "Develop technical ability, physical preparation, decision making and performance habits.",
+            skills:[
+                "Technique",
+                "Performance",
+                "Recovery",
+                "Mental Skills"
+            ]
+        });
+
+    }
+
+
+    if(domains.includes("creative")){
+
+        phases.push({
+            name:"CREATIVE DEVELOPMENT",
+            description:
+            "Develop technical ability, originality, style and a body of work.",
+            skills:[
+                "Technique",
+                "Creativity",
+                "Style",
+                "Portfolio"
+            ]
+        });
+
+    }
+
+
+    if(domains.includes("business")){
+
+        phases.push({
+            name:"BUSINESS DEVELOPMENT",
+            description:
+            "Learn how to create value, understand customers, communicate and build an operation.",
+            skills:[
+                "Value",
+                "Marketing",
+                "Communication",
+                "Business"
+            ]
+        });
+
+    }
+
+
+    if(domains.includes("learning")){
+
+        phases.push({
+            name:"KNOWLEDGE DEVELOPMENT",
+            description:
+            "Build vocabulary, comprehension, retention and real-world application.",
+            skills:[
+                "Vocabulary",
+                "Comprehension",
+                "Memory",
+                "Application"
+            ]
+        });
+
+    }
+
+
+    if(domains.includes("craft")){
+
+        phases.push({
+            name:"CRAFT MASTERY",
+            description:
+            "Develop practical ability through deliberate practice and repetition.",
+            skills:[
+                "Technique",
+                "Precision",
+                "Consistency",
+                "Quality"
+            ]
+        });
+
+    }
+
+
+    if(domains.includes("technical")){
+
+        phases.push({
+            name:"TECHNICAL DEVELOPMENT",
+            description:
+            "Build technical knowledge by solving problems and completing projects.",
+            skills:[
+                "Fundamentals",
+                "Problem Solving",
+                "Projects",
+                "Technical Skill"
+            ]
+        });
+
+    }
+
+
+    phases.push({
+        name:"REAL WORLD APPLICATION",
+        description:
+        "Turn knowledge and practice into actual experience and measurable results.",
+        skills:[
+            "Execution",
+            "Experience",
+            "Networking",
+            "Communication"
+        ]
+    });
+
+
+    phases.push({
+        name:"PROFESSIONAL DEVELOPMENT",
+        description:
+        "Build credibility, opportunities, professional habits and long-term independence.",
+        skills:[
+            "Professionalism",
+            "Leadership",
+            "Networking",
+            "Career"
+        ]
+    });
+
+
+    phases.push({
+        name:"MASTERY",
+        description:
+        "Continue improving beyond competence and develop advanced expertise.",
+        skills:[
+            "Advanced Skill",
+            "Leadership",
+            "Mastery",
+            "Independence"
+        ]
+    });
+
+
+    return phases;
+}
+
+
+/* =========================================================
+   LEVEL SYSTEM
+========================================================= */
+
+function requiredXP(level){
+
+    const table={
+        1:150,
+        2:225,
+        3:325,
+        4:450,
+        5:600,
+        6:775,
+        7:975,
+        8:1200,
+        9:1450,
+        10:1750
+    };
+
+    if(table[level])
+        return table[level];
+
+    return Math.round(
+        1750+
+        Math.pow(level-10,1.4)*425
+    );
+}
+
+
+function rank(level){
 
     if(level<5) return "INITIATE";
 
@@ -880,31 +1387,26 @@ function rankName(level){
     if(level<75) return "MASTER";
 
     return "ASCENDANT";
-
 }
 
 
-/* =========================================================
-   XP
-========================================================= */
+function addXP(amount,stat){
 
-function awardXP(amount,stat){
+    game.xp+=amount;
 
-    game.xp += amount;
 
-    if(stat && game.stats[stat]!==undefined){
-
+    if(stat && game.stats[stat])
         game.stats[stat]++;
 
-    }
 
     let leveled=false;
 
+
     while(
-        game.xp >= xpRequired(game.level)
+        game.xp>=requiredXP(game.level)
     ){
 
-        game.xp -= xpRequired(game.level);
+        game.xp-=requiredXP(game.level);
 
         game.level++;
 
@@ -912,41 +1414,585 @@ function awardXP(amount,stat){
 
     }
 
+
     if(leveled){
 
         document.getElementById(
             "levelMessage"
-        ).innerHTML=
-        `
-        <div class="notice">
+        ).innerHTML=`
 
-        You have reached
+            <div class="notice">
 
-        <strong>
-        LEVEL ${game.level}
-        </strong>
+                PLAYER LEVEL:
 
-        <br><br>
+                <strong>
+                ${game.level}
+                </strong>
 
-        Rank:
+                <br><br>
 
-        <strong>
-        ${rankName(game.level)}
-        </strong>
+                RANK:
 
-        </div>
+                <strong>
+                ${rank(game.level)}
+                </strong>
+
+                <br><br>
+
+                The System recognizes
+                your continued progression.
+
+            </div>
         `;
 
         document.getElementById(
-            "levelOverlay"
+            "levelModal"
         ).style.display="flex";
+    }
+
+
+    save();
+}
+
+
+/* =========================================================
+   GOAL LEVELING
+========================================================= */
+
+function goalRequiredXP(goal){
+
+    return 100+(goal.level*100);
+}
+
+
+function addGoalXP(goal,amount){
+
+    goal.xp+=amount;
+
+
+    while(
+        goal.xp>=goalRequiredXP(goal)
+    ){
+
+        goal.xp-=goalRequiredXP(goal);
+
+        goal.level++;
 
     }
+}
+
+
+/* =========================================================
+   MISSION TEMPLATES
+========================================================= */
+
+const universal=[
+
+{
+title:"FOUNDATION STUDY",
+description:
+"Spend focused time learning one fundamental concept related to {goal}. Write down three things you learned and explain why they matter.",
+xp:35,
+stat:"knowledge"
+},
+
+{
+title:"DELIBERATE PRACTICE",
+description:
+"Spend {time} minutes deliberately practicing an important skill related to {goal}. Focus on quality rather than simply completing the timer.",
+xp:45,
+stat:"skill"
+},
+
+{
+title:"REAL-WORLD RESEARCH",
+description:
+"Study someone who has already accomplished something similar to {goal}. Identify three things they did and one action you can apply to your own path.",
+xp:45,
+stat:"knowledge"
+},
+
+{
+title:"WEAKNESS ANALYSIS",
+description:
+"Identify one ability currently separating you from {goal}. Write down the specific action you will take to improve it.",
+xp:40,
+stat:"discipline"
+},
+
+{
+title:"BUILD SOMETHING",
+description:
+"Create, practice, produce, or complete something tangible related to {goal}. Turn knowledge into an actual result.",
+xp:55,
+stat:"skill"
+},
+
+{
+title:"PROFESSIONAL RESEARCH",
+description:
+"Find one real-world opportunity related to {goal}. Research the qualifications, skills and experience it requires.",
+xp:50,
+stat:"career"
+},
+
+{
+title:"NETWORKING",
+description:
+"Identify one person, organization, community, mentor, school or professional connected to {goal}. Learn how people in this field create opportunities.",
+xp:50,
+stat:"career"
+},
+
+{
+title:"REFLECTION",
+description:
+"Review your recent progress toward {goal}. Write down what improved, what didn't, and what you should change.",
+xp:35,
+stat:"discipline"
+},
+
+{
+title:"CONSISTENCY",
+description:
+"Complete one meaningful action toward {goal} even if motivation is low. The purpose is to strengthen consistency.",
+xp:35,
+stat:"discipline"
+},
+
+{
+title:"PROOF OF PROGRESS",
+description:
+"Create or improve something that proves your progress toward {goal}: a project, portfolio item, practice record, document, demonstration or result.",
+xp:60,
+stat:"career"
+}
+
+];
+
+
+const domainTemplates={
+
+performance:[
+
+{
+title:"TECHNICAL DEVELOPMENT",
+description:
+"Complete a focused technical practice session related to {goal}. Record one thing that improved and one thing that still needs work.",
+xp:55,
+stat:"skill"
+},
+
+{
+title:"PERFORMANCE REVIEW",
+description:
+"Review a recent performance connected to {goal}. Identify one strength and one specific area for improvement.",
+xp:45,
+stat:"knowledge"
+},
+
+{
+title:"PREPARATION & RECOVERY",
+description:
+"Complete an appropriate preparation or recovery routine that supports consistent progress toward {goal}.",
+xp:35,
+stat:"health"
+}
+
+],
+
+business:[
+
+{
+title:"CUSTOMER PROBLEM",
+description:
+"Identify a real problem experienced by people connected to {goal}. Describe who has the problem and how you could potentially provide value.",
+xp:50,
+stat:"career"
+},
+
+{
+title:"COMPETITOR RESEARCH",
+description:
+"Research three successful people or businesses related to {goal}. Identify what they do well and one opportunity you could approach differently.",
+xp:55,
+stat:"knowledge"
+},
+
+{
+title:"VALUE PROPOSITION",
+description:
+"Write a simple statement explaining who you want to help, what problem you solve and why your approach is useful.",
+xp:50,
+stat:"career"
+}
+
+],
+
+creative:[
+
+{
+title:"ORIGINAL CREATION",
+description:
+"Create an original piece related to {goal}. Focus on your own decisions, ideas and style.",
+xp:55,
+stat:"creativity"
+},
+
+{
+title:"TECHNIQUE STUDY",
+description:
+"Choose one technique relevant to {goal}. Study it and deliberately practice it.",
+xp:45,
+stat:"skill"
+},
+
+{
+title:"PORTFOLIO DEVELOPMENT",
+description:
+"Improve or organize one piece of work that demonstrates progress toward {goal}.",
+xp:55,
+stat:"career"
+}
+
+],
+
+learning:[
+
+{
+title:"ACTIVE RECALL",
+description:
+"Learn material related to {goal}, then put your notes away and recall what you learned without looking.",
+xp:40,
+stat:"knowledge"
+},
+
+{
+title:"REAL-WORLD APPLICATION",
+description:
+"Use something you learned about {goal} in a real situation instead of only studying it.",
+xp:50,
+stat:"skill"
+},
+
+{
+title:"KNOWLEDGE BUILD",
+description:
+"Learn five new concepts, terms, vocabulary words or facts related to {goal}, then use them correctly.",
+xp:35,
+stat:"knowledge"
+}
+
+],
+
+craft:[
+
+{
+title:"TECHNIQUE PRACTICE",
+description:
+"Choose one practical technique required for {goal} and deliberately practice it while focusing on precision.",
+xp:50,
+stat:"skill"
+},
+
+{
+title:"QUALITY REVIEW",
+description:
+"Review something you produced related to {goal}. Identify one quality issue and determine how you can improve it.",
+xp:45,
+stat:"knowledge"
+}
+
+],
+
+technical:[
+
+{
+title:"BUILD A PROJECT",
+description:
+"Build a small project related to {goal}. The purpose is to apply knowledge rather than only consume tutorials.",
+xp:65,
+stat:"skill"
+},
+
+{
+title:"PROBLEM SOLVING",
+description:
+"Find a real problem connected to {goal} and attempt to solve it independently before looking at another solution.",
+xp:55,
+stat:"skill"
+}
+
+],
+
+professional:[
+
+{
+title:"CAREER PATH RESEARCH",
+description:
+"Research the real-world path required for {goal}. Identify training, qualifications, experience and opportunities.",
+xp:50,
+stat:"career"
+},
+
+{
+title:"PROFESSIONAL PROFILE",
+description:
+"Create or improve a résumé, portfolio, profile, logbook or other professional record relevant to {goal}.",
+xp:55,
+stat:"career"
+}
+
+]
+
+};
+
+
+/* =========================================================
+   BUILD MISSION
+========================================================= */
+
+function buildMission(goal){
+
+    let templates=[...universal];
+
+
+    goal.domains.forEach(
+        domain=>{
+
+            if(domainTemplates[domain]){
+
+                templates.push(
+                    ...domainTemplates[domain]
+                );
+
+            }
+
+        }
+    );
+
+
+    const t=
+        templates[
+            Math.floor(
+                Math.random()*templates.length
+            )
+        ];
+
+
+    return {
+
+        id:Date.now()+Math.random(),
+
+        title:t.title,
+
+        description:
+            t.description
+            .replaceAll(
+                "{goal}",
+                goal.name
+            )
+            .replaceAll(
+                "{time}",
+                goal.time
+            ),
+
+        xp:t.xp,
+
+        stat:t.stat,
+
+        goalId:goal.id,
+
+        completed:false
+
+    };
+}
+
+
+/* =========================================================
+   DAILY MISSIONS
+========================================================= */
+
+function initializeDaily(){
+
+    const today=
+        new Date()
+        .toISOString()
+        .split("T")[0];
+
+
+    if(game.dailyDate===today)
+        return;
+
+
+    game.dailyDate=today;
+
+    game.dailyMissions=[];
+
+
+    game.goals.forEach(
+        goal=>{
+
+            game.dailyMissions.push(
+                buildMission(goal)
+            );
+
+        }
+    );
+
+
+    while(
+        game.dailyMissions.length<
+        Math.min(
+            3,
+            Math.max(
+                1,
+                game.goals.length+1
+            )
+        )
+    ){
+
+        const goal=
+            game.goals[
+                Math.floor(
+                    Math.random()*
+                    game.goals.length
+                )
+            ];
+
+        game.dailyMissions.push(
+            buildMission(goal)
+        );
+
+    }
+
+
+    save();
+}
+
+
+/* =========================================================
+   WEEKLY MISSIONS
+========================================================= */
+
+function initializeWeekly(){
+
+    if(game.weeklyMissions.length)
+        return;
+
+
+    game.goals.forEach(
+        goal=>{
+
+            game.weeklyMissions.push({
+
+                id:Date.now()+Math.random(),
+
+                title:"WEEKLY REAL-WORLD OBJECTIVE",
+
+                description:
+                "Complete one meaningful real-world action that advances your progress toward "+goal.name+". The result should be measurable or tangible.",
+
+                xp:125,
+
+                stat:"career",
+
+                goalId:goal.id,
+
+                completed:false
+
+            });
+
+        }
+    );
+
+
+    game.weeklyMissions.push({
+
+        id:Date.now()+Math.random(),
+
+        title:"WEEKLY SYSTEM REVIEW",
+
+        description:
+        "Review your week. Identify your biggest improvement, biggest obstacle, and the most important action you need to take next week.",
+
+        xp:65,
+
+        stat:"discipline",
+
+        goalId:null,
+
+        completed:false
+
+    });
+
+
+    save();
+}
+
+
+/* =========================================================
+   COMPLETE MISSION
+========================================================= */
+
+function completeMission(id,type){
+
+    const list=
+        type==="daily"
+        ?game.dailyMissions
+        :game.weeklyMissions;
+
+
+    const mission=
+        list.find(
+            m=>m.id==id
+        );
+
+
+    if(!mission || mission.completed)
+        return;
+
+
+    mission.completed=true;
+
+
+    addXP(
+        mission.xp,
+        mission.stat
+    );
+
+
+    if(mission.goalId){
+
+        const goal=
+            game.goals.find(
+                g=>g.id===mission.goalId
+            );
+
+
+        if(goal){
+
+            goal.completed++;
+
+            addGoalXP(
+                goal,
+                mission.xp
+            );
+
+        }
+
+    }
+
+
+    game.missionsCompleted++;
+
+    updateStreak();
 
     checkAchievements();
 
     save();
 
+    render();
 }
 
 
@@ -957,28 +2003,34 @@ function awardXP(amount,stat){
 function updateStreak(){
 
     const today=
-    new Date()
-    .toISOString()
-    .split("T")[0];
+        new Date()
+        .toISOString()
+        .split("T")[0];
 
-    if(game.lastQuestDate===today)
+
+    if(game.lastCompletedDate===today)
         return;
 
-    if(game.lastQuestDate){
 
-        const previous=
-        new Date(game.lastQuestDate);
+    if(game.lastCompletedDate){
 
-        const current=
-        new Date(today);
+        const oldDate=
+            new Date(
+                game.lastCompletedDate
+            );
 
-        const difference=
-        Math.floor(
-            (current-previous) /
-            (1000*60*60*24)
-        );
+        const newDate=
+            new Date(today);
 
-        if(difference===1){
+
+        const days=
+            Math.floor(
+                (newDate-oldDate)/
+                86400000
+            );
+
+
+        if(days===1){
 
             game.streak++;
 
@@ -994,1042 +2046,8 @@ function updateStreak(){
 
     }
 
-    game.lastQuestDate=today;
 
-}
-
-
-/* =========================================================
-   GOAL ANALYSIS
-========================================================= */
-
-function analyzeGoal(name){
-
-    const text=name.toLowerCase();
-
-    let domains=[];
-
-    if(
-        /business|company|brand|entrepreneur|wealth|money|income|rich|financial|freelance|agency|startup/
-        .test(text)
-    ){
-
-        domains.push("business");
-
-    }
-
-    if(
-        /athlete|baseball|basketball|football|soccer|tennis|sport|runner|swim|fitness/
-        .test(text)
-    ){
-
-        domains.push("performance");
-
-    }
-
-    if(
-        /chef|cook|cooking|baking|culinary|restaurant/
-        .test(text)
-    ){
-
-        domains.push("craft");
-
-    }
-
-    if(
-        /language|japanese|spanish|french|german|korean|chinese|italian|learn/
-        .test(text)
-    ){
-
-        domains.push("learning");
-
-    }
-
-    if(
-        /tattoo|artist|drawing|painting|music|musician|photography|design|creative/
-        .test(text)
-    ){
-
-        domains.push("creative");
-
-    }
-
-    if(
-        /pilot|aviation|airplane|flight/
-        .test(text)
-    ){
-
-        domains.push("professional");
-
-    }
-
-    if(
-        /program|software|developer|coding|engineer|technology|app|website/
-        .test(text)
-    ){
-
-        domains.push("technical");
-
-    }
-
-    if(
-        /school|college|degree|education|study|academic|exam/
-        .test(text)
-    ){
-
-        domains.push("education");
-
-    }
-
-    if(!domains.length){
-
-        domains.push("general");
-
-    }
-
-    return [...new Set(domains)];
-
-}
-
-
-/* =========================================================
-   ROADMAP GENERATION
-========================================================= */
-
-function buildRoadmap(goal){
-
-    const domains=goal.domains;
-
-    let phases=[];
-
-    phases.push({
-
-        name:"FOUNDATION",
-
-        description:
-        "Understand the fundamentals and establish the habits required for your goal.",
-
-        skills:[
-            "Fundamentals",
-            "Consistency",
-            "Knowledge"
-        ]
-
-    });
-
-
-    if(
-        domains.includes("learning")
-    ){
-
-        phases.push({
-
-            name:"LANGUAGE / KNOWLEDGE DEVELOPMENT",
-
-            description:
-            "Build vocabulary, comprehension, practice ability, and real-world application.",
-
-            skills:[
-                "Vocabulary",
-                "Comprehension",
-                "Practice",
-                "Application"
-            ]
-
-        });
-
-    }
-
-
-    if(
-        domains.includes("performance")
-    ){
-
-        phases.push({
-
-            name:"PERFORMANCE DEVELOPMENT",
-
-            description:
-            "Develop technical ability, physical preparation, decision-making, and performance habits.",
-
-            skills:[
-                "Technique",
-                "Performance",
-                "Recovery",
-                "Mental Skills"
-            ]
-
-        });
-
-    }
-
-
-    if(
-        domains.includes("craft")
-    ){
-
-        phases.push({
-
-            name:"CRAFT MASTERY",
-
-            description:
-            "Develop practical skill through deliberate practice, experimentation, and repetition.",
-
-            skills:[
-                "Technique",
-                "Precision",
-                "Creativity",
-                "Consistency"
-            ]
-
-        });
-
-    }
-
-
-    if(
-        domains.includes("creative")
-    ){
-
-        phases.push({
-
-            name:"CREATIVE DEVELOPMENT",
-
-            description:
-            "Build technical ability while developing your own style and body of work.",
-
-            skills:[
-                "Technique",
-                "Style",
-                "Portfolio",
-                "Creativity"
-            ]
-
-        });
-
-    }
-
-
-    if(
-        domains.includes("technical")
-    ){
-
-        phases.push({
-
-            name:"TECHNICAL DEVELOPMENT",
-
-            description:
-            "Build practical technical knowledge through projects and deliberate practice.",
-
-            skills:[
-                "Fundamentals",
-                "Problem Solving",
-                "Projects",
-                "Technical Skill"
-            ]
-
-        });
-
-    }
-
-
-    if(
-        domains.includes("business")
-    ){
-
-        phases.push({
-
-            name:"VALUE & BUSINESS",
-
-            description:
-            "Learn how to create value, understand customers, communicate, market, and operate.",
-
-            skills:[
-                "Value Creation",
-                "Communication",
-                "Marketing",
-                "Business"
-            ]
-
-        });
-
-    }
-
-
-    phases.push({
-
-        name:"REAL WORLD APPLICATION",
-
-        description:
-        "Move from practice into real-world opportunities and measurable results.",
-
-        skills:[
-            "Communication",
-            "Networking",
-            "Experience",
-            "Execution"
-        ]
-
-    });
-
-
-    phases.push({
-
-        name:"MASTERY & CAREER",
-
-        description:
-        "Build advanced ability, credibility, opportunities, and long-term independence.",
-
-        skills:[
-            "Advanced Skill",
-            "Professionalism",
-            "Leadership",
-            "Mastery"
-        ]
-
-    });
-
-
-    return phases;
-
-}
-
-
-/* =========================================================
-   CREATE GOAL
-========================================================= */
-
-function createPath(){
-
-    const name=
-    document.getElementById("goalName")
-    .value.trim();
-
-    if(!name){
-
-        alert(
-        "Tell ASCEND what you want to accomplish first."
-        );
-
-        return;
-
-    }
-
-
-    const experience=
-    document.getElementById("experience")
-    .value;
-
-    const time=
-    Number(
-        document.getElementById("time")
-        .value
-    );
-
-    const why=
-    document.getElementById("goalWhy")
-    .value.trim();
-
-    const strengths=
-    document.getElementById("strengths")
-    .value.trim();
-
-
-    const domains=
-    analyzeGoal(name);
-
-
-    const roadmap=
-    buildRoadmap({
-
-        name,
-        domains
-
-    });
-
-
-    const goal={
-
-        id:Date.now(),
-
-        name:name,
-
-        experience:experience,
-
-        time:time,
-
-        why:why,
-
-        strengths:strengths,
-
-        domains:domains,
-
-        level:1,
-
-        xp:0,
-
-        completed:0,
-
-        roadmap:roadmap,
-
-        created:new Date().toISOString()
-
-    };
-
-
-    game.goals.push(goal);
-
-
-    document.getElementById(
-        "goalName"
-    ).value="";
-
-    document.getElementById(
-        "goalWhy"
-    ).value="";
-
-    document.getElementById(
-        "strengths"
-    ).value="";
-
-
-    game.dailyDate=null;
-
-    game.weeklyMissions=[];
-
-
-    save();
-
-    initializeMissions();
-
-    render();
-
-}
-
-
-/* =========================================================
-   GOAL XP
-========================================================= */
-
-function goalXPRequired(goal){
-
-    return 100+(goal.level*75);
-
-}
-
-
-function awardGoalXP(goal,amount){
-
-    goal.xp+=amount;
-
-    while(
-        goal.xp>=goalXPRequired(goal)
-    ){
-
-        goal.xp-=goalXPRequired(goal);
-
-        goal.level++;
-
-    }
-
-}
-
-
-/* =========================================================
-   UNIVERSAL MISSION ENGINE
-========================================================= */
-
-const universalMissionTemplates=[
-
-{
-title:"FOUNDATION STUDY",
-
-description:
-"Spend focused time learning one fundamental concept connected to {goal}. Write down three useful things you learned.",
-
-xp:35,
-stat:"knowledge"
-},
-
-{
-title:"DELIBERATE PRACTICE",
-
-description:
-"Spend {time} minutes deliberately practicing a skill that directly contributes to {goal}. Focus on quality rather than simply completing the time.",
-
-xp:45,
-stat:"skill"
-},
-
-{
-title:"REAL WORLD RESEARCH",
-
-description:
-"Find someone who has already achieved something similar to {goal}. Study their path and identify one action you can apply to your own journey.",
-
-xp:45,
-stat:"knowledge"
-},
-
-{
-title:"WEAKNESS IDENTIFICATION",
-
-description:
-"Identify one skill or obstacle currently separating you from {goal}. Write down one concrete action you can take to improve it.",
-
-xp:40,
-stat:"discipline"
-},
-
-{
-title:"BUILD SOMETHING",
-
-description:
-"Create, practice, produce, or complete something tangible related to {goal}. The objective is to turn knowledge into action.",
-
-xp:55,
-stat:"skill"
-},
-
-{
-title:"PROFESSIONAL DEVELOPMENT",
-
-description:
-"Research one real-world opportunity connected to {goal}. Learn what skills, experience, qualifications, or preparation it requires.",
-
-xp:50,
-stat:"career"
-},
-
-{
-title:"NETWORKING MISSION",
-
-description:
-"Identify one person, community, organization, school, company, mentor, or professional connected to {goal}. Learn how people in this field build relationships.",
-
-xp:50,
-stat:"career"
-},
-
-{
-title:"REFLECTION",
-
-description:
-"Review your recent progress toward {goal}. Write down what improved, what did not, and what you should change next.",
-
-xp:35,
-stat:"discipline"
-},
-
-{
-title:"CONSISTENCY MISSION",
-
-description:
-"Complete one planned action toward {goal} even if you are not feeling motivated. The objective is to strengthen consistency.",
-
-xp:35,
-stat:"discipline"
-},
-
-{
-title:"PORTFOLIO / PROOF",
-
-description:
-"Create or improve one piece of evidence showing your progress toward {goal}: a project, practice result, portfolio item, record, document, or demonstration.",
-
-xp:60,
-stat:"career"
-}
-
-];
-
-
-/* =========================================================
-   DOMAIN MISSIONS
-========================================================= */
-
-const domainMissions={
-
-business:[
-
-{
-title:"CUSTOMER PROBLEM",
-
-description:
-"Identify a real problem that people interested in {goal} experience. Write down who has the problem and how you could provide value.",
-
-xp:50,
-stat:"career"
-},
-
-{
-title:"COMPETITOR RESEARCH",
-
-description:
-"Research three successful people or businesses connected to {goal}. Identify what they do well and one opportunity they leave open.",
-
-xp:50,
-stat:"knowledge"
-},
-
-{
-title:"VALUE PROPOSITION",
-
-description:
-"Write one sentence explaining who you want to help, what problem you solve, and why your approach is useful.",
-
-xp:55,
-stat:"career"
-}
-
-],
-
-learning:[
-
-{
-title:"ACTIVE RECALL",
-
-description:
-"Learn new material connected to {goal}, then close your notes and recall as much as possible without looking.",
-
-xp:40,
-stat:"knowledge"
-},
-
-{
-title:"REAL WORLD PRACTICE",
-
-description:
-"Use what you are learning about {goal} in a real situation rather than only studying it.",
-
-xp:50,
-stat:"skill"
-},
-
-{
-title:"VOCABULARY / CONCEPT BUILD",
-
-description:
-"Learn and correctly use five new concepts, terms, or pieces of vocabulary related to {goal}.",
-
-xp:35,
-stat:"knowledge"
-}
-
-],
-
-creative:[
-
-{
-title:"CREATE WITHOUT COPYING",
-
-description:
-"Create an original piece related to {goal}. Do not reproduce someone else's work. Focus on your own decisions and ideas.",
-
-xp:55,
-stat:"creativity"
-},
-
-{
-title:"TECHNIQUE STUDY",
-
-description:
-"Choose one technique relevant to {goal}. Study how it works and deliberately practice it.",
-
-xp:45,
-stat:"skill"
-},
-
-{
-title:"PORTFOLIO DEVELOPMENT",
-
-description:
-"Improve, organize, document, or present one piece of work that demonstrates progress toward {goal}.",
-
-xp:55,
-stat:"career"
-}
-
-],
-
-performance:[
-
-{
-title:"TECHNICAL SESSION",
-
-description:
-"Complete a focused technical practice session related to {goal}. Record one thing that improved and one thing that still needs work.",
-
-xp:55,
-stat:"skill"
-},
-
-{
-title:"PERFORMANCE REVIEW",
-
-description:
-"Review your recent performance related to {goal}. Identify one strength and one specific area that needs improvement.",
-
-xp:45,
-stat:"knowledge"
-},
-
-{
-title:"RECOVERY & PREPARATION",
-
-description:
-"Complete an appropriate recovery and preparation routine that supports your ability to pursue {goal} consistently.",
-
-xp:35,
-stat:"health"
-}
-
-],
-
-craft:[
-
-{
-title:"TECHNIQUE PRACTICE",
-
-description:
-"Choose one practical technique required for {goal} and deliberately practice it while focusing on precision.",
-
-xp:50,
-stat:"skill"
-},
-
-{
-title:"QUALITY REVIEW",
-
-description:
-"Review something you recently produced related to {goal}. Identify one quality issue and determine how you could improve it.",
-
-xp:45,
-stat:"knowledge"
-}
-
-],
-
-technical:[
-
-{
-title:"BUILD A PROJECT",
-
-description:
-"Build a small project related to {goal}. The objective is to apply knowledge instead of only consuming tutorials.",
-
-xp:65,
-stat:"skill"
-},
-
-{
-title:"PROBLEM SOLVING",
-
-description:
-"Find a real problem related to {goal} and attempt to solve it independently before looking at someone else's solution.",
-
-xp:55,
-stat:"skill"
-}
-
-],
-
-professional:[
-
-{
-title:"CAREER RESEARCH",
-
-description:
-"Research the real-world path required to pursue {goal}. Identify the training, qualifications, experience, and opportunities involved.",
-
-xp:50,
-stat:"career"
-},
-
-{
-title:"PROFESSIONAL PROFILE",
-
-description:
-"Create or improve a résumé, portfolio, profile, logbook, or other professional record relevant to {goal}.",
-
-xp:55,
-stat:"career"
-}
-
-],
-
-general:[]
-
-};
-
-
-/* =========================================================
-   MISSION BUILDER
-========================================================= */
-
-function buildMission(goal){
-
-    let possible=[
-        ...universalMissionTemplates
-    ];
-
-
-    goal.domains.forEach(domain=>{
-
-        if(domainMissions[domain]){
-
-            possible.push(
-                ...domainMissions[domain]
-            );
-
-        }
-
-    });
-
-
-    const template=
-    possible[
-        Math.floor(
-            Math.random()*possible.length
-        )
-    ];
-
-
-    return {
-
-        id:Date.now()+Math.random(),
-
-        title:template.title,
-
-        description:
-        template.description
-        .replaceAll(
-            "{goal}",
-            goal.name
-        )
-        .replaceAll(
-            "{time}",
-            goal.time
-        ),
-
-        xp:template.xp,
-
-        stat:template.stat,
-
-        goalId:goal.id,
-
-        completed:false
-
-    };
-
-}
-
-
-/* =========================================================
-   DAILY MISSIONS
-========================================================= */
-
-function initializeMissions(){
-
-    if(!game.goals.length)
-        return;
-
-
-    const today=
-    new Date()
-    .toISOString()
-    .split("T")[0];
-
-
-    if(game.dailyDate!==today){
-
-        game.dailyDate=today;
-
-        game.dailyMissions=[];
-
-
-        /*
-           Each active goal contributes
-           at least one mission.
-
-           This is what allows someone to
-           pursue multiple dreams at once.
-        */
-
-        game.goals.forEach(goal=>{
-
-            game.dailyMissions.push(
-                buildMission(goal)
-            );
-
-        });
-
-
-        /*
-           Add an optional consistency mission
-           when there are fewer than three.
-        */
-
-        while(
-            game.dailyMissions.length<3
-        ){
-
-            const goal=
-            game.goals[
-                Math.floor(
-                    Math.random()*game.goals.length
-                )
-            ];
-
-            game.dailyMissions.push(
-                buildMission(goal)
-            );
-
-        }
-
-        save();
-
-    }
-
-}
-
-
-/* =========================================================
-   WEEKLY MISSIONS
-========================================================= */
-
-function initializeWeekly(){
-
-    if(!game.goals.length)
-        return;
-
-
-    if(
-        !game.weeklyMissions.length
-    ){
-
-        game.goals.forEach(goal=>{
-
-            game.weeklyMissions.push({
-
-                id:Date.now()+Math.random(),
-
-                title:"WEEKLY MILESTONE",
-
-                description:
-                "Complete one meaningful action this week that advances your progress toward "+goal.name+". This should produce a real result, not merely consume time.",
-
-                xp:125,
-
-                stat:"career",
-
-                goalId:goal.id,
-
-                completed:false
-
-            });
-
-        });
-
-
-        game.weeklyMissions.push({
-
-            id:Date.now()+Math.random(),
-
-            title:"WEEKLY REFLECTION",
-
-            description:
-            "Review your week. Identify your biggest improvement, biggest obstacle, and the single most important action for next week.",
-
-            xp:60,
-
-            stat:"discipline",
-
-            goalId:null,
-
-            completed:false
-
-        });
-
-
-        save();
-
-    }
-
-}
-
-
-/* =========================================================
-   COMPLETE MISSION
-========================================================= */
-
-function completeMission(id,type){
-
-    let list;
-
-    if(type==="daily"){
-
-        list=game.dailyMissions;
-
-    }else{
-
-        list=game.weeklyMissions;
-
-    }
-
-
-    const mission=
-    list.find(
-        m=>m.id==id
-    );
-
-
-    if(!mission || mission.completed)
-        return;
-
-
-    mission.completed=true;
-
-
-    awardXP(
-        mission.xp,
-        mission.stat
-    );
-
-
-    if(mission.goalId){
-
-        const goal=
-        game.goals.find(
-            g=>g.id===mission.goalId
-        );
-
-
-        if(goal){
-
-            goal.completed++;
-
-            awardGoalXP(
-                goal,
-                mission.xp
-            );
-
-        }
-
-    }
-
-
-    game.completedQuests++;
-
-
-    updateStreak();
-
-    checkAchievements();
-
-    save();
-
-    render();
-
+    game.lastCompletedDate=today;
 }
 
 
@@ -2037,137 +2055,597 @@ function completeMission(id,type){
    EXTRA MISSION
 ========================================================= */
 
-function generateMission(){
+function generateExtraMission(){
 
-    if(!game.goals.length){
-
-        alert(
-        "Create a goal first."
-        );
-
-        return;
-
-    }
-
-
-    const select=
-    document.getElementById(
-        "missionGoal"
-    );
+    const id=
+        document.getElementById(
+            "missionGoalSelect"
+        ).value;
 
 
     const goal=
-    game.goals.find(
-        g=>g.id==select.value
-    );
+        game.goals.find(
+            g=>String(g.id)===String(id)
+        );
 
 
-    if(!goal) return;
+    if(!goal)
+        return;
 
 
-    game.generatedMission=
-    buildMission(goal);
+    game.extraMission=
+        buildMission(goal);
 
 
     save();
 
-    renderGenerated();
-
+    renderExtra();
 }
 
 
-/* =========================================================
-   COMPLETE GENERATED
-========================================================= */
+function completeExtra(){
 
-function completeGenerated(){
-
-    const mission=
-    game.generatedMission;
-
-
-    if(!mission || mission.completed)
+    if(
+        !game.extraMission ||
+        game.extraMission.completed
+    )
         return;
 
 
-    mission.completed=true;
+    const m=
+        game.extraMission;
 
 
-    awardXP(
-        mission.xp,
-        mission.stat
+    m.completed=true;
+
+
+    addXP(
+        m.xp,
+        m.stat
     );
 
 
     const goal=
-    game.goals.find(
-        g=>g.id===mission.goalId
-    );
+        game.goals.find(
+            g=>g.id===m.goalId
+        );
 
 
     if(goal){
 
         goal.completed++;
 
-        awardGoalXP(
+        addGoalXP(
             goal,
-            mission.xp
+            m.xp
         );
 
     }
 
 
-    game.completedQuests++;
+    game.missionsCompleted++;
 
     updateStreak();
+
+    game.extraMission=null;
 
     save();
 
     render();
-
 }
 
 
 /* =========================================================
-   ROADMAP MILESTONES
+   NAVIGATION
 ========================================================= */
 
-function milestoneList(goal){
+function showScreen(screen){
 
-    return goal.roadmap.map(
-        (phase,index)=>({
+    document
+        .querySelectorAll(".screen")
+        .forEach(
+            s=>s.classList.remove("active")
+        );
 
-            id:index,
 
-            name:phase.name,
+    document
+        .getElementById(screen)
+        .classList.add("active");
 
-            description:phase.description,
 
-            skills:phase.skills,
+    document
+        .querySelectorAll(".nav button")
+        .forEach(
+            b=>b.classList.remove("active")
+        );
 
-            unlocked:
-            goal.level >=
-            Math.min(
-                1+index*3,
-                100
-            )
 
-        })
-    );
+    document
+        .getElementById(
+            "nav-"+screen
+        )
+        .classList.add("active");
 
+
+    render();
 }
 
 
 /* =========================================================
-   STATS
+   RENDER PLAYER
 ========================================================= */
 
-function renderStats(){
+function renderPlayer(){
+
+    if(!game.player)
+        return;
+
+
+    document.getElementById(
+        "headerPlayer"
+    ).textContent=
+        "PLAYER // "+game.player;
+
+
+    document.getElementById(
+        "playerLevel"
+    ).textContent=
+        game.level;
+
+
+    document.getElementById(
+        "playerRank"
+    ).textContent=
+        rank(game.level);
+
+
+    const required=
+        requiredXP(game.level);
+
+
+    document.getElementById(
+        "playerXPText"
+    ).textContent=
+        game.xp+
+        " / "+
+        required+
+        " XP";
+
+
+    document.getElementById(
+        "playerXPFill"
+    ).style.width=
+        Math.min(
+            100,
+            game.xp/required*100
+        )+"%";
+
+
+    document.getElementById(
+        "goalCount"
+    ).textContent=
+        game.goals.length;
+
+
+    document.getElementById(
+        "missionCount"
+    ).textContent=
+        game.missionsCompleted;
+
+
+    document.getElementById(
+        "streakCount"
+    ).textContent=
+        game.streak;
+}
+
+
+/* =========================================================
+   RENDER HOME
+========================================================= */
+
+function renderHome(){
+
+    const core=
+        document.getElementById(
+            "coreMission"
+        );
+
+
+    if(!game.goals.length){
+
+        core.innerHTML=
+        `<div class="small">
+        No active questline.
+        </div>`;
+
+    }else{
+
+        const goal=
+            game.goals[0];
+
+
+        core.innerHTML=`
+
+        <div class="notice">
+
+            <strong>
+            ${esc(goal.name)}
+            </strong>
+
+            <br><br>
+
+            ${
+                goal.why
+                ?esc(goal.why)
+                :"This is your current primary questline."
+            }
+
+        </div>
+
+        `;
+
+    }
+
 
     const box=
-    document.getElementById("stats");
+        document.getElementById(
+            "homeGoals"
+        );
+
 
     box.innerHTML="";
+
+
+    game.goals.forEach(
+        goal=>{
+
+            const req=
+                goalRequiredXP(goal);
+
+
+            box.innerHTML+=`
+
+            <div class="goal">
+
+                <div class="goal-name">
+                    ${esc(goal.name)}
+                </div>
+
+                <div class="goal-type">
+                    ${goal.domains.join(" // ").toUpperCase()}
+                </div>
+
+                <div class="goal-level">
+                    GOAL LEVEL ${goal.level}
+                </div>
+
+                <div class="xpbar goal-xp">
+                    <div
+                        class="xpfill"
+                        style="
+                        width:${Math.min(
+                            100,
+                            goal.xp/req*100
+                        )}%
+                        ">
+                    </div>
+                </div>
+
+                <div class="xptext">
+                    ${goal.xp} / ${req} GOAL XP
+                </div>
+
+            </div>
+
+            `;
+
+        }
+    );
+}
+
+
+/* =========================================================
+   RENDER QUESTS
+========================================================= */
+
+function renderQuests(){
+
+    const box=
+        document.getElementById(
+            "questList"
+        );
+
+
+    box.innerHTML="";
+
+
+    game.goals.forEach(
+        goal=>{
+
+            box.innerHTML+=`
+
+            <div class="quest">
+
+                <div class="quest-title">
+                    ⚔ ${esc(goal.name)}
+                </div>
+
+                <div class="quest-desc">
+
+                    Current Quest Level:
+                    <strong>
+                    ${goal.level}
+                    </strong>
+
+                    <br><br>
+
+                    Current phase:
+
+                    <strong>
+                    ${
+                        goal.roadmap[
+                            Math.min(
+                                goal.level-1,
+                                goal.roadmap.length-1
+                            )
+                        ].name
+                    }
+                    </strong>
+
+                </div>
+
+                <div class="tags">
+
+                    <div class="tag">
+                    ${goal.experience.toUpperCase()}
+                    </div>
+
+                    <div class="tag">
+                    ${goal.time} MIN/DAY
+                    </div>
+
+                    <div class="tag">
+                    ${goal.completed} COMPLETE
+                    </div>
+
+                </div>
+
+            </div>
+
+            `;
+
+        }
+    );
+}
+
+
+/* =========================================================
+   RENDER MISSIONS
+========================================================= */
+
+function renderMissions(){
+
+    initializeDaily();
+
+    initializeWeekly();
+
+
+    const daily=
+        document.getElementById(
+            "dailyList"
+        );
+
+
+    daily.innerHTML="";
+
+
+    game.dailyMissions.forEach(
+        m=>{
+
+            const goal=
+                game.goals.find(
+                    g=>g.id===m.goalId
+                );
+
+
+            daily.innerHTML+=missionHTML(
+                m,
+                goal,
+                "daily"
+            );
+
+        }
+    );
+
+
+    const weekly=
+        document.getElementById(
+            "weeklyList"
+        );
+
+
+    weekly.innerHTML="";
+
+
+    game.weeklyMissions.forEach(
+        m=>{
+
+            weekly.innerHTML+=missionHTML(
+                m,
+                null,
+                "weekly"
+            );
+
+        }
+    );
+
+
+    const select=
+        document.getElementById(
+            "missionGoalSelect"
+        );
+
+
+    select.innerHTML="";
+
+
+    game.goals.forEach(
+        goal=>{
+
+            select.innerHTML+=`
+
+            <option value="${goal.id}">
+                ${esc(goal.name)}
+            </option>
+
+            `;
+
+        }
+    );
+
+
+    renderExtra();
+}
+
+
+function missionHTML(m,goal,type){
+
+    return `
+
+    <div class="quest ${m.completed?"completed":""}">
+
+        <div class="quest-title">
+            ${m.completed?"✓":"◆"}
+            ${esc(m.title)}
+        </div>
+
+        <div class="quest-desc">
+            ${esc(m.description)}
+        </div>
+
+        <div class="tags">
+
+            ${
+                goal
+                ?
+                `<div class="tag">
+                    ${esc(goal.name)}
+                </div>`
+                :""
+            }
+
+            <div class="tag">
+                +${m.xp} XP
+            </div>
+
+            <div class="tag">
+                ${m.stat.toUpperCase()}
+            </div>
+
+        </div>
+
+        ${
+            m.completed
+            ?
+            `<div class="small">
+                MISSION COMPLETE
+            </div>`
+            :
+            `<button
+                onclick="
+                completeMission(
+                    ${m.id},
+                    '${type}'
+                )">
+                COMPLETE MISSION
+            </button>`
+        }
+
+    </div>
+
+    `;
+}
+
+
+function renderExtra(){
+
+    const box=
+        document.getElementById(
+            "extraMission"
+        );
+
+
+    if(!game.extraMission){
+
+        box.innerHTML=
+        `<div class="small">
+        No generated mission.
+        </div>`;
+
+        return;
+    }
+
+
+    const m=
+        game.extraMission;
+
+
+    box.innerHTML=`
+
+    <div class="quest">
+
+        <div class="quest-title">
+            ${esc(m.title)}
+        </div>
+
+        <div class="quest-desc">
+            ${esc(m.description)}
+        </div>
+
+        <div class="tags">
+
+            <div class="tag">
+                +${m.xp} XP
+            </div>
+
+            <div class="tag">
+                ${m.stat.toUpperCase()}
+            </div>
+
+        </div>
+
+        ${
+            m.completed
+            ?
+            `<div class="small">
+            COMPLETE
+            </div>`
+            :
+            `<button onclick="completeExtra()">
+            COMPLETE MISSION
+            </button>`
+        }
+
+    </div>
+
+    `;
+}
+
+
+/* =========================================================
+   RENDER PROGRESS
+========================================================= */
+
+function renderProgress(){
+
+    const stats=
+        document.getElementById(
+            "stats"
+        );
+
+
+    stats.innerHTML="";
 
 
     Object.entries(
@@ -2175,37 +2653,35 @@ function renderStats(){
     ).forEach(
         ([name,value])=>{
 
-            const width=
-            Math.min(
-                100,
-                value*4
-            );
+            stats.innerHTML+=`
 
+            <div class="skill">
 
-            box.innerHTML+=`
+                <div class="skill-head">
 
-            <div class="stat">
+                    <span>
+                    ${name.toUpperCase()}
+                    </span>
 
-            <div class="stat-head">
+                    <span>
+                    ${value}
+                    </span>
 
-            <span>
-            ${name.toUpperCase()}
-            </span>
+                </div>
 
-            <span>
-            ${value}
-            </span>
+                <div class="skill-bar">
 
-            </div>
+                    <div
+                        class="skill-fill"
+                        style="
+                        width:${Math.min(
+                            100,
+                            value*4
+                        )}%
+                        ">
+                    </div>
 
-            <div class="statbar">
-
-            <div
-            class="statfill"
-            style="width:${width}%"
-            ></div>
-
-            </div>
+                </div>
 
             </div>
 
@@ -2214,324 +2690,38 @@ function renderStats(){
         }
     );
 
-}
 
-
-/* =========================================================
-   PLAYER
-========================================================= */
-
-function renderPlayer(){
-
-    document.getElementById(
-        "playerLevel"
-    ).textContent=game.level;
-
-
-    document.getElementById(
-        "playerRank"
-    ).textContent=
-    rankName(game.level);
-
-
-    const required=
-    xpRequired(game.level);
-
-
-    const percent=
-    Math.min(
-        100,
-        (game.xp/required)*100
-    );
-
-
-    document.getElementById(
-        "playerXPBar"
-    ).style.width=
-    percent+"%";
-
-
-    document.getElementById(
-        "playerXP"
-    ).textContent=
-    game.xp+
-    " / "+
-    required+
-    " XP";
-
-
-    document.getElementById(
-        "streak"
-    ).textContent=
-    game.streak;
-
-}
-
-
-/* =========================================================
-   CORE MISSION
-========================================================= */
-
-function renderCoreMission(){
-
-    const box=
-    document.getElementById(
-        "coreMission"
-    );
-
-
-    if(!game.goals.length){
-
-        box.innerHTML=`
-
-        <div class="empty">
-
-        Your Core Mission hasn't been established yet.
-
-        Create your first goal to begin.
-
-        </div>
-
-        `;
-
-        return;
-
-    }
-
-
-    const goal=
-    game.goals[0];
-
-
-    box.innerHTML=`
-
-    <div class="notice">
-
-    <strong>
-    ${escapeHTML(goal.name)}
-    </strong>
-
-    <br><br>
-
-    ${goal.why
-        ? escapeHTML(goal.why)
-        : "Your reason has not been defined yet."
-    }
-
-    </div>
-
-    `;
-
-}
-
-
-/* =========================================================
-   GOALS
-========================================================= */
-
-function renderGoals(){
-
-    const box=
-    document.getElementById("goals");
-
-
-    box.innerHTML="";
-
-
-    if(!game.goals.length){
-
-        box.innerHTML=`
-
-        <div class="empty">
-
-        No active goals.
-
-        Your first step is to tell ASCEND
-        what you're trying to accomplish.
-
-        </div>
-
-        `;
-
-        return;
-
-    }
-
-
-    game.goals.forEach(goal=>{
-
-        const required=
-        goalXPRequired(goal);
-
-
-        const percent=
-        Math.min(
-            100,
-            goal.xp/required*100
+    const goals=
+        document.getElementById(
+            "progressGoals"
         );
 
 
-        box.innerHTML+=`
-
-        <div class="goal">
-
-        <div class="goal-name">
-
-        ${escapeHTML(goal.name)}
-
-        </div>
-
-        <div class="goal-meta">
-
-        ${goal.domains
-            .join(" // ")
-            .toUpperCase()
-        }
-
-        </div>
-
-        <div class="goal-level">
-
-        GOAL LEVEL ${goal.level}
-
-        </div>
-
-        <div class="xpbar">
-
-        <div
-        class="xpfill"
-        style="width:${percent}%"
-        ></div>
-
-        </div>
-
-        <div class="xptext">
-
-        ${goal.xp} /
-        ${required}
-        GOAL XP
-
-        </div>
-
-        <div class="small">
-
-        Experience:
-        ${goal.experience}
-
-        <br>
-
-        Daily commitment:
-        ${goal.time} minutes
-
-        <br>
-
-        Missions completed:
-        ${goal.completed}
-
-        </div>
-
-        </div>
-
-        `;
-
-    });
-
-}
+    goals.innerHTML="";
 
 
-/* =========================================================
-   DAILY
-========================================================= */
+    game.goals.forEach(
+        goal=>{
 
-function renderDaily(){
+            goals.innerHTML+=`
 
-    const box=
-    document.getElementById(
-        "dailyMissions"
-    );
+            <div class="goal">
 
+                <div class="goal-name">
+                    ${esc(goal.name)}
+                </div>
 
-    box.innerHTML="";
+                <div class="small">
 
+                    Goal Level:
+                    ${goal.level}
 
-    if(!game.goals.length){
+                    <br>
 
-        box.innerHTML=
-        `<div class="empty">
-        Create a goal first.
-        </div>`;
+                    Missions completed:
+                    ${goal.completed}
 
-        return;
-
-    }
-
-
-    initializeMissions();
-
-
-    game.dailyMissions.forEach(
-        mission=>{
-
-            const goal=
-            game.goals.find(
-                g=>g.id===mission.goalId
-            );
-
-
-            box.innerHTML+=`
-
-            <div class="quest
-            ${mission.completed?"completed":""}">
-
-            <div class="quest-title">
-
-            ${escapeHTML(
-                mission.title
-            )}
-
-            </div>
-
-            <div class="quest-description">
-
-            ${escapeHTML(
-                mission.description
-            )}
-
-            </div>
-
-            <div class="quest-meta">
-
-            <div class="tag">
-            ${goal
-                ?escapeHTML(goal.name)
-                :"SYSTEM"
-            }
-            </div>
-
-            <div class="tag">
-            +${mission.xp} XP
-            </div>
-
-            </div>
-
-            ${
-                mission.completed
-                ?
-                `<div class="small">
-                ✓ MISSION COMPLETE
-                </div>`
-                :
-                `<button
-                onclick="
-                completeMission(
-                    ${mission.id},
-                    'daily'
-                )">
-
-                COMPLETE MISSION
-
-                </button>`
-            }
+                </div>
 
             </div>
 
@@ -2540,216 +2730,8 @@ function renderDaily(){
         }
     );
 
-}
 
-
-/* =========================================================
-   WEEKLY
-========================================================= */
-
-function renderWeekly(){
-
-    const box=
-    document.getElementById(
-        "weeklyMissions"
-    );
-
-
-    box.innerHTML="";
-
-
-    if(!game.goals.length){
-
-        box.innerHTML=
-        `<div class="empty">
-        Create a goal first.
-        </div>`;
-
-        return;
-
-    }
-
-
-    initializeWeekly();
-
-
-    game.weeklyMissions.forEach(
-        mission=>{
-
-            box.innerHTML+=`
-
-            <div class="quest
-            ${mission.completed?"completed":""}">
-
-            <div class="quest-title">
-
-            ${escapeHTML(
-                mission.title
-            )}
-
-            </div>
-
-            <div class="quest-description">
-
-            ${escapeHTML(
-                mission.description
-            )}
-
-            </div>
-
-            <div class="quest-meta">
-
-            <div class="tag">
-            WEEKLY
-            </div>
-
-            <div class="tag">
-            +${mission.xp} XP
-            </div>
-
-            </div>
-
-            ${
-                mission.completed
-                ?
-                `<div class="small">
-                ✓ COMPLETE
-                </div>`
-                :
-                `<button
-                onclick="
-                completeMission(
-                    ${mission.id},
-                    'weekly'
-                )">
-
-                COMPLETE
-
-                </button>`
-            }
-
-            </div>
-
-            `;
-
-        }
-    );
-
-}
-
-
-/* =========================================================
-   MISSION SELECT
-========================================================= */
-
-function renderMissionSelect(){
-
-    const select=
-    document.getElementById(
-        "missionGoal"
-    );
-
-
-    select.innerHTML="";
-
-
-    game.goals.forEach(goal=>{
-
-        select.innerHTML+=`
-
-        <option value="${goal.id}">
-
-        ${escapeHTML(goal.name)}
-
-        </option>
-
-        `;
-
-    });
-
-}
-
-
-/* =========================================================
-   GENERATED MISSION
-========================================================= */
-
-function renderGenerated(){
-
-    const box=
-    document.getElementById(
-        "generatedMission"
-    );
-
-
-    const mission=
-    game.generatedMission;
-
-
-    if(!mission){
-
-        box.innerHTML=
-        `<div class="empty">
-
-        Choose a goal and generate
-        an additional mission.
-
-        </div>`;
-
-        return;
-
-    }
-
-
-    box.innerHTML=`
-
-    <div class="quest
-    ${mission.completed?"completed":""}">
-
-    <div class="quest-title">
-
-    ${escapeHTML(
-        mission.title
-    )}
-
-    </div>
-
-    <div class="quest-description">
-
-    ${escapeHTML(
-        mission.description
-    )}
-
-    </div>
-
-    <div class="quest-meta">
-
-    <div class="tag">
-    +${mission.xp} XP
-    </div>
-
-    <div class="tag">
-    ${mission.stat.toUpperCase()}
-    </div>
-
-    </div>
-
-    ${
-        mission.completed
-        ?
-        `<div class="small">
-        ✓ COMPLETE
-        </div>`
-        :
-        `<button onclick="completeGenerated()">
-        COMPLETE MISSION
-        </button>`
-    }
-
-    </div>
-
-    `;
-
+    renderRoadmap();
 }
 
 
@@ -2760,104 +2742,78 @@ function renderGenerated(){
 function renderRoadmap(){
 
     const box=
-    document.getElementById(
-        "roadmap"
-    );
+        document.getElementById(
+            "roadmap"
+        );
 
 
     box.innerHTML="";
 
 
-    if(!game.goals.length){
+    game.goals.forEach(
+        goal=>{
 
-        box.innerHTML=
-        `<div class="empty">
-        Your roadmap will appear here.
-        </div>`;
+            box.innerHTML+=`
 
-        return;
+            <div class="goal">
 
-    }
-
-
-    game.goals.forEach(goal=>{
-
-        box.innerHTML+=`
-
-        <div class="notice">
-
-        <strong>
-        ${escapeHTML(goal.name)}
-        </strong>
-
-        </div>
-
-        `;
-
-
-        milestoneList(goal)
-        .forEach(
-            (phase,index)=>{
-
-                const unlocked=
-                goal.level >=
-                Math.min(
-                    1+index*3,
-                    100
-                );
-
-
-                box.innerHTML+=`
-
-                <div class="milestone
-                ${unlocked?"":"done"}">
-
-                <strong>
-
-                ${
-                    unlocked
-                    ?"◆"
-                    :"◇"
-                }
-
-                ${escapeHTML(
-                    phase.name
-                )}
-
-                </strong>
-
-                <div class="small">
-
-                ${escapeHTML(
-                    phase.description
-                )}
-
+                <div class="goal-name">
+                    ${esc(goal.name)}
                 </div>
 
-                <div class="quest-meta">
+                <br>
 
                 ${
-                    phase.skills
+                    goal.roadmap
                     .map(
-                        skill=>
-                        `<div class="tag">
-                        ${escapeHTML(skill)}
-                        </div>`
+                        (phase,i)=>`
+
+                        <div class="quest">
+
+                            <div class="quest-title">
+
+                                ${
+                                    i<goal.level
+                                    ?"◆"
+                                    :"◇"
+                                }
+
+                                ${esc(phase.name)}
+
+                            </div>
+
+                            <div class="quest-desc">
+                                ${esc(phase.description)}
+                            </div>
+
+                            <div class="tags">
+
+                                ${
+                                    phase.skills
+                                    .map(
+                                        s=>
+                                        `<div class="tag">
+                                        ${esc(s)}
+                                        </div>`
+                                    )
+                                    .join("")
+                                }
+
+                            </div>
+
+                        </div>
+
+                        `
                     )
                     .join("")
                 }
 
-                </div>
+            </div>
 
-                </div>
+            `;
 
-                `;
-
-            }
-        );
-
-    });
-
+        }
+    );
 }
 
 
@@ -2865,254 +2821,133 @@ function renderRoadmap(){
    ACHIEVEMENTS
 ========================================================= */
 
+const achievementData=[
+
+["first","FIRST STEP","Complete your first mission.",
+()=>game.missionsCompleted>=1],
+
+["ten","GETTING SERIOUS","Complete 10 missions.",
+()=>game.missionsCompleted>=10],
+
+["twentyfive","CONSISTENCY","Complete 25 missions.",
+()=>game.missionsCompleted>=25],
+
+["level10","DOUBLE DIGITS","Reach Level 10.",
+()=>game.level>=10],
+
+["streak7","SEVEN DAY STREAK","Reach a seven-day streak.",
+()=>game.streak>=7],
+
+["multipath","MULTI-PATH","Maintain two active goals.",
+()=>game.goals.length>=2],
+
+["architect","LIFE ARCHITECT","Maintain three active goals.",
+()=>game.goals.length>=3],
+
+["hundred","CENTURY","Complete 100 missions.",
+()=>game.missionsCompleted>=100]
+
+];
+
+
 function checkAchievements(){
 
-    const achievements=[
-
-        [
-            "first",
-            "FIRST STEP",
-            game.completedQuests>=1
-        ],
-
-        [
-            "ten",
-            "GETTING SERIOUS",
-            game.completedQuests>=10
-        ],
-
-        [
-            "twentyfive",
-            "CONSISTENCY",
-            game.completedQuests>=25
-        ],
-
-        [
-            "level10",
-            "DOUBLE DIGITS",
-            game.level>=10
-        ],
-
-        [
-            "streak7",
-            "SEVEN DAY STREAK",
-            game.streak>=7
-        ],
-
-        [
-            "multipath",
-            "MULTI-PATH",
-            game.goals.length>=2
-        ],
-
-        [
-            "threepaths",
-            "LIFE ARCHITECT",
-            game.goals.length>=3
-        ],
-
-        [
-            "hundred",
-            "CENTURY",
-            game.completedQuests>=100
-        ]
-
-    ];
-
-
-    achievements.forEach(
-        achievement=>{
+    achievementData.forEach(
+        a=>{
 
             if(
-                achievement[2] &&
-                !game.achievements
-                .includes(
-                    achievement[0]
-                )
+                a[3]() &&
+                !game.achievements.includes(a[0])
             ){
 
-                game.achievements.push(
-                    achievement[0]
-                );
+                game.achievements.push(a[0]);
 
             }
 
         }
     );
-
 }
 
 
 function renderAchievements(){
 
+    checkAchievements();
+
+
     const box=
-    document.getElementById(
-        "achievements"
-    );
-
-
-    const list=[
-
-        [
-            "first",
-            "FIRST STEP",
-            "Complete your first mission."
-        ],
-
-        [
-            "ten",
-            "GETTING SERIOUS",
-            "Complete 10 missions."
-        ],
-
-        [
-            "twentyfive",
-            "CONSISTENCY",
-            "Complete 25 missions."
-        ],
-
-        [
-            "level10",
-            "DOUBLE DIGITS",
-            "Reach Level 10."
-        ],
-
-        [
-            "streak7",
-            "SEVEN DAY STREAK",
-            "Maintain a seven-day streak."
-        ],
-
-        [
-            "multipath",
-            "MULTI-PATH",
-            "Pursue two goals at once."
-        ],
-
-        [
-            "threepaths",
-            "LIFE ARCHITECT",
-            "Pursue three goals at once."
-        ],
-
-        [
-            "hundred",
-            "CENTURY",
-            "Complete 100 missions."
-        ]
-
-    ];
+        document.getElementById(
+            "achievementList"
+        );
 
 
     box.innerHTML="";
 
 
-    list.forEach(a=>{
+    achievementData.forEach(
+        a=>{
 
-        const unlocked=
-        game.achievements
-        .includes(a[0]);
+            const unlocked=
+                game.achievements
+                .includes(a[0]);
 
 
-        box.innerHTML+=`
+            box.innerHTML+=`
 
-        <div class="quest
-        ${unlocked?"":"completed"}">
+            <div class="achievement
+            ${unlocked?"":"locked"}">
 
-        <div class="quest-title">
+                <div class="quest-title">
 
-        ${unlocked?"◆":"◇"}
+                    ${unlocked?"◆":"◇"}
 
-        ${a[1]}
+                    ${a[1]}
 
-        </div>
+                </div>
 
-        <div class="quest-description">
+                <div class="quest-desc">
 
-        ${a[2]}
+                    ${a[2]}
 
-        </div>
+                </div>
 
-        </div>
+            </div>
 
-        `;
+            `;
 
-    });
-
+        }
+    );
 }
 
 
 /* =========================================================
-   SAVE
+   UTILITIES
 ========================================================= */
+
+function esc(text){
+
+    return String(text)
+        .replaceAll("&","&amp;")
+        .replaceAll("<","&lt;")
+        .replaceAll(">","&gt;")
+        .replaceAll('"',"&quot;")
+        .replaceAll("'","&#039;");
+}
+
+
+function closeLevelModal(){
+
+    document.getElementById(
+        "levelModal"
+    ).style.display="none";
+}
+
 
 function save(){
 
     localStorage.setItem(
-        STORAGE_KEY,
+        SAVE_KEY,
         JSON.stringify(game)
     );
-
-}
-
-
-/* =========================================================
-   RESET
-========================================================= */
-
-function resetGame(){
-
-    const answer=
-    confirm(
-        "RESET ASCEND? This will erase all player progress on this device."
-    );
-
-
-    if(!answer)
-        return;
-
-
-    localStorage.removeItem(
-        STORAGE_KEY
-    );
-
-
-    location.reload();
-
-}
-
-
-/* =========================================================
-   UTILITY
-========================================================= */
-
-function escapeHTML(text){
-
-    return String(text)
-
-    .replaceAll("&","&amp;")
-
-    .replaceAll("<","&lt;")
-
-    .replaceAll(">","&gt;")
-
-    .replaceAll('"',"&quot;")
-
-    .replaceAll("'","&#039;");
-
-}
-
-
-/* =========================================================
-   OVERLAY
-========================================================= */
-
-function closeOverlay(){
-
-    document.getElementById(
-        "levelOverlay"
-    ).style.display="none";
-
 }
 
 
@@ -3122,35 +2957,39 @@ function closeOverlay(){
 
 function render(){
 
-    checkAchievements();
+    if(!game.player){
+
+        document.getElementById(
+            "createScreen"
+        ).style.display="flex";
+
+        return;
+    }
+
+
+    document.getElementById(
+        "createScreen"
+    ).style.display="none";
+
 
     renderPlayer();
 
-    renderStats();
+    renderHome();
 
-    renderCoreMission();
+    renderQuests();
 
-    renderGoals();
+    renderMissions();
 
-    renderDaily();
-
-    renderWeekly();
-
-    renderMissionSelect();
-
-    renderGenerated();
-
-    renderRoadmap();
+    renderProgress();
 
     renderAchievements();
 
     save();
-
 }
 
 
 /* =========================================================
-   SYSTEM BOOT
+   START SYSTEM
 ========================================================= */
 
 render();
