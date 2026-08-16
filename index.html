@@ -3,203 +3,345 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>ASCEND</title>
+<title>ASCEND — Your Life. Your Quests.</title>
 
 <style>
-* {
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
+*{box-sizing:border-box;margin:0;padding:0}
+
+:root{
+--bg:#070910;
+--panel:#101522;
+--panel2:#151c2b;
+--border:#273145;
+--text:#f5f7fb;
+--muted:#8e99aa;
+--accent:#ffffff;
+--danger:#ff5c6c;
 }
 
-body {
-    font-family: Arial, sans-serif;
-    background: #070a10;
-    color: white;
-    min-height: 100vh;
+body{
+font-family:Arial,Helvetica,sans-serif;
+background:var(--bg);
+color:var(--text);
+min-height:100vh;
 }
 
-button {
-    border: none;
-    border-radius: 10px;
-    padding: 14px 20px;
-    font-weight: bold;
-    cursor: pointer;
-    background: white;
-    color: #070a10;
+button{
+border:0;
+border-radius:10px;
+padding:13px 18px;
+font-weight:700;
+cursor:pointer;
+background:white;
+color:#080b12;
 }
 
-button:disabled {
-    opacity: 0.45;
+button:disabled{
+opacity:.4;
+cursor:default;
 }
 
-.screen {
-    min-height: 100vh;
-    padding: 30px 18px;
+input,textarea,select{
+width:100%;
+padding:13px;
+margin:7px 0;
+border-radius:9px;
+border:1px solid var(--border);
+background:#080c14;
+color:white;
+font-size:16px;
 }
 
-.center {
-    display: flex;
-    justify-content: center;
-    align-items: center;
+textarea{
+min-height:100px;
+resize:vertical;
 }
 
-.hidden {
-    display: none !important;
+.hidden{display:none!important}
+
+.container{
+width:min(100%,1050px);
+margin:auto;
+padding:18px;
 }
 
-.card {
-    background: #111722;
-    border: 1px solid #252d3b;
-    border-radius: 18px;
-    padding: 24px;
-    margin-bottom: 18px;
+.screen{
+min-height:100vh;
+padding:30px 18px;
 }
 
-.container {
-    width: 100%;
-    max-width: 850px;
-    margin: auto;
+.center{
+display:flex;
+align-items:center;
+justify-content:center;
 }
 
-.logo {
-    font-size: 50px;
-    font-weight: 900;
-    letter-spacing: 8px;
+.logo{
+font-size:clamp(44px,12vw,82px);
+font-weight:900;
+letter-spacing:10px;
 }
 
-.subtitle {
-    color: #9da5b4;
-    margin: 15px 0 35px;
+.tagline{
+color:var(--muted);
+font-size:18px;
+margin:18px 0 40px;
 }
 
-input, select {
-    width: 100%;
-    padding: 14px;
-    margin: 8px 0;
-    border-radius: 9px;
-    border: 1px solid #303949;
-    background: #080b12;
-    color: white;
-    font-size: 16px;
+.panel{
+background:var(--panel);
+border:1px solid var(--border);
+border-radius:18px;
+padding:22px;
+margin-bottom:18px;
+box-shadow:0 10px 30px rgba(0,0,0,.18);
 }
 
-h1, h2, h3 {
-    margin-bottom: 10px;
+h1{font-size:30px;margin-bottom:8px}
+h2{font-size:22px;margin-bottom:8px}
+h3{font-size:17px;margin-bottom:7px}
+
+p{
+color:var(--muted);
+line-height:1.5;
 }
 
-p {
-    color: #aab2c0;
-    line-height: 1.5;
+.small{
+font-size:13px;
+color:var(--muted);
 }
 
-.small {
-    font-size: 13px;
-    color: #7f8998;
+.muted{
+color:var(--muted);
 }
 
-.goal {
-    background: #171e2b;
-    border: 1px solid #293346;
-    border-radius: 14px;
-    padding: 18px;
-    margin-top: 12px;
+.row{
+display:flex;
+align-items:center;
+justify-content:space-between;
+gap:12px;
 }
 
-.goal-header {
-    display: flex;
-    justify-content: space-between;
-    gap: 10px;
+.wrap{
+flex-wrap:wrap;
 }
 
-.progress {
-    height: 9px;
-    background: #252d3b;
-    border-radius: 20px;
-    overflow: hidden;
-    margin: 12px 0;
+.grid{
+display:grid;
+grid-template-columns:repeat(2,1fr);
+gap:15px;
 }
 
-.progress-fill {
-    height: 100%;
-    width: 0%;
-    background: white;
+.goal-grid{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(230px,1fr));
+gap:14px;
 }
 
-.quest {
-    background: #171e2b;
-    border-radius: 13px;
-    padding: 18px;
-    margin-top: 12px;
+.stat-grid{
+display:grid;
+grid-template-columns:repeat(3,1fr);
+gap:10px;
 }
 
-.quest-title {
-    font-weight: bold;
-    margin-bottom: 6px;
+.stat{
+background:var(--panel2);
+border:1px solid var(--border);
+border-radius:13px;
+padding:14px;
 }
 
-.reward {
-    margin: 12px 0;
-    font-size: 13px;
-    color: #9da5b4;
+.stat-number{
+font-size:22px;
+font-weight:800;
+display:block;
+margin-top:5px;
 }
 
-.stats {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 10px;
+.bar{
+height:8px;
+background:#242d3d;
+border-radius:20px;
+overflow:hidden;
+margin-top:9px;
 }
 
-.stat {
-    background: #171e2b;
-    padding: 15px;
-    border-radius: 12px;
+.fill{
+height:100%;
+width:0%;
+background:white;
+transition:.4s;
 }
 
-.stat-bar {
-    height: 6px;
-    background: #252d3b;
-    margin-top: 8px;
-    border-radius: 10px;
-    overflow: hidden;
+.goal{
+background:var(--panel2);
+border:1px solid var(--border);
+border-radius:15px;
+padding:17px;
 }
 
-.stat-fill {
-    height: 100%;
-    width: 30%;
-    background: white;
+.goal-icon{
+font-size:27px;
 }
 
-.xpbar {
-    height: 12px;
-    background: #252d3b;
-    border-radius: 20px;
-    overflow: hidden;
-    margin-top: 8px;
+.quest{
+background:var(--panel2);
+border:1px solid var(--border);
+border-radius:14px;
+padding:17px;
+margin-top:12px;
 }
 
-.xpfill {
-    height: 100%;
-    width: 0%;
-    background: white;
+.quest-title{
+font-weight:800;
+font-size:17px;
 }
 
-.section-title {
-    margin-top: 28px;
+.reward{
+font-size:13px;
+color:#aeb8c8;
+margin:11px 0;
 }
 
-#dashboard {
-    display: none;
+.badge{
+display:inline-block;
+padding:5px 9px;
+border-radius:20px;
+background:#202a3c;
+color:#b9c4d6;
+font-size:11px;
+font-weight:700;
+margin:3px;
 }
 
-@media (max-width: 600px) {
-    .logo {
-        font-size: 38px;
-    }
+.nav{
+position:sticky;
+top:0;
+z-index:20;
+background:rgba(7,9,16,.94);
+backdrop-filter:blur(12px);
+border-bottom:1px solid var(--border);
+}
 
-    .goal-header {
-        flex-direction: column;
-    }
+.nav-inner{
+width:min(100%,1050px);
+margin:auto;
+padding:12px 18px;
+display:flex;
+gap:8px;
+overflow-x:auto;
+}
+
+.nav button{
+background:transparent;
+color:var(--muted);
+padding:9px 12px;
+white-space:nowrap;
+}
+
+.nav button.active{
+background:white;
+color:#080b12;
+}
+
+.level-box{
+background:var(--panel);
+border:1px solid var(--border);
+border-radius:18px;
+padding:20px;
+}
+
+.level{
+font-size:38px;
+font-weight:900;
+}
+
+.xp-text{
+margin-top:7px;
+font-size:13px;
+color:var(--muted);
+}
+
+.challenge{
+border-left:4px solid white;
+}
+
+.achievement{
+display:flex;
+align-items:center;
+gap:12px;
+background:var(--panel2);
+padding:14px;
+border-radius:12px;
+margin-top:10px;
+}
+
+.achievement.locked{
+opacity:.45;
+}
+
+.achievement-icon{
+font-size:28px;
+}
+
+.goal-progress{
+font-size:12px;
+color:var(--muted);
+margin-top:5px;
+}
+
+.remove{
+background:transparent;
+color:var(--danger);
+padding:5px;
+}
+
+.empty{
+padding:25px;
+text-align:center;
+border:1px dashed var(--border);
+border-radius:14px;
+color:var(--muted);
+}
+
+.toast{
+position:fixed;
+bottom:20px;
+left:50%;
+transform:translateX(-50%);
+background:white;
+color:#080b12;
+padding:13px 20px;
+border-radius:10px;
+font-weight:700;
+z-index:100;
+display:none;
+}
+
+.modal{
+position:fixed;
+inset:0;
+background:rgba(0,0,0,.75);
+display:flex;
+align-items:center;
+justify-content:center;
+padding:20px;
+z-index:90;
+}
+
+.modal-box{
+width:min(100%,500px);
+background:var(--panel);
+border:1px solid var(--border);
+border-radius:18px;
+padding:22px;
+}
+
+@media(max-width:700px){
+.grid{grid-template-columns:1fr}
+.stat-grid{grid-template-columns:repeat(2,1fr)}
+.container{padding:13px}
+.panel{padding:18px}
 }
 </style>
 </head>
@@ -207,571 +349,1616 @@ p {
 <body>
 
 <!-- START -->
-<section id="startScreen" class="screen center">
+<section id="start" class="screen center">
+<div style="text-align:center;max-width:700px">
 
-    <div style="text-align:center; max-width:600px;">
+<div class="logo">ASCEND</div>
 
-        <div class="logo">ASCEND</div>
+<div class="tagline">
+Your life. Your quests. Your evolution.
+</div>
 
-        <div class="subtitle">
-            Your life. Your quests. Your evolution.
-        </div>
+<button onclick="showCreate()">
+BEGIN YOUR JOURNEY
+</button>
 
-        <button onclick="showSetup()">
-            BEGIN YOUR JOURNEY
-        </button>
+<p class="small" style="margin-top:35px">
+Created by Limitle22Kreation2
+</p>
 
-        <p class="small" style="margin-top:40px;">
-            Created by Limitle22Kreation2
-        </p>
-
-    </div>
-
+</div>
 </section>
 
 
-<!-- CHARACTER SETUP -->
-<section id="setupScreen" class="screen hidden">
-
-    <div class="container">
-
-        <div class="card">
-
-            <h1>Create Your Character</h1>
-
-            <p>
-                You aren't limited to one dream.
-                Build the life you actually want.
-            </p>
-
-            <input
-                id="playerName"
-                placeholder="Player name"
-            >
-
-            <h3 style="margin-top:20px;">
-                Add Your Goals
-            </h3>
-
-            <p class="small">
-                You can have multiple major goals.
-            </p>
-
-            <input
-                id="goal1"
-                placeholder="Goal 1 — example: Become a pro baseball player"
-            >
-
-            <input
-                id="goal2"
-                placeholder="Goal 2 — example: Become a tattoo artist"
-            >
-
-            <input
-                id="goal3"
-                placeholder="Goal 3 — example: Build my own business"
-            >
-
-            <button
-                onclick="createCharacter()"
-                style="margin-top:15px;"
-            >
-                CREATE CHARACTER
-            </button>
-
-        </div>
-
-    </div>
-
-</section>
-
-
-<!-- DASHBOARD -->
-<section id="dashboard" class="screen">
-
+<!-- CHARACTER CREATION -->
+<section id="create" class="screen hidden">
 <div class="container">
 
-    <div class="card">
+<div class="panel">
 
-        <p class="small">PLAYER</p>
+<h1>Initialize Player</h1>
 
-        <h1 id="playerDisplay"></h1>
+<p>
+Your life is the game. Your goals become your missions.
+There is no single path to becoming who you want to be.
+</p>
 
-        <h3>
-            LEVEL <span id="levelDisplay">1</span>
-        </h3>
+<label class="small">PLAYER NAME</label>
+<input id="nameInput" placeholder="Enter your player name">
 
-        <div class="xpbar">
-            <div id="xpFill" class="xpfill"></div>
-        </div>
+<label class="small">LIFE VISION</label>
+<textarea id="visionInput" placeholder="What kind of person do you want to become? What kind of life do you want to build?"></textarea>
 
-        <p class="small">
-            <span id="xpDisplay">0</span> / 100 XP
-        </p>
+<h2 style="margin-top:22px">🎯 Your Major Goals</h2>
 
-    </div>
+<p class="small">
+Add multiple goals. You can change them later.
+</p>
 
+<div id="goalInputs">
 
-    <!-- GOALS -->
+<input class="goal-input" placeholder="Goal 1 — e.g. Become a professional baseball player">
 
-    <div class="card">
+<input class="goal-input" placeholder="Goal 2 — e.g. Become a professional tattoo artist">
 
-        <h2>🎯 Active Goals</h2>
-
-        <p>
-            These are the major objectives shaping your character.
-        </p>
-
-        <div id="goalsContainer"></div>
-
-    </div>
-
-
-    <!-- STATS -->
-
-    <div class="card">
-
-        <h2>📊 Character Stats</h2>
-
-        <div class="stats">
-
-            <div class="stat">
-                🧠 Knowledge
-                <strong id="knowledge">10</strong>
-                <div class="stat-bar">
-                    <div class="stat-fill" style="width:30%"></div>
-                </div>
-            </div>
-
-            <div class="stat">
-                💪 Strength
-                <strong id="strength">10</strong>
-                <div class="stat-bar">
-                    <div class="stat-fill" style="width:30%"></div>
-                </div>
-            </div>
-
-            <div class="stat">
-                🎨 Creativity
-                <strong id="creativity">10</strong>
-                <div class="stat-bar">
-                    <div class="stat-fill" style="width:30%"></div>
-                </div>
-            </div>
-
-            <div class="stat">
-                🎯 Discipline
-                <strong id="discipline">10</strong>
-                <div class="stat-bar">
-                    <div class="stat-fill" style="width:30%"></div>
-                </div>
-            </div>
-
-            <div class="stat">
-                💰 Business
-                <strong id="business">10</strong>
-                <div class="stat-bar">
-                    <div class="stat-fill" style="width:30%"></div>
-                </div>
-            </div>
-
-            <div class="stat">
-                🤝 Social
-                <strong id="social">10</strong>
-                <div class="stat-bar">
-                    <div class="stat-fill" style="width:30%"></div>
-                </div>
-            </div>
-
-        </div>
-
-    </div>
-
-
-    <!-- DAILY QUESTS -->
-
-    <div class="card">
-
-        <h2>⚔️ Daily Quests</h2>
-
-        <p>
-            Small actions. Real progress.
-        </p>
-
-        <div class="quest">
-
-            <div class="quest-title">
-                🎯 Progress Quest
-            </div>
-
-            <p>
-                Spend at least 30 focused minutes working toward one of your goals.
-            </p>
-
-            <div class="reward">
-                +50 XP • +2 Discipline
-            </div>
-
-            <button onclick="completeQuest(50, 'discipline', this)">
-                COMPLETE QUEST
-            </button>
-
-        </div>
-
-
-        <div class="quest">
-
-            <div class="quest-title">
-                🧠 Knowledge Quest
-            </div>
-
-            <p>
-                Spend 20 minutes learning something directly connected to one of your goals.
-            </p>
-
-            <div class="reward">
-                +40 XP • +2 Knowledge
-            </div>
-
-            <button onclick="completeQuest(40, 'knowledge', this)">
-                COMPLETE QUEST
-            </button>
-
-        </div>
-
-
-        <div class="quest">
-
-            <div class="quest-title">
-                💪 Discipline Quest
-            </div>
-
-            <p>
-                Complete one useful task you've been avoiding.
-            </p>
-
-            <div class="reward">
-                +60 XP • +3 Discipline
-            </div>
-
-            <button onclick="completeQuest(60, 'discipline', this)">
-                COMPLETE QUEST
-            </button>
-
-        </div>
-
-    </div>
-
-
-    <!-- SIDE QUESTS -->
-
-    <div class="card">
-
-        <h2>🧭 Side Quests</h2>
-
-        <div class="quest">
-
-            <div class="quest-title">
-                ✨ Create Something
-            </div>
-
-            <p>
-                Create something today that moves one of your goals forward.
-            </p>
-
-            <div class="reward">
-                +75 XP • +3 Creativity
-            </div>
-
-            <button onclick="completeQuest(75, 'creativity', this)">
-                COMPLETE QUEST
-            </button>
-
-        </div>
-
-
-        <div class="quest">
-
-            <div class="quest-title">
-                🤝 Make A Connection
-            </div>
-
-            <p>
-                Talk to, message, or network with someone who can help you grow.
-            </p>
-
-            <div class="reward">
-                +60 XP • +3 Social
-            </div>
-
-            <button onclick="completeQuest(60, 'social', this)">
-                COMPLETE QUEST
-            </button>
-
-        </div>
-
-    </div>
-
-
-    <!-- CHALLENGE -->
-
-    <div class="card">
-
-        <h2>🔥 Active Challenge</h2>
-
-        <div class="quest">
-
-            <div class="quest-title">
-                THE 7-DAY ASCENSION
-            </div>
-
-            <p>
-                Complete at least one meaningful quest every day for seven days.
-            </p>
-
-            <div class="reward">
-                Reward: +500 XP
-            </div>
-
-            <button onclick="completeChallenge(this)">
-                ACCEPT CHALLENGE
-            </button>
-
-        </div>
-
-    </div>
-
-
-    <!-- ACHIEVEMENTS -->
-
-    <div class="card">
-
-        <h2>🏆 Achievements</h2>
-
-        <p id="achievementText">
-            No achievements unlocked yet.
-        </p>
-
-    </div>
+<input class="goal-input" placeholder="Goal 3 — e.g. Build my own brand/business">
 
 </div>
 
+<button onclick="addGoalInput()" style="margin-top:8px;background:#202a3c;color:white">
++ ADD ANOTHER GOAL
+</button>
+
+<div style="margin-top:20px">
+<button onclick="initializePlayer()">
+CREATE PLAYER
+</button>
+</div>
+
+</div>
+</div>
 </section>
+
+
+<!-- APP -->
+<div id="app" class="hidden">
+
+<nav class="nav">
+<div class="nav-inner">
+
+<button class="active" onclick="showPage('dashboard',this)">⚔️ Dashboard</button>
+<button onclick="showPage('goals',this)">🎯 Goals</button>
+<button onclick="showPage('quests',this)">📜 Quests</button>
+<button onclick="showPage('stats',this)">📊 Stats</button>
+<button onclick="showPage('achievements',this)">🏆 Achievements</button>
+<button onclick="showPage('settings',this)">⚙️ Settings</button>
+
+</div>
+</nav>
+
+
+<!-- DASHBOARD -->
+<section id="dashboard" class="page">
+<div class="container">
+
+<div class="level-box panel">
+
+<div class="row">
+
+<div>
+<div class="small">PLAYER</div>
+<h1 id="playerName"></h1>
+</div>
+
+<div style="text-align:right">
+<div class="small">LEVEL</div>
+<div class="level" id="level">1</div>
+</div>
+
+</div>
+
+<div class="bar">
+<div class="fill" id="xpFill"></div>
+</div>
+
+<div class="xp-text">
+<span id="xp">0</span> / 100 XP
+</div>
+
+</div>
+
+
+<div class="panel">
+<h2>🌎 Life Vision</h2>
+<p id="vision"></p>
+</div>
+
+
+<div class="panel">
+<div class="row">
+<div>
+<h2>🎯 Active Goals</h2>
+<p>Multiple dreams. One character.</p>
+</div>
+
+<button onclick="openAddGoal()">
++ GOAL
+</button>
+</div>
+
+<div id="dashboardGoals" class="goal-grid" style="margin-top:15px"></div>
+</div>
+
+
+<div class="panel">
+<div class="row">
+<div>
+<h2>🔥 Today's Progress</h2>
+<p>Make something meaningful happen today.</p>
+</div>
+
+<div>
+<strong id="streak">0</strong>
+<div class="small">DAY STREAK</div>
+</div>
+</div>
+
+<div id="dashboardQuests"></div>
+
+</div>
+
+
+<div class="panel">
+<h2>⚡ Quick Stats</h2>
+
+<div class="stat-grid">
+
+<div class="stat">
+🧠 Knowledge
+<span class="stat-number" id="quickKnowledge">10</span>
+</div>
+
+<div class="stat">
+💪 Strength
+<span class="stat-number" id="quickStrength">10</span>
+</div>
+
+<div class="stat">
+🎨 Creativity
+<span class="stat-number" id="quickCreativity">10</span>
+</div>
+
+<div class="stat">
+🎯 Discipline
+<span class="stat-number" id="quickDiscipline">10</span>
+</div>
+
+<div class="stat">
+💰 Business
+<span class="stat-number" id="quickBusiness">10</span>
+</div>
+
+<div class="stat">
+🤝 Social
+<span class="stat-number" id="quickSocial">10</span>
+</div>
+
+</div>
+</div>
+
+</div>
+</section>
+
+
+<!-- GOALS -->
+<section id="goals" class="page hidden">
+<div class="container">
+
+<div class="panel">
+<div class="row">
+<div>
+<h1>🎯 Goal System</h1>
+<p>Every major goal becomes its own progression path.</p>
+</div>
+
+<button onclick="openAddGoal()">+ ADD GOAL</button>
+</div>
+</div>
+
+<div id="allGoals"></div>
+
+</div>
+</section>
+
+
+<!-- QUESTS -->
+<section id="quests" class="page hidden">
+<div class="container">
+
+<div class="panel">
+<h1>📜 Quest Board</h1>
+<p>
+Your tasks are designed to create real-world progress.
+</p>
+</div>
+
+<div class="panel">
+<h2>⚔️ Daily Quests</h2>
+<div id="dailyQuests"></div>
+</div>
+
+<div class="panel">
+<h2>🧭 Side Quests</h2>
+<div id="sideQuests"></div>
+</div>
+
+<div class="panel challenge">
+<h2>🔥 Challenge</h2>
+<div id="challenge"></div>
+</div>
+
+</div>
+</section>
+
+
+<!-- STATS -->
+<section id="stats" class="page hidden">
+<div class="container">
+
+<div class="panel">
+<h1>📊 Character Stats</h1>
+<p>Your actions shape your character.</p>
+</div>
+
+<div class="panel">
+<div id="statsList" class="stat-grid"></div>
+</div>
+
+<div class="panel">
+<h2>🧬 Character Level</h2>
+<p>
+Leveling represents consistent progress across your life.
+</p>
+
+<div class="bar" style="margin-top:15px">
+<div class="fill" id="statsXP"></div>
+</div>
+
+<p class="small" style="margin-top:8px">
+Level <span id="statsLevel">1</span> • <span id="statsXPText">0</span>/100 XP
+</p>
+</div>
+
+</div>
+</section>
+
+
+<!-- ACHIEVEMENTS -->
+<section id="achievements" class="page hidden">
+<div class="container">
+
+<div class="panel">
+<h1>🏆 Achievements</h1>
+<p>Milestones earned through action.</p>
+</div>
+
+<div class="panel" id="achievementList"></div>
+
+</div>
+</section>
+
+
+<!-- SETTINGS -->
+<section id="settings" class="page hidden">
+<div class="container">
+
+<div class="panel">
+
+<h1>⚙️ System Settings</h1>
+
+<p>
+Your progress is currently stored on this device.
+</p>
+
+<hr style="border-color:#273145;margin:20px 0">
+
+<h3>🔔 Notifications</h3>
+
+<p class="small">
+Browser notifications will be added to a future version.
+</p>
+
+<button onclick="requestNotifications()" style="margin-top:10px">
+ENABLE NOTIFICATIONS
+</button>
+
+<hr style="border-color:#273145;margin:20px 0">
+
+<h3>💾 Save System</h3>
+
+<p class="small">
+ASCEND automatically saves your player data to this browser.
+</p>
+
+<hr style="border-color:#273145;margin:20px 0">
+
+<h3>⚠️ Danger Zone</h3>
+
+<button onclick="resetGame()" style="background:#ff5c6c;color:white">
+RESET PLAYER DATA
+</button>
+
+</div>
+
+</div>
+</section>
+
+
+</div>
+
+
+<!-- ADD GOAL MODAL -->
+<div id="goalModal" class="modal hidden">
+
+<div class="modal-box">
+
+<h2>🎯 Add Major Goal</h2>
+
+<p>
+What are you trying to accomplish?
+</p>
+
+<input id="newGoal" placeholder="Enter your goal">
+
+<div style="margin-top:15px" class="row">
+<button onclick="closeGoalModal()" style="background:#202a3c;color:white">
+CANCEL
+</button>
+
+<button onclick="addGoal()">
+ADD GOAL
+</button>
+</div>
+
+</div>
+</div>
+
+
+<div id="toast" class="toast"></div>
 
 
 <script>
 
-let xp = 0;
-let level = 1;
+/* =========================
+   ASCEND GAME ENGINE
+========================= */
 
-let stats = {
+let game = {
+name:"",
+vision:"",
+goals:[],
+xp:0,
+level:1,
+streak:0,
+lastActive:"",
+stats:{
+knowledge:10,
+strength:10,
+creativity:10,
+discipline:10,
+business:10,
+social:10
+},
+completed:{},
+challenge:{
+active:false,
+days:0
+}
+};
 
-    knowledge: 10,
-    strength: 10,
-    creativity: 10,
-    discipline: 10,
-    business: 10,
-    social: 10
+
+/* ---------- STORAGE ---------- */
+
+function save(){
+localStorage.setItem("ASCEND_SAVE",JSON.stringify(game));
+}
+
+function load(){
+
+const saved=localStorage.getItem("ASCEND_SAVE");
+
+if(saved){
+
+game=JSON.parse(saved);
+
+return true;
+}
+
+return false;
+}
+
+
+/* ---------- START ---------- */
+
+function showCreate(){
+
+document.getElementById("start").classList.add("hidden");
+
+document.getElementById("create").classList.remove("hidden");
+
+}
+
+
+function addGoalInput(){
+
+const input=document.createElement("input");
+
+input.className="goal-input";
+
+input.placeholder=
+"Another major goal";
+
+document.getElementById("goalInputs").appendChild(input);
+
+}
+
+
+/* ---------- PLAYER ---------- */
+
+function initializePlayer(){
+
+const name=document.getElementById("nameInput").value.trim();
+
+const vision=document.getElementById("visionInput").value.trim();
+
+const inputs=[...document.querySelectorAll(".goal-input")];
+
+const goals=inputs
+.map(x=>x.value.trim())
+.filter(Boolean);
+
+
+if(!name){
+
+alert("Enter your player name.");
+
+return;
+
+}
+
+if(goals.length===0){
+
+alert("Add at least one major goal.");
+
+return;
+
+}
+
+
+game.name=name;
+
+game.vision=vision || "Build a life worth being proud of.";
+
+game.goals=goals.map((name,i)=>({
+
+id:Date.now()+i,
+name:name,
+progress:0,
+created:Date.now()
+
+}));
+
+game.xp=0;
+
+game.level=1;
+
+game.streak=0;
+
+game.lastActive="";
+
+save();
+
+launch();
+
+}
+
+
+function launch(){
+
+document.getElementById("start").classList.add("hidden");
+
+document.getElementById("create").classList.add("hidden");
+
+document.getElementById("app").classList.remove("hidden");
+
+render();
+
+}
+
+
+/* ---------- NAVIGATION ---------- */
+
+function showPage(page,button){
+
+document.querySelectorAll(".page")
+.forEach(x=>x.classList.add("hidden"));
+
+document.getElementById(page)
+.classList.remove("hidden");
+
+document.querySelectorAll(".nav button")
+.forEach(x=>x.classList.remove("active"));
+
+if(button)button.classList.add("active");
+
+render();
+
+}
+
+
+/* ---------- GOALS ---------- */
+
+function openAddGoal(){
+
+document.getElementById("goalModal")
+.classList.remove("hidden");
+
+document.getElementById("newGoal").focus();
+
+}
+
+
+function closeGoalModal(){
+
+document.getElementById("goalModal")
+.classList.add("hidden");
+
+document.getElementById("newGoal").value="";
+
+}
+
+
+function addGoal(){
+
+const value=
+document.getElementById("newGoal").value.trim();
+
+if(!value){
+
+return;
+
+}
+
+game.goals.push({
+
+id:Date.now(),
+name:value,
+progress:0,
+created:Date.now()
+
+});
+
+save();
+
+closeGoalModal();
+
+toast("🎯 New goal added.");
+
+render();
+
+}
+
+
+function removeGoal(id){
+
+if(game.goals.length<=1){
+
+alert("You need at least one active goal.");
+
+return;
+
+}
+
+if(!confirm("Remove this goal?"))return;
+
+game.goals=
+game.goals.filter(g=>g.id!==id);
+
+save();
+
+render();
+
+}
+
+
+function advanceGoal(id,amount){
+
+const goal=game.goals.find(g=>g.id===id);
+
+if(!goal)return;
+
+goal.progress=
+Math.min(100,goal.progress+amount);
+
+save();
+
+render();
+
+}
+
+
+/* ---------- XP ---------- */
+
+function awardXP(amount,stat){
+
+game.xp+=amount;
+
+if(stat){
+
+game.stats[stat]+=1;
+
+}
+
+while(game.xp>=100){
+
+game.xp-=100;
+
+game.level++;
+
+toast("⚡ LEVEL UP! Level "+game.level);
+
+}
+
+updateStreak();
+
+save();
+
+render();
+
+}
+
+
+function updateStreak(){
+
+const today=new Date().toISOString().slice(0,10);
+
+if(game.lastActive===today){
+
+return;
+
+}
+
+if(!game.lastActive){
+
+game.streak=1;
+
+}
+
+else{
+
+const previous=new Date(game.lastActive);
+
+const current=new Date(today);
+
+const difference=
+Math.round(
+(current-previous)/(1000*60*60*24)
+);
+
+if(difference===1){
+
+game.streak++;
+
+}
+
+else if(difference>1){
+
+game.streak=1;
+
+}
+
+}
+
+game.lastActive=today;
+
+}
+
+
+/* ---------- QUEST ENGINE ---------- */
+
+function goalKeywords(goal){
+
+const text=goal.toLowerCase();
+
+return {
+
+fitness:
+/fitness|baseball|football|basketball|soccer|athlete|strong|muscle|run|sport|pitching|training/
+.test(text),
+
+creative:
+/art|artist|tattoo|drawing|design|music|paint|creative|writing/
+.test(text),
+
+business:
+/business|brand|company|shop|money|entrepreneur|entrepreneurship|store|sell/
+.test(text),
+
+education:
+/school|college|study|learn|degree|education|language|japanese|coding/
+.test(text),
+
+social:
+/social|network|friends|community|marketing|clients/
+.test(text)
 
 };
 
-let goals = [];
-
-
-function showSetup() {
-
-    document
-        .getElementById("startScreen")
-        .classList.add("hidden");
-
-    document
-        .getElementById("setupScreen")
-        .classList.remove("hidden");
 }
 
 
-function createCharacter() {
+function generateQuests(){
 
-    const name =
-        document.getElementById("playerName").value.trim();
+const goals=game.goals;
 
-    goals = [
+let quests=[];
 
-        document.getElementById("goal1").value.trim(),
+goals.forEach(goal=>{
 
-        document.getElementById("goal2").value.trim(),
-
-        document.getElementById("goal3").value.trim()
-
-    ].filter(Boolean);
+const k=goalKeywords(goal);
 
 
-    if (!name) {
+if(k.fitness){
 
-        alert("Enter your player name.");
+quests.push({
 
-        return;
-    }
+title:"⚾ Skill Development",
+description:
+"Spend 30 focused minutes practicing a skill directly connected to "+goal.name+".",
 
+reward:60,
+stat:"strength",
+goal:goal.id
 
-    if (goals.length === 0) {
-
-        alert("Add at least one goal.");
-
-        return;
-    }
-
-
-    document
-        .getElementById("setupScreen")
-        .classList.add("hidden");
-
-    document
-        .getElementById("dashboard")
-        .style.display = "block";
-
-
-    document
-        .getElementById("playerDisplay")
-        .textContent = name;
-
-
-    renderGoals();
+});
 
 }
 
 
-function renderGoals() {
+if(k.creative){
 
-    const container =
-        document.getElementById("goalsContainer");
+quests.push({
 
-    container.innerHTML = "";
+title:"🎨 Create Something",
+description:
+"Create one original piece of work that moves "+goal.name+" forward.",
 
+reward:70,
+stat:"creativity",
+goal:goal.id
 
-    goals.forEach((goal, index) => {
-
-        const goalElement =
-            document.createElement("div");
-
-        goalElement.className = "goal";
-
-        goalElement.innerHTML = `
-
-            <div class="goal-header">
-
-                <strong>
-                    ${goal}
-                </strong>
-
-                <span class="small">
-                    ${index === 0 ? "PRIMARY" : "ACTIVE"}
-                </span>
-
-            </div>
-
-            <div class="progress">
-
-                <div
-                    class="progress-fill"
-                    style="width:${10 + index * 5}%"
-                ></div>
-
-            </div>
-
-            <p class="small">
-                Early progression — complete quests to advance.
-            </p>
-
-        `;
-
-        container.appendChild(goalElement);
-
-    });
+});
 
 }
 
 
-function completeQuest(amount, stat, button) {
+if(k.business){
 
-    if (button.disabled) return;
+quests.push({
 
-    button.disabled = true;
+title:"💰 Build The Business",
+description:
+"Spend 25 focused minutes improving a business, brand, product, marketing idea, or plan connected to "+goal.name+".",
 
-    button.textContent =
-        "QUEST COMPLETE ✓";
+reward:65,
+stat:"business",
+goal:goal.id
 
-
-    xp += amount;
-
-    stats[stat] += 2;
-
-    checkLevel();
-
-
-    document
-        .getElementById(stat)
-        .textContent = stats[stat];
-
-
-    updateXP();
-
-
-    document
-        .getElementById("achievementText")
-        .textContent =
-        "First quest completed! Keep ascending.";
+});
 
 }
 
 
-function checkLevel() {
+if(k.education){
 
-    while (xp >= 100) {
+quests.push({
 
-        xp -= 100;
+title:"🧠 Knowledge Mission",
+description:
+"Spend 25 minutes learning something directly connected to "+goal.name+".",
 
-        level++;
+reward:50,
+stat:"knowledge",
+goal:goal.id
 
-        alert(
-            "⚡ LEVEL UP!\n\nYou reached Level " +
-            level +
-            "!"
-        );
-
-    }
+});
 
 }
 
 
-function updateXP() {
+if(k.social){
 
-    document
-        .getElementById("xpDisplay")
-        .textContent = xp;
+quests.push({
 
-    document
-        .getElementById("levelDisplay")
-        .textContent = level;
+title:"🤝 Connection Mission",
+description:
+"Make one meaningful connection that could help you progress toward "+goal.name+".",
 
-    document
-        .getElementById("xpFill")
-        .style.width = xp + "%";
+reward:50,
+stat:"social",
+goal:goal.id
+
+});
+
+}
+
+});
+
+
+quests.push({
+
+title:"🎯 The Discipline Quest",
+description:
+"Complete one important task you have been avoiding.",
+
+reward:55,
+stat:"discipline",
+goal:goals[0]?.id
+
+});
+
+
+quests.push({
+
+title:"🌱 Small Step, Big Future",
+description:
+"Spend 20 uninterrupted minutes moving any one of your goals forward.",
+
+reward:40,
+stat:"discipline",
+goal:goals[0]?.id
+
+});
+
+
+return quests.slice(0,8);
 
 }
 
 
-function completeChallenge(button) {
+function completeQuest(index){
 
-    button.disabled = true;
+const today=
+new Date().toISOString().slice(0,10);
 
-    button.textContent =
-        "CHALLENGE ACCEPTED ✓";
+const key=today+"_"+index;
 
-    alert(
-        "🔥 Challenge accepted!\n\n" +
-        "Complete at least one meaningful quest every day for 7 days."
-    );
+if(game.completed[key])return;
+
+const quests=generateQuests();
+
+const q=quests[index];
+
+if(!q)return;
+
+game.completed[key]=true;
+
+awardXP(q.reward,q.stat);
+
+if(q.goal){
+
+advanceGoal(q.goal,2);
+
+}
+
+toast("⚔️ QUEST COMPLETE +"+q.reward+" XP");
+
+checkAchievements();
+
+render();
+
+}
+
+
+/* ---------- SIDE QUESTS ---------- */
+
+function sideQuestList(){
+
+return [
+
+{
+
+title:"🧹 Reset Your Environment",
+
+description:
+"Spend 10 minutes organizing the space where you work.",
+
+reward:30,
+
+stat:"discipline"
+
+},
+
+{
+
+title:"📖 Read 10 Pages",
+
+description:
+"Read something that makes you smarter, more capable, or more creative.",
+
+reward:30,
+
+stat:"knowledge"
+
+},
+
+{
+
+title:"📱 Create Instead Of Scroll",
+
+description:
+"Spend 30 minutes creating instead of consuming.",
+
+reward:45,
+
+stat:"creativity"
+
+},
+
+{
+
+title:"🤝 Reach Out",
+
+description:
+"Send one positive message to someone important to your future.",
+
+reward:35,
+
+stat:"social"
+
+}
+
+];
+
+}
+
+
+function completeSide(index){
+
+const key=
+"side_"+new Date().toISOString().slice(0,10)+"_"+index;
+
+if(game.completed[key])return;
+
+const q=sideQuestList()[index];
+
+game.completed[key]=true;
+
+awardXP(q.reward,q.stat);
+
+toast("🧭 SIDE QUEST COMPLETE");
+
+checkAchievements();
+
+render();
+
+}
+
+
+/* ---------- CHALLENGE ---------- */
+
+function acceptChallenge(){
+
+game.challenge.active=true;
+
+game.challenge.days=0;
+
+save();
+
+toast("🔥 7-DAY ASCENSION ACCEPTED");
+
+render();
+
+}
+
+
+/* ---------- ACHIEVEMENTS ---------- */
+
+function achievements(){
+
+return [
+
+{
+
+id:"first",
+icon:"⚔️",
+title:"First Blood",
+description:"Complete your first quest.",
+condition:totalCompleted()>=1
+
+},
+
+{
+
+id:"five",
+icon:"⭐",
+title:"Getting Serious",
+description:"Complete 5 quests.",
+condition:totalCompleted()>=5
+
+},
+
+{
+
+id:"level5",
+icon:"⚡",
+title:"Awakened",
+description:"Reach Level 5.",
+condition:game.level>=5
+
+},
+
+{
+
+id:"goals3",
+icon:"🎯",
+title:"Multiple Paths",
+description:"Have 3 or more active goals.",
+condition:game.goals.length>=3
+
+},
+
+{
+
+id:"streak7",
+icon:"🔥",
+title:"Unbreakable",
+description:"Reach a 7-day streak.",
+condition:game.streak>=7
+
+},
+
+{
+
+id:"creator",
+icon:"🎨",
+title:"Creator",
+description:"Reach 20 Creativity.",
+condition:game.stats.creativity>=20
+
+},
+
+{
+
+id:"discipline",
+icon:"🧘",
+title:"Discipline",
+description:"Reach 20 Discipline.",
+condition:game.stats.discipline>=20
+
+}
+
+];
+
+}
+
+
+function totalCompleted(){
+
+return Object.keys(game.completed).length;
+
+}
+
+
+function checkAchievements(){
+
+save();
+
+}
+
+
+/* ---------- RENDER ---------- */
+
+function render(){
+
+if(!game.name)return;
+
+document.getElementById("playerName")
+.textContent=game.name;
+
+document.getElementById("vision")
+.textContent=game.vision;
+
+document.getElementById("level")
+.textContent=game.level;
+
+document.getElementById("xp")
+.textContent=game.xp;
+
+document.getElementById("xpFill")
+.style.width=game.xp+"%";
+
+document.getElementById("streak")
+.textContent=game.streak;
+
+renderGoals();
+
+renderDashboardQuests();
+
+renderQuests();
+
+renderStats();
+
+renderAchievements();
+
+}
+
+
+function renderGoals(){
+
+const dashboard=
+document.getElementById("dashboardGoals");
+
+const all=
+document.getElementById("allGoals");
+
+dashboard.innerHTML="";
+
+all.innerHTML="";
+
+
+if(game.goals.length===0){
+
+dashboard.innerHTML=
+'<div class="empty">No active goals.</div>';
+
+return;
+
+}
+
+
+game.goals.forEach((goal,index)=>{
+
+const icon=index===0?"👑":"🎯";
+
+const html=`
+
+<div class="goal">
+
+<div class="row">
+
+<div>
+<span class="goal-icon">${icon}</span>
+<h3>${escapeHTML(goal.name)}</h3>
+</div>
+
+${game.goals.length>1?
+`<button class="remove" onclick="removeGoal(${goal.id})">REMOVE</button>`
+:""}
+
+</div>
+
+<div class="progress">
+<div class="fill" style="width:${goal.progress}%"></div>
+</div>
+
+<div class="goal-progress">
+${goal.progress}% progression
+</div>
+
+<div style="margin-top:12px">
+
+<button onclick="advanceGoal(${goal.id},1)">
++ PROGRESS
+</button>
+
+</div>
+
+</div>
+`;
+
+
+dashboard.innerHTML+=html;
+
+all.innerHTML+=`
+
+<div class="panel">
+
+<div class="row">
+<div>
+<h2>${icon} ${escapeHTML(goal.name)}</h2>
+<p>Goal progression path</p>
+</div>
+
+<strong>${goal.progress}%</strong>
+</div>
+
+<div class="progress">
+<div class="fill" style="width:${goal.progress}%"></div>
+</div>
+
+<h3 style="margin-top:18px">
+Next Milestone
+</h3>
+
+<p>
+Complete related quests to increase this goal's progression.
+</p>
+
+<div style="margin-top:12px">
+
+<button onclick="advanceGoal(${goal.id},1)">
+ADVANCE GOAL
+</button>
+
+</div>
+
+</div>
+
+`;
+
+});
+
+}
+
+
+function renderDashboardQuests(){
+
+const box=
+document.getElementById("dashboardQuests");
+
+box.innerHTML="";
+
+const quests=generateQuests().slice(0,3);
+
+quests.forEach((q,i)=>{
+
+const key=
+new Date().toISOString().slice(0,10)+"_"+i;
+
+const done=game.completed[key];
+
+box.innerHTML+=questHTML(q,i,done,"completeQuest");
+
+});
+
+}
+
+
+function renderQuests(){
+
+const daily=
+document.getElementById("dailyQuests");
+
+daily.innerHTML="";
+
+generateQuests().forEach((q,i)=>{
+
+const key=
+new Date().toISOString().slice(0,10)+"_"+i;
+
+const done=game.completed[key];
+
+daily.innerHTML+=questHTML(q,i,done,"completeQuest");
+
+});
+
+
+const side=
+document.getElementById("sideQuests");
+
+side.innerHTML="";
+
+sideQuestList().forEach((q,i)=>{
+
+const key=
+"side_"+new Date().toISOString().slice(0,10)+"_"+i;
+
+const done=game.completed[key];
+
+side.innerHTML+=`
+
+<div class="quest">
+
+<div class="quest-title">
+${q.title}
+</div>
+
+<p>${q.description}</p>
+
+<div class="reward">
++${q.reward} XP • +1 ${q.stat}
+</div>
+
+<button
+${done?"disabled":""}
+onclick="completeSide(${i})">
+
+${done?"✓ COMPLETED":"COMPLETE QUEST"}
+
+</button>
+
+</div>
+
+`;
+
+});
+
+
+const challenge=
+document.getElementById("challenge");
+
+if(game.challenge.active){
+
+challenge.innerHTML=`
+
+<h3>🔥 THE 7-DAY ASCENSION</h3>
+
+<p>
+Complete at least one meaningful quest every day for seven days.
+</p>
+
+<div class="progress">
+<div class="fill" style="width:${Math.min(100,game.challenge.days/7*100)}%"></div>
+</div>
+
+<p class="small">
+${game.challenge.days}/7 days completed
+</p>
+
+`;
+
+}else{
+
+challenge.innerHTML=`
+
+<h3>🔥 THE 7-DAY ASCENSION</h3>
+
+<p>
+Build momentum by completing at least one meaningful quest every day for seven days.
+</p>
+
+<button onclick="acceptChallenge()" style="margin-top:12px">
+ACCEPT CHALLENGE
+</button>
+
+`;
+
+}
+
+}
+
+
+function questHTML(q,index,done,fn){
+
+return `
+
+<div class="quest">
+
+<div class="quest-title">
+${q.title}
+</div>
+
+<p>${q.description}</p>
+
+<div class="reward">
++${q.reward} XP • +1 ${q.stat}
+</div>
+
+<button
+${done?"disabled":""}
+onclick="${fn}(${index})">
+
+${done?"✓ QUEST COMPLETE":"COMPLETE QUEST"}
+
+</button>
+
+</div>
+
+`;
+
+}
+
+
+/* ---------- STATS ---------- */
+
+function renderStats(){
+
+const list=
+document.getElementById("statsList");
+
+const names={
+
+knowledge:["🧠","Knowledge"],
+
+strength:["💪","Strength"],
+
+creativity:["🎨","Creativity"],
+
+discipline:["🎯","Discipline"],
+
+business:["💰","Business"],
+
+social:["🤝","Social"]
+
+};
+
+list.innerHTML="";
+
+Object.entries(game.stats).forEach(([key,value])=>{
+
+const data=names[key];
+
+list.innerHTML+=`
+
+<div class="stat">
+
+<div>${data[0]} ${data[1]}</div>
+
+<span class="stat-number">${value}</span>
+
+<div class="bar">
+<div class="fill" style="width:${Math.min(100,value*3)}%"></div>
+</div>
+
+</div>
+
+`;
+
+});
+
+
+document.getElementById("statsLevel")
+.textContent=game.level;
+
+document.getElementById("statsXPText")
+.textContent=game.xp;
+
+document.getElementById("statsXP")
+.style.width=game.xp+"%";
+
+
+document.getElementById("quickKnowledge")
+.textContent=game.stats.knowledge;
+
+document.getElementById("quickStrength")
+.textContent=game.stats.strength;
+
+document.getElementById("quickCreativity")
+.textContent=game.stats.creativity;
+
+document.getElementById("quickDiscipline")
+.textContent=game.stats.discipline;
+
+document.getElementById("quickBusiness")
+.textContent=game.stats.business;
+
+document.getElementById("quickSocial")
+.textContent=game.stats.social;
+
+}
+
+
+/* ---------- ACHIEVEMENTS ---------- */
+
+function renderAchievements(){
+
+const box=
+document.getElementById("achievementList");
+
+box.innerHTML="";
+
+achievements().forEach(a=>{
+
+box.innerHTML+=`
+
+<div class="achievement ${a.condition?"":"locked"}">
+
+<div class="achievement-icon">
+${a.icon}
+</div>
+
+<div>
+
+<strong>${a.title}</strong>
+
+<p class="small">
+${a.description}
+</p>
+
+</div>
+
+</div>
+
+`;
+
+});
+
+}
+
+
+/* ---------- UTILITIES ---------- */
+
+function toast(message){
+
+const t=
+document.getElementById("toast");
+
+t.textContent=message;
+
+t.style.display="block";
+
+clearTimeout(window.toastTimer);
+
+window.toastTimer=setTimeout(()=>{
+
+t.style.display="none";
+
+},2200);
+
+}
+
+
+function escapeHTML(text){
+
+return text
+.replaceAll("&","&amp;")
+.replaceAll("<","&lt;")
+.replaceAll(">","&gt;")
+.replaceAll('"',"&quot;")
+.replaceAll("'","&#039;");
+
+}
+
+
+function resetGame(){
+
+if(!confirm(
+"Are you sure? This will erase your ASCEND player data on this device."
+))return;
+
+localStorage.removeItem("ASCEND_SAVE");
+
+location.reload();
+
+}
+
+
+function requestNotifications(){
+
+if(!("Notification" in window)){
+
+alert("This browser does not support web notifications.");
+
+return;
+
+}
+
+Notification.requestPermission()
+.then(permission=>{
+
+if(permission==="granted"){
+
+alert(
+"Notifications are enabled for this browser. Full scheduled daily notifications will be added in a future version."
+);
+
+}else{
+
+alert("Notification permission was not granted.");
+
+}
+
+});
+
+}
+
+
+/* ---------- AUTO LOAD ---------- */
+
+if(load()){
+
+launch();
 
 }
 
