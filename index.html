@@ -14,63 +14,77 @@
 
 body {
     font-family: Arial, sans-serif;
-    background: #080b12;
+    background: #070a10;
     color: white;
     min-height: 100vh;
 }
 
+button {
+    border: none;
+    border-radius: 10px;
+    padding: 14px 20px;
+    font-weight: bold;
+    cursor: pointer;
+    background: white;
+    color: #070a10;
+}
+
+button:disabled {
+    opacity: 0.45;
+}
+
 .screen {
     min-height: 100vh;
+    padding: 30px 18px;
+}
+
+.center {
     display: flex;
-    flex-direction: column;
     justify-content: center;
     align-items: center;
-    padding: 30px;
-    text-align: center;
+}
+
+.hidden {
+    display: none !important;
+}
+
+.card {
+    background: #111722;
+    border: 1px solid #252d3b;
+    border-radius: 18px;
+    padding: 24px;
+    margin-bottom: 18px;
+}
+
+.container {
+    width: 100%;
+    max-width: 850px;
+    margin: auto;
 }
 
 .logo {
-    font-size: 52px;
+    font-size: 50px;
     font-weight: 900;
     letter-spacing: 8px;
-    margin-bottom: 12px;
 }
 
 .subtitle {
     color: #9da5b4;
-    font-size: 17px;
-    margin-bottom: 45px;
+    margin: 15px 0 35px;
 }
 
-button {
-    border: none;
-    padding: 16px 28px;
-    border-radius: 10px;
-    font-size: 16px;
-    font-weight: bold;
-    cursor: pointer;
-    background: white;
-    color: #080b12;
-}
-
-button:hover {
-    opacity: 0.85;
-}
-
-.hidden {
-    display: none;
-}
-
-.card {
+input, select {
     width: 100%;
-    max-width: 500px;
-    background: #111722;
-    border: 1px solid #252d3b;
-    border-radius: 18px;
-    padding: 28px;
+    padding: 14px;
+    margin: 8px 0;
+    border-radius: 9px;
+    border: 1px solid #303949;
+    background: #080b12;
+    color: white;
+    font-size: 16px;
 }
 
-h1 {
+h1, h2, h3 {
     margin-bottom: 10px;
 }
 
@@ -79,33 +93,81 @@ p {
     line-height: 1.5;
 }
 
-input, select {
-    width: 100%;
-    padding: 15px;
+.small {
+    font-size: 13px;
+    color: #7f8998;
+}
+
+.goal {
+    background: #171e2b;
+    border: 1px solid #293346;
+    border-radius: 14px;
+    padding: 18px;
+    margin-top: 12px;
+}
+
+.goal-header {
+    display: flex;
+    justify-content: space-between;
+    gap: 10px;
+}
+
+.progress {
+    height: 9px;
+    background: #252d3b;
+    border-radius: 20px;
+    overflow: hidden;
     margin: 12px 0;
-    border-radius: 9px;
-    border: 1px solid #303949;
-    background: #080b12;
-    color: white;
-    font-size: 16px;
+}
+
+.progress-fill {
+    height: 100%;
+    width: 0%;
+    background: white;
 }
 
 .quest {
-    text-align: left;
     background: #171e2b;
-    border-radius: 12px;
+    border-radius: 13px;
     padding: 18px;
-    margin-top: 14px;
+    margin-top: 12px;
 }
 
-.quest strong {
-    display: block;
+.quest-title {
+    font-weight: bold;
     margin-bottom: 6px;
 }
 
-.xp {
-    margin-top: 25px;
-    text-align: left;
+.reward {
+    margin: 12px 0;
+    font-size: 13px;
+    color: #9da5b4;
+}
+
+.stats {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px;
+}
+
+.stat {
+    background: #171e2b;
+    padding: 15px;
+    border-radius: 12px;
+}
+
+.stat-bar {
+    height: 6px;
+    background: #252d3b;
+    margin-top: 8px;
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+.stat-fill {
+    height: 100%;
+    width: 30%;
+    background: white;
 }
 
 .xpbar {
@@ -120,132 +182,238 @@ input, select {
     height: 100%;
     width: 0%;
     background: white;
-    transition: width 0.4s;
 }
 
-.small {
-    font-size: 14px;
-    color: #858e9d;
+.section-title {
+    margin-top: 28px;
+}
+
+#dashboard {
+    display: none;
+}
+
+@media (max-width: 600px) {
+    .logo {
+        font-size: 38px;
+    }
+
+    .goal-header {
+        flex-direction: column;
+    }
 }
 </style>
 </head>
 
 <body>
 
-<!-- START SCREEN -->
-<div id="startScreen" class="screen">
+<!-- START -->
+<section id="startScreen" class="screen center">
 
-    <div class="logo">ASCEND</div>
+    <div style="text-align:center; max-width:600px;">
 
-    <div class="subtitle">
-        Your life. Your quests. Your evolution.
-    </div>
+        <div class="logo">ASCEND</div>
 
-    <button onclick="startGame()">
-        BEGIN YOUR JOURNEY
-    </button>
+        <div class="subtitle">
+            Your life. Your quests. Your evolution.
+        </div>
 
-    <p class="small" style="margin-top:40px;">
-        Created by Limitle22Kreation2
-    </p>
-
-</div>
-
-
-<!-- CHARACTER CREATION -->
-<div id="setupScreen" class="screen hidden">
-
-    <div class="card">
-
-        <h1>Create Your Character</h1>
-
-        <p>
-            Your real life is the game.
-            Your goals become quests.
-        </p>
-
-        <input
-            id="playerName"
-            type="text"
-            placeholder="Enter your name"
-        >
-
-        <input
-            id="mainGoal"
-            type="text"
-            placeholder="What is your biggest goal?"
-        >
-
-        <select id="goalType">
-
-            <option value="">
-                Choose your goal type
-            </option>
-
-            <option>Career</option>
-            <option>Education</option>
-            <option>Fitness</option>
-            <option>Money</option>
-            <option>Creativity</option>
-            <option>Personal Growth</option>
-            <option>Relationships</option>
-            <option>Other</option>
-
-        </select>
-
-        <button onclick="createCharacter()">
-            CREATE CHARACTER
+        <button onclick="showSetup()">
+            BEGIN YOUR JOURNEY
         </button>
 
+        <p class="small" style="margin-top:40px;">
+            Created by Limitle22Kreation2
+        </p>
+
     </div>
 
-</div>
+</section>
 
 
-<!-- PLAYER SCREEN -->
-<div id="playerScreen" class="screen hidden">
+<!-- CHARACTER SETUP -->
+<section id="setupScreen" class="screen hidden">
+
+    <div class="container">
+
+        <div class="card">
+
+            <h1>Create Your Character</h1>
+
+            <p>
+                You aren't limited to one dream.
+                Build the life you actually want.
+            </p>
+
+            <input
+                id="playerName"
+                placeholder="Player name"
+            >
+
+            <h3 style="margin-top:20px;">
+                Add Your Goals
+            </h3>
+
+            <p class="small">
+                You can have multiple major goals.
+            </p>
+
+            <input
+                id="goal1"
+                placeholder="Goal 1 — example: Become a pro baseball player"
+            >
+
+            <input
+                id="goal2"
+                placeholder="Goal 2 — example: Become a tattoo artist"
+            >
+
+            <input
+                id="goal3"
+                placeholder="Goal 3 — example: Build my own business"
+            >
+
+            <button
+                onclick="createCharacter()"
+                style="margin-top:15px;"
+            >
+                CREATE CHARACTER
+            </button>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- DASHBOARD -->
+<section id="dashboard" class="screen">
+
+<div class="container">
 
     <div class="card">
 
-        <h1 id="welcome"></h1>
+        <p class="small">PLAYER</p>
 
-        <p id="goalDisplay"></p>
+        <h1 id="playerDisplay"></h1>
 
-        <div class="xp">
+        <h3>
+            LEVEL <span id="levelDisplay">1</span>
+        </h3>
 
-            <strong>
-                LEVEL <span id="level">1</span>
-            </strong>
+        <div class="xpbar">
+            <div id="xpFill" class="xpfill"></div>
+        </div>
 
-            <div class="xpbar">
-                <div id="xpFill" class="xpfill"></div>
+        <p class="small">
+            <span id="xpDisplay">0</span> / 100 XP
+        </p>
+
+    </div>
+
+
+    <!-- GOALS -->
+
+    <div class="card">
+
+        <h2>🎯 Active Goals</h2>
+
+        <p>
+            These are the major objectives shaping your character.
+        </p>
+
+        <div id="goalsContainer"></div>
+
+    </div>
+
+
+    <!-- STATS -->
+
+    <div class="card">
+
+        <h2>📊 Character Stats</h2>
+
+        <div class="stats">
+
+            <div class="stat">
+                🧠 Knowledge
+                <strong id="knowledge">10</strong>
+                <div class="stat-bar">
+                    <div class="stat-fill" style="width:30%"></div>
+                </div>
             </div>
 
-            <p class="small">
-                <span id="xp">0</span> / 100 XP
-            </p>
+            <div class="stat">
+                💪 Strength
+                <strong id="strength">10</strong>
+                <div class="stat-bar">
+                    <div class="stat-fill" style="width:30%"></div>
+                </div>
+            </div>
+
+            <div class="stat">
+                🎨 Creativity
+                <strong id="creativity">10</strong>
+                <div class="stat-bar">
+                    <div class="stat-fill" style="width:30%"></div>
+                </div>
+            </div>
+
+            <div class="stat">
+                🎯 Discipline
+                <strong id="discipline">10</strong>
+                <div class="stat-bar">
+                    <div class="stat-fill" style="width:30%"></div>
+                </div>
+            </div>
+
+            <div class="stat">
+                💰 Business
+                <strong id="business">10</strong>
+                <div class="stat-bar">
+                    <div class="stat-fill" style="width:30%"></div>
+                </div>
+            </div>
+
+            <div class="stat">
+                🤝 Social
+                <strong id="social">10</strong>
+                <div class="stat-bar">
+                    <div class="stat-fill" style="width:30%"></div>
+                </div>
+            </div>
 
         </div>
 
+    </div>
 
-        <h2 style="margin-top:30px;">
-            ⚔️ Daily Quests
-        </h2>
 
+    <!-- DAILY QUESTS -->
+
+    <div class="card">
+
+        <h2>⚔️ Daily Quests</h2>
+
+        <p>
+            Small actions. Real progress.
+        </p>
 
         <div class="quest">
 
-            <strong>🎯 Make progress toward your goal</strong>
+            <div class="quest-title">
+                🎯 Progress Quest
+            </div>
 
             <p>
-                Spend at least 20 minutes working toward your main goal.
+                Spend at least 30 focused minutes working toward one of your goals.
             </p>
 
-            <button
-                onclick="completeQuest(50, this)"
-                style="margin-top:12px;"
-            >
-                COMPLETE +50 XP
+            <div class="reward">
+                +50 XP • +2 Discipline
+            </div>
+
+            <button onclick="completeQuest(50, 'discipline', this)">
+                COMPLETE QUEST
             </button>
 
         </div>
@@ -253,17 +421,20 @@ input, select {
 
         <div class="quest">
 
-            <strong>🧠 Learn Something New</strong>
+            <div class="quest-title">
+                🧠 Knowledge Quest
+            </div>
 
             <p>
-                Spend 15 minutes learning something useful.
+                Spend 20 minutes learning something directly connected to one of your goals.
             </p>
 
-            <button
-                onclick="completeQuest(30, this)"
-                style="margin-top:12px;"
-            >
-                COMPLETE +30 XP
+            <div class="reward">
+                +40 XP • +2 Knowledge
+            </div>
+
+            <button onclick="completeQuest(40, 'knowledge', this)">
+                COMPLETE QUEST
             </button>
 
         </div>
@@ -271,24 +442,121 @@ input, select {
 
         <div class="quest">
 
-            <strong>💪 Discipline Quest</strong>
+            <div class="quest-title">
+                💪 Discipline Quest
+            </div>
 
             <p>
-                Complete one task you've been putting off.
+                Complete one useful task you've been avoiding.
             </p>
 
-            <button
-                onclick="completeQuest(40, this)"
-                style="margin-top:12px;"
-            >
-                COMPLETE +40 XP
+            <div class="reward">
+                +60 XP • +3 Discipline
+            </div>
+
+            <button onclick="completeQuest(60, 'discipline', this)">
+                COMPLETE QUEST
             </button>
 
         </div>
 
     </div>
 
+
+    <!-- SIDE QUESTS -->
+
+    <div class="card">
+
+        <h2>🧭 Side Quests</h2>
+
+        <div class="quest">
+
+            <div class="quest-title">
+                ✨ Create Something
+            </div>
+
+            <p>
+                Create something today that moves one of your goals forward.
+            </p>
+
+            <div class="reward">
+                +75 XP • +3 Creativity
+            </div>
+
+            <button onclick="completeQuest(75, 'creativity', this)">
+                COMPLETE QUEST
+            </button>
+
+        </div>
+
+
+        <div class="quest">
+
+            <div class="quest-title">
+                🤝 Make A Connection
+            </div>
+
+            <p>
+                Talk to, message, or network with someone who can help you grow.
+            </p>
+
+            <div class="reward">
+                +60 XP • +3 Social
+            </div>
+
+            <button onclick="completeQuest(60, 'social', this)">
+                COMPLETE QUEST
+            </button>
+
+        </div>
+
+    </div>
+
+
+    <!-- CHALLENGE -->
+
+    <div class="card">
+
+        <h2>🔥 Active Challenge</h2>
+
+        <div class="quest">
+
+            <div class="quest-title">
+                THE 7-DAY ASCENSION
+            </div>
+
+            <p>
+                Complete at least one meaningful quest every day for seven days.
+            </p>
+
+            <div class="reward">
+                Reward: +500 XP
+            </div>
+
+            <button onclick="completeChallenge(this)">
+                ACCEPT CHALLENGE
+            </button>
+
+        </div>
+
+    </div>
+
+
+    <!-- ACHIEVEMENTS -->
+
+    <div class="card">
+
+        <h2>🏆 Achievements</h2>
+
+        <p id="achievementText">
+            No achievements unlocked yet.
+        </p>
+
+    </div>
+
 </div>
+
+</section>
 
 
 <script>
@@ -296,12 +564,28 @@ input, select {
 let xp = 0;
 let level = 1;
 
-function startGame() {
+let stats = {
 
-    document.getElementById("startScreen")
+    knowledge: 10,
+    strength: 10,
+    creativity: 10,
+    discipline: 10,
+    business: 10,
+    social: 10
+
+};
+
+let goals = [];
+
+
+function showSetup() {
+
+    document
+        .getElementById("startScreen")
         .classList.add("hidden");
 
-    document.getElementById("setupScreen")
+    document
+        .getElementById("setupScreen")
         .classList.remove("hidden");
 }
 
@@ -309,59 +593,186 @@ function startGame() {
 function createCharacter() {
 
     const name =
-        document.getElementById("playerName").value;
+        document.getElementById("playerName").value.trim();
 
-    const goal =
-        document.getElementById("mainGoal").value;
+    goals = [
 
-    if (!name || !goal) {
+        document.getElementById("goal1").value.trim(),
 
-        alert("Enter your name and main goal first.");
+        document.getElementById("goal2").value.trim(),
+
+        document.getElementById("goal3").value.trim()
+
+    ].filter(Boolean);
+
+
+    if (!name) {
+
+        alert("Enter your player name.");
 
         return;
     }
 
-    document.getElementById("setupScreen")
+
+    if (goals.length === 0) {
+
+        alert("Add at least one goal.");
+
+        return;
+    }
+
+
+    document
+        .getElementById("setupScreen")
         .classList.add("hidden");
 
-    document.getElementById("playerScreen")
-        .classList.remove("hidden");
+    document
+        .getElementById("dashboard")
+        .style.display = "block";
 
-    document.getElementById("welcome")
-        .textContent = "Welcome, " + name;
 
-    document.getElementById("goalDisplay")
-        .textContent = "MAIN QUEST: " + goal;
+    document
+        .getElementById("playerDisplay")
+        .textContent = name;
+
+
+    renderGoals();
+
 }
 
 
-function completeQuest(amount, button) {
+function renderGoals() {
 
-    if (button.disabled) {
-        return;
-    }
+    const container =
+        document.getElementById("goalsContainer");
+
+    container.innerHTML = "";
+
+
+    goals.forEach((goal, index) => {
+
+        const goalElement =
+            document.createElement("div");
+
+        goalElement.className = "goal";
+
+        goalElement.innerHTML = `
+
+            <div class="goal-header">
+
+                <strong>
+                    ${goal}
+                </strong>
+
+                <span class="small">
+                    ${index === 0 ? "PRIMARY" : "ACTIVE"}
+                </span>
+
+            </div>
+
+            <div class="progress">
+
+                <div
+                    class="progress-fill"
+                    style="width:${10 + index * 5}%"
+                ></div>
+
+            </div>
+
+            <p class="small">
+                Early progression — complete quests to advance.
+            </p>
+
+        `;
+
+        container.appendChild(goalElement);
+
+    });
+
+}
+
+
+function completeQuest(amount, stat, button) {
+
+    if (button.disabled) return;
 
     button.disabled = true;
-    button.textContent = "QUEST COMPLETE ✓";
+
+    button.textContent =
+        "QUEST COMPLETE ✓";
+
 
     xp += amount;
+
+    stats[stat] += 2;
+
+    checkLevel();
+
+
+    document
+        .getElementById(stat)
+        .textContent = stats[stat];
+
+
+    updateXP();
+
+
+    document
+        .getElementById("achievementText")
+        .textContent =
+        "First quest completed! Keep ascending.";
+
+}
+
+
+function checkLevel() {
 
     while (xp >= 100) {
 
         xp -= 100;
+
         level++;
 
-        alert("⚡ LEVEL UP! You reached Level " + level + "!");
+        alert(
+            "⚡ LEVEL UP!\n\nYou reached Level " +
+            level +
+            "!"
+        );
+
     }
 
-    document.getElementById("xp")
+}
+
+
+function updateXP() {
+
+    document
+        .getElementById("xpDisplay")
         .textContent = xp;
 
-    document.getElementById("level")
+    document
+        .getElementById("levelDisplay")
         .textContent = level;
 
-    document.getElementById("xpFill")
+    document
+        .getElementById("xpFill")
         .style.width = xp + "%";
+
+}
+
+
+function completeChallenge(button) {
+
+    button.disabled = true;
+
+    button.textContent =
+        "CHALLENGE ACCEPTED ✓";
+
+    alert(
+        "🔥 Challenge accepted!\n\n" +
+        "Complete at least one meaningful quest every day for 7 days."
+    );
+
 }
 
 </script>
