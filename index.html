@@ -1,126 +1,370 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<meta name="theme-color" content="#0b0d12">
-<title>SOLO — Daily System</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ASCEND</title>
+
 <style>
-:root{--bg:#090b10;--card:#121722;--card2:#171d2a;--text:#f5f7fb;--muted:#9ca7ba;--accent:#8bd3ff;--gold:#ffd166;--ok:#76e39b;--danger:#ff7782}
-*{box-sizing:border-box} body{margin:0;background:radial-gradient(circle at top,#172033 0,#090b10 42%);color:var(--text);font-family:-apple-system,BlinkMacSystemFont,"SF Pro Display",system-ui,sans-serif;min-height:100vh}
-main{max-width:620px;margin:auto;padding:18px 16px 100px}.top{display:flex;justify-content:space-between;align-items:center;margin-bottom:14px}.brand{font-weight:900;letter-spacing:4px;font-size:22px}.date{color:var(--muted);font-size:12px}
-.hero{background:linear-gradient(145deg,#182231,#10151f);border:1px solid #273244;border-radius:24px;padding:20px;box-shadow:0 12px 35px #0007}.eyebrow{color:var(--accent);font-size:11px;font-weight:800;letter-spacing:2px}.level{font-size:38px;font-weight:900;margin:4px 0}.xptext{color:var(--muted);font-size:13px}.bar{height:9px;background:#252d3a;border-radius:99px;overflow:hidden;margin-top:12px}.fill{height:100%;background:linear-gradient(90deg,var(--accent),var(--gold));width:0%;transition:.3s}
-.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:9px;margin-top:12px}.stat{background:#0e131c;border:1px solid #202a38;border-radius:16px;padding:11px}.stat b{display:block;font-size:16px}.stat span{font-size:10px;color:var(--muted)}
-h2{font-size:15px;letter-spacing:1px;margin:22px 2px 10px}.quest{display:flex;align-items:center;gap:12px;background:var(--card);border:1px solid #222d3c;border-radius:18px;padding:13px;margin:9px 0}.icon{font-size:25px;width:34px;text-align:center}.qmain{flex:1}.qtitle{font-weight:800;font-size:14px}.qmeta{color:var(--muted);font-size:11px;margin-top:3px}.xp{color:var(--gold);font-weight:800;font-size:11px}.check{border:1px solid #39485d;background:var(--card2);color:white;border-radius:12px;padding:9px 10px;font-weight:800}.done{opacity:.55}.done .qtitle{text-decoration:line-through}.done .check{background:#173b29;border-color:#2d6d4c;color:var(--ok)}
-.goal{background:var(--card);border:1px solid #222d3c;border-radius:17px;padding:13px;margin:9px 0}.grow{display:flex;justify-content:space-between;font-size:13px;font-weight:800}.gbar{height:7px;background:#252d3a;border-radius:99px;overflow:hidden;margin-top:9px}.gfill{height:100%;background:var(--accent)}
-.actions{display:flex;gap:8px;margin-top:18px}.actions button{flex:1;padding:13px;border-radius:14px;border:1px solid #2a3547;background:#151b27;color:#fff;font-weight:800}.note{font-size:11px;color:var(--muted);line-height:1.5;margin-top:15px}
-.toast{position:fixed;left:50%;bottom:24px;transform:translateX(-50%) translateY(20px);background:#edf3ff;color:#0b0d12;padding:12px 16px;border-radius:14px;font-weight:800;font-size:13px;opacity:0;pointer-events:none;transition:.25s;box-shadow:0 10px 30px #0008}.toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
-.modal{position:fixed;inset:0;background:#000b;display:none;align-items:end;justify-content:center}.sheet{width:min(620px,100%);background:#101620;border:1px solid #283447;border-radius:24px 24px 0 0;padding:20px}.sheet input{width:100%;padding:13px;border-radius:12px;border:1px solid #334157;background:#0b1018;color:white;margin:8px 0}.sheet button{width:100%;padding:13px;border:0;border-radius:12px;background:var(--accent);font-weight:900}
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background: #080b12;
+    color: white;
+    min-height: 100vh;
+}
+
+.screen {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 30px;
+    text-align: center;
+}
+
+.logo {
+    font-size: 52px;
+    font-weight: 900;
+    letter-spacing: 8px;
+    margin-bottom: 12px;
+}
+
+.subtitle {
+    color: #9da5b4;
+    font-size: 17px;
+    margin-bottom: 45px;
+}
+
+button {
+    border: none;
+    padding: 16px 28px;
+    border-radius: 10px;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    background: white;
+    color: #080b12;
+}
+
+button:hover {
+    opacity: 0.85;
+}
+
+.hidden {
+    display: none;
+}
+
+.card {
+    width: 100%;
+    max-width: 500px;
+    background: #111722;
+    border: 1px solid #252d3b;
+    border-radius: 18px;
+    padding: 28px;
+}
+
+h1 {
+    margin-bottom: 10px;
+}
+
+p {
+    color: #aab2c0;
+    line-height: 1.5;
+}
+
+input, select {
+    width: 100%;
+    padding: 15px;
+    margin: 12px 0;
+    border-radius: 9px;
+    border: 1px solid #303949;
+    background: #080b12;
+    color: white;
+    font-size: 16px;
+}
+
+.quest {
+    text-align: left;
+    background: #171e2b;
+    border-radius: 12px;
+    padding: 18px;
+    margin-top: 14px;
+}
+
+.quest strong {
+    display: block;
+    margin-bottom: 6px;
+}
+
+.xp {
+    margin-top: 25px;
+    text-align: left;
+}
+
+.xpbar {
+    height: 12px;
+    background: #252d3b;
+    border-radius: 20px;
+    overflow: hidden;
+    margin-top: 8px;
+}
+
+.xpfill {
+    height: 100%;
+    width: 0%;
+    background: white;
+    transition: width 0.4s;
+}
+
+.small {
+    font-size: 14px;
+    color: #858e9d;
+}
 </style>
 </head>
+
 <body>
-<main>
-  <div class="top"><div class="brand">SOLO</div><div class="date" id="date"></div></div>
-  <section class="hero">
-    <div class="eyebrow">PLAYER SYSTEM</div>
-    <div class="level" id="level">LEVEL 1</div>
-    <div class="xptext"><span id="xp">0</span> / <span id="next">1000</span> XP</div>
-    <div class="bar"><div class="fill" id="xpbar"></div></div>
-    <div class="stats">
-      <div class="stat"><b id="doneCount">0/0</b><span>QUESTS</span></div>
-      <div class="stat"><b id="streak">0</b><span>DAY STREAK</span></div>
-      <div class="stat"><b id="todayXP">0</b><span>TODAY XP</span></div>
+
+<!-- START SCREEN -->
+<div id="startScreen" class="screen">
+
+    <div class="logo">ASCEND</div>
+
+    <div class="subtitle">
+        Your life. Your quests. Your evolution.
     </div>
-  </section>
 
-  <h2>⚔️ TODAY'S QUESTS</h2>
-  <div id="quests"></div>
+    <button onclick="startGame()">
+        BEGIN YOUR JOURNEY
+    </button>
 
-  <h2>🗺️ MAIN GOALS</h2>
-  <div id="goals"></div>
+    <p class="small" style="margin-top:40px;">
+        Created by Limitle22Kreation2
+    </p>
 
-  <div class="actions">
-    <button onclick="openAdd()">＋ Add Quest</button>
-    <button onclick="resetDay()">Reset Today</button>
-  </div>
-  <div class="note">Prototype: progress is saved on this device. Use your iPhone's Reminders/Calendar for reliable scheduled alerts in this first version. A native version can later connect quest times to in-app notifications.</div>
-</main>
-<div class="toast" id="toast"></div>
-
-<div class="modal" id="modal" onclick="if(event.target===this)closeAdd()">
-  <div class="sheet">
-    <h2 style="margin-top:0">Add a quest</h2>
-    <input id="newTitle" placeholder="Quest name">
-    <input id="newXP" type="number" value="50" placeholder="XP">
-    <button onclick="addQuest()">Create Quest</button>
-  </div>
 </div>
 
+
+<!-- CHARACTER CREATION -->
+<div id="setupScreen" class="screen hidden">
+
+    <div class="card">
+
+        <h1>Create Your Character</h1>
+
+        <p>
+            Your real life is the game.
+            Your goals become quests.
+        </p>
+
+        <input
+            id="playerName"
+            type="text"
+            placeholder="Enter your name"
+        >
+
+        <input
+            id="mainGoal"
+            type="text"
+            placeholder="What is your biggest goal?"
+        >
+
+        <select id="goalType">
+
+            <option value="">
+                Choose your goal type
+            </option>
+
+            <option>Career</option>
+            <option>Education</option>
+            <option>Fitness</option>
+            <option>Money</option>
+            <option>Creativity</option>
+            <option>Personal Growth</option>
+            <option>Relationships</option>
+            <option>Other</option>
+
+        </select>
+
+        <button onclick="createCharacter()">
+            CREATE CHARACTER
+        </button>
+
+    </div>
+
+</div>
+
+
+<!-- PLAYER SCREEN -->
+<div id="playerScreen" class="screen hidden">
+
+    <div class="card">
+
+        <h1 id="welcome"></h1>
+
+        <p id="goalDisplay"></p>
+
+        <div class="xp">
+
+            <strong>
+                LEVEL <span id="level">1</span>
+            </strong>
+
+            <div class="xpbar">
+                <div id="xpFill" class="xpfill"></div>
+            </div>
+
+            <p class="small">
+                <span id="xp">0</span> / 100 XP
+            </p>
+
+        </div>
+
+
+        <h2 style="margin-top:30px;">
+            ⚔️ Daily Quests
+        </h2>
+
+
+        <div class="quest">
+
+            <strong>🎯 Make progress toward your goal</strong>
+
+            <p>
+                Spend at least 20 minutes working toward your main goal.
+            </p>
+
+            <button
+                onclick="completeQuest(50, this)"
+                style="margin-top:12px;"
+            >
+                COMPLETE +50 XP
+            </button>
+
+        </div>
+
+
+        <div class="quest">
+
+            <strong>🧠 Learn Something New</strong>
+
+            <p>
+                Spend 15 minutes learning something useful.
+            </p>
+
+            <button
+                onclick="completeQuest(30, this)"
+                style="margin-top:12px;"
+            >
+                COMPLETE +30 XP
+            </button>
+
+        </div>
+
+
+        <div class="quest">
+
+            <strong>💪 Discipline Quest</strong>
+
+            <p>
+                Complete one task you've been putting off.
+            </p>
+
+            <button
+                onclick="completeQuest(40, this)"
+                style="margin-top:12px;"
+            >
+                COMPLETE +40 XP
+            </button>
+
+        </div>
+
+    </div>
+
+</div>
+
+
 <script>
-const KEY="solo_v1";
-const baseQuests=[
- {id:"apprentice",icon:"🎨",title:"Apprenticeship",meta:"Mon / Wed / Fri · 9:00 AM–3:00 PM",xp:150,days:[1,3,5]},
- {id:"baseball",icon:"⚾",title:"Baseball boot camp",meta:"Trainer-guided · progressive rebuild",xp:150,days:[1,3,5]},
- {id:"draw",icon:"✏️",title:"Draw for 30 minutes",meta:"Art practice",xp:75,days:[1,2,3,4,5,6,0]},
- {id:"school",icon:"🎓",title:"School / homework",meta:"Focused academic block",xp:100,days:[1,2,3,4,5,6,0]},
- {id:"business",icon:"💼",title:"Entrepreneur hour",meta:"Thursday · 1 focused hour",xp:50,days:[4]},
- {id:"reset",icon:"🧠",title:"Daily reset",meta:"Check tomorrow + decompress",xp:50,days:[1,2,3,4,5,0]},
-];
-const goals=[
- ["⚾","Professional Baseball",70],
- ["🎨","Tattoo Artist",35],
- ["🎓","Finish Degree",82],
- ["💼","Own My Studio / Business",25],
- ["🇯🇵","International Tattoo Career",5]
-];
-let state=JSON.parse(localStorage.getItem(KEY)||'null')||{xp:0,streak:0,completed:{},custom:[]};
-const dayKey=()=>new Date().toISOString().slice(0,10);
-function save(){localStorage.setItem(KEY,JSON.stringify(state))}
-function toast(t){let x=document.getElementById("toast");x.textContent=t;x.classList.add("show");setTimeout(()=>x.classList.remove("show"),1800)}
-function questsForToday(){
- const d=new Date().getDay();
- return [...baseQuests.filter(q=>q.days.includes(d)),...state.custom];
+
+let xp = 0;
+let level = 1;
+
+function startGame() {
+
+    document.getElementById("startScreen")
+        .classList.add("hidden");
+
+    document.getElementById("setupScreen")
+        .classList.remove("hidden");
 }
-function complete(id,xp){
- const k=dayKey()+":"+id;
- if(state.completed[k]) return;
- state.completed[k]=true; state.xp+=xp; save(); render(); toast("QUEST COMPLETE  +" + xp + " XP");
+
+
+function createCharacter() {
+
+    const name =
+        document.getElementById("playerName").value;
+
+    const goal =
+        document.getElementById("mainGoal").value;
+
+    if (!name || !goal) {
+
+        alert("Enter your name and main goal first.");
+
+        return;
+    }
+
+    document.getElementById("setupScreen")
+        .classList.add("hidden");
+
+    document.getElementById("playerScreen")
+        .classList.remove("hidden");
+
+    document.getElementById("welcome")
+        .textContent = "Welcome, " + name;
+
+    document.getElementById("goalDisplay")
+        .textContent = "MAIN QUEST: " + goal;
 }
-function render(){
- document.getElementById("date").textContent=new Date().toLocaleDateString(undefined,{weekday:"long",month:"short",day:"numeric"});
- const level=Math.floor(state.xp/1000)+1, within=state.xp%1000;
- document.getElementById("level").textContent="LEVEL "+level;
- document.getElementById("xp").textContent=within;
- document.getElementById("next").textContent="1000";
- document.getElementById("xpbar").style.width=within/10+"%";
- const qs=questsForToday(); let done=0,todayXP=0;
- const box=document.getElementById("quests");box.innerHTML="";
- qs.forEach(q=>{
-   const d=!!state.completed[dayKey()+":"+q.id]; if(d){done++;todayXP+=q.xp}
-   const el=document.createElement("div");el.className="quest"+(d?" done":"");
-   el.innerHTML=`<div class="icon">${q.icon||"⚔️"}</div><div class="qmain"><div class="qtitle">${q.title}</div><div class="qmeta">${q.meta||"Personal quest"}</div></div><div class="xp">+${q.xp}</div><button class="check" onclick="complete('${q.id}',${q.xp})">${d?"✓":"DONE"}</button>`;
-   box.appendChild(el);
- });
- document.getElementById("doneCount").textContent=done+"/"+qs.length;
- document.getElementById("todayXP").textContent=todayXP;
- document.getElementById("streak").textContent=state.streak;
- document.getElementById("goals").innerHTML=goals.map(g=>`<div class="goal"><div class="grow"><span>${g[0]} ${g[1]}</span><span>${g[2]}%</span></div><div class="gbar"><div class="gfill" style="width:${g[2]}%"></div></div></div>`).join("");
+
+
+function completeQuest(amount, button) {
+
+    if (button.disabled) {
+        return;
+    }
+
+    button.disabled = true;
+    button.textContent = "QUEST COMPLETE ✓";
+
+    xp += amount;
+
+    while (xp >= 100) {
+
+        xp -= 100;
+        level++;
+
+        alert("⚡ LEVEL UP! You reached Level " + level + "!");
+    }
+
+    document.getElementById("xp")
+        .textContent = xp;
+
+    document.getElementById("level")
+        .textContent = level;
+
+    document.getElementById("xpFill")
+        .style.width = xp + "%";
 }
-function openAdd(){document.getElementById("modal").style.display="flex";document.getElementById("newTitle").focus()}
-function closeAdd(){document.getElementById("modal").style.display="none"}
-function addQuest(){
- const title=document.getElementById("newTitle").value.trim();const xp=Number(document.getElementById("newXP").value)||50;
- if(!title)return;
- state.custom.push({id:"c"+Date.now(),icon:"⚔️",title,meta:"Custom quest",xp,days:[0,1,2,3,4,5,6]});
- save();closeAdd();document.getElementById("newTitle").value="";render();toast("NEW QUEST CREATED");
-}
-function resetDay(){
- if(confirm("Reset today's completed quests? Your total XP stays.")){
-   Object.keys(state.completed).filter(k=>k.startsWith(dayKey()+":")).forEach(k=>delete state.completed[k]);
-   save();render();toast("TODAY RESET");
- }
-}
-render();
+
 </script>
+
 </body>
 </html>
