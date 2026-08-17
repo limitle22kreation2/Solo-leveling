@@ -6,584 +6,1137 @@
 <title>ASCEND — Life RPG</title>
 
 <style>
-*{box-sizing:border-box}
 
-:root{
- --cyan:#27e8ff;
- --blue:#0d7cff;
- --dark:#020712;
- --panel:#06172a;
- --line:#106787;
- --text:#eaffff;
- --muted:#85aaba;
- --gold:#ffe36b;
- --green:#50ffad;
- --purple:#a87cff;
- --red:#ff718c;
+*{
+box-sizing:border-box;
 }
 
-html,body{
- margin:0;
- min-height:100%;
- background:var(--dark);
+:root{
+
+--cyan:#27e8ff;
+--blue:#0d7cff;
+--dark:#020712;
+--panel:#06172a;
+--line:#106787;
+--text:#eaffff;
+--muted:#85aaba;
+--gold:#ffe36b;
+--green:#50ffad;
+--purple:#a87cff;
+--red:#ff718c;
+
+}
+
+html,
+body{
+
+margin:0;
+min-height:100%;
+background:var(--dark);
+
 }
 
 body{
- color:var(--text);
- font-family:Trebuchet MS,Arial,sans-serif;
- overflow-x:hidden;
- background:
- radial-gradient(circle at 50% 0,#0b496b 0,#04172a 32%,#020712 68%,#01040a 100%);
+
+color:var(--text);
+
+font-family:
+Trebuchet MS,
+Arial,
+sans-serif;
+
+overflow-x:hidden;
+
+background:
+radial-gradient(
+circle at 50% 0,
+#0b496b 0,
+#04172a 32%,
+#020712 68%,
+#01040a 100%
+);
+
 }
 
 body:before{
- content:"";
- position:fixed;
- inset:0;
- z-index:-2;
- opacity:.3;
- pointer-events:none;
- background:
- linear-gradient(#27e8ff0a 1px,transparent 1px),
- linear-gradient(90deg,#27e8ff0a 1px,transparent 1px);
- background-size:38px 38px;
- animation:gridmove 15s linear infinite;
+
+content:"";
+
+position:fixed;
+
+inset:0;
+
+z-index:-2;
+
+opacity:.3;
+
+pointer-events:none;
+
+background:
+
+linear-gradient(
+#27e8ff0a 1px,
+transparent 1px
+),
+
+linear-gradient(
+90deg,
+#27e8ff0a 1px,
+transparent 1px
+);
+
+background-size:
+38px 38px;
+
+animation:
+gridmove 15s linear infinite;
+
 }
 
 body:after{
- content:"";
- position:fixed;
- left:0;
- right:0;
- height:2px;
- top:-5%;
- z-index:80;
- pointer-events:none;
- background:linear-gradient(90deg,transparent,#bffcff,transparent);
- box-shadow:0 0 18px #27e8ff;
- opacity:.35;
- animation:scan 8s linear infinite;
+
+content:"";
+
+position:fixed;
+
+left:0;
+right:0;
+
+height:2px;
+
+top:-5%;
+
+z-index:80;
+
+pointer-events:none;
+
+background:
+
+linear-gradient(
+90deg,
+transparent,
+#bffcff,
+transparent
+);
+
+box-shadow:
+0 0 18px #27e8ff;
+
+opacity:.35;
+
+animation:
+scan 8s linear infinite;
+
 }
 
 @keyframes gridmove{
- to{background-position:38px 38px}
+
+to{
+
+background-position:
+38px 38px;
+
+}
+
 }
 
 @keyframes scan{
- to{top:105%}
+
+to{
+
+top:105%;
+
+}
+
 }
 
 @keyframes in{
- from{
-  opacity:0;
-  transform:translateY(14px)
- }
- to{
-  opacity:1;
-  transform:none
- }
+
+from{
+
+opacity:0;
+
+transform:
+translateY(14px);
+
+}
+
+to{
+
+opacity:1;
+
+transform:none;
+
+}
+
 }
 
 @keyframes pop{
- from{
-  opacity:0;
-  transform:scale(.82)
- }
- 70%{
-  transform:scale(1.04)
- }
- to{
-  opacity:1;
-  transform:scale(1)
- }
+
+from{
+
+opacity:0;
+
+transform:
+scale(.82);
+
+}
+
+70%{
+
+transform:
+scale(1.04);
+
+}
+
+to{
+
+opacity:1;
+
+transform:
+scale(1);
+
+}
+
 }
 
 @keyframes verify{
- 0%{opacity:.4}
- 50%{opacity:1}
- 100%{opacity:.4}
+
+0%{
+opacity:.4;
+}
+
+50%{
+opacity:1;
+}
+
+100%{
+opacity:.4;
+}
+
 }
 
 .app{
- max-width:1120px;
- margin:auto;
- padding:12px;
+
+max-width:1120px;
+
+margin:auto;
+
+padding:12px;
+
 }
 
 .header{
- border:1px solid #1689b1;
- background:linear-gradient(145deg,#071d32f8,#020d19f8);
- padding:18px;
- position:relative;
- overflow:hidden;
- box-shadow:0 0 28px #00cfff22;
+
+border:
+1px solid #1689b1;
+
+background:
+
+linear-gradient(
+145deg,
+#071d32f8,
+#020d19f8
+);
+
+padding:18px;
+
+position:relative;
+
+overflow:hidden;
+
+box-shadow:
+0 0 28px #00cfff22;
+
 }
 
 .sys{
- font-size:10px;
- letter-spacing:4px;
- color:var(--cyan);
+
+font-size:10px;
+
+letter-spacing:4px;
+
+color:var(--cyan);
+
 }
 
 .logo{
- font-size:42px;
- letter-spacing:8px;
- text-shadow:0 0 9px #00d5ff,0 0 28px #087dff;
+
+font-size:42px;
+
+letter-spacing:8px;
+
+text-shadow:
+
+0 0 9px #00d5ff,
+
+0 0 28px #087dff;
+
 }
 
 .player{
- font-size:11px;
- color:#7fa9ba;
- letter-spacing:2px;
+
+font-size:11px;
+
+color:#7fa9ba;
+
+letter-spacing:2px;
+
 }
 
 .nav{
- display:flex;
- gap:5px;
- margin:12px 0;
- overflow:auto;
+
+display:flex;
+
+gap:5px;
+
+margin:
+12px 0;
+
+overflow:auto;
+
 }
 
 .nav button{
- flex:1;
- min-width:98px;
- margin:0;
+
+flex:1;
+
+min-width:98px;
+
+margin:0;
+
 }
 
 button{
- background:#041c2e;
- border:1px solid #0fb9e5;
- color:#6beaff;
- padding:11px 14px;
- font-weight:bold;
- letter-spacing:1px;
- cursor:pointer;
- margin-top:8px;
- transition:.2s;
+
+background:#041c2e;
+
+border:
+1px solid #0fb9e5;
+
+color:#6beaff;
+
+padding:
+11px 14px;
+
+font-weight:bold;
+
+letter-spacing:1px;
+
+cursor:pointer;
+
+margin-top:8px;
+
+transition:.2s;
+
 }
 
 button:hover,
 .nav button.active{
- background:#084663;
- box-shadow:0 0 16px #00cfff44;
- color:white;
+
+background:#084663;
+
+box-shadow:
+0 0 16px #00cfff44;
+
+color:white;
+
 }
 
 button:disabled{
- opacity:.4;
- cursor:not-allowed;
- box-shadow:none;
+
+opacity:.4;
+
+cursor:not-allowed;
+
+box-shadow:none;
+
 }
 
 button.danger{
- border-color:#d54866;
- color:#ff91a7;
- background:#2b0b15;
+
+border-color:#d54866;
+
+color:#ff91a7;
+
+background:#2b0b15;
+
 }
 
 .screen{
- display:none;
+
+display:none;
+
 }
 
 .screen.active{
- display:block;
- animation:in .25s;
+
+display:block;
+
+animation:
+in .25s;
+
 }
 
 .grid{
- display:grid;
- grid-template-columns:1fr 1fr;
- gap:12px;
+
+display:grid;
+
+grid-template-columns:
+1fr 1fr;
+
+gap:12px;
+
 }
 
 .full{
- grid-column:1/-1;
+
+grid-column:
+1/-1;
+
 }
 
 .card,
 .quest,
 .goal,
 .boss{
- border:1px solid var(--line);
- background:linear-gradient(145deg,#071d31f5,#020d18f8);
- box-shadow:inset 0 0 25px #009dff08;
+
+border:
+1px solid var(--line);
+
+background:
+
+linear-gradient(
+145deg,
+#071d31f5,
+#020d18f8
+);
+
+box-shadow:
+
+inset
+0 0 25px
+#009dff08;
+
 }
 
 .card{
- padding:18px;
+
+padding:18px;
+
 }
 
 .title{
- font-size:13px;
- letter-spacing:2px;
- color:var(--cyan);
- margin-bottom:12px;
+
+font-size:13px;
+
+letter-spacing:2px;
+
+color:var(--cyan);
+
+margin-bottom:12px;
+
 }
 
 .small{
- font-size:12px;
- line-height:1.6;
- color:var(--muted);
+
+font-size:12px;
+
+line-height:1.6;
+
+color:var(--muted);
+
 }
 
 .level{
- font-size:38px;
- font-weight:bold;
- text-shadow:0 0 14px #27e8ff66;
+
+font-size:38px;
+
+font-weight:bold;
+
+text-shadow:
+0 0 14px #27e8ff66;
+
 }
 
 .rank{
- font-size:10px;
- color:var(--cyan);
- letter-spacing:3px;
- margin:4px 0 12px;
+
+font-size:10px;
+
+color:var(--cyan);
+
+letter-spacing:3px;
+
+margin:
+4px 0 12px;
+
 }
 
 .bar{
- height:10px;
- background:#020a13;
- border:1px solid #07536d;
- overflow:hidden;
+
+height:10px;
+
+background:#020a13;
+
+border:
+1px solid #07536d;
+
+overflow:hidden;
+
 }
 
 .fill{
- height:100%;
- background:linear-gradient(90deg,#087dff,#27e8ff,#c5ffff);
- box-shadow:0 0 14px #00cfff;
- transition:.55s;
+
+height:100%;
+
+background:
+
+linear-gradient(
+90deg,
+#087dff,
+#27e8ff,
+#c5ffff
+);
+
+box-shadow:
+0 0 14px #00cfff;
+
+transition:.55s;
+
 }
 
 .xp{
- font-size:10px;
- color:var(--muted);
- margin-top:6px;
+
+font-size:10px;
+
+color:var(--muted);
+
+margin-top:6px;
+
 }
 
 .banner{
- padding:17px;
- border:1px solid #168db5;
- background:linear-gradient(90deg,#084260,#041523);
- margin-bottom:12px;
- box-shadow:0 0 22px #00cfff16;
+
+padding:17px;
+
+border:
+1px solid #168db5;
+
+background:
+
+linear-gradient(
+90deg,
+#084260,
+#041523
+);
+
+margin-bottom:12px;
+
+box-shadow:
+0 0 22px #00cfff16;
+
 }
 
 .banner h2{
- margin:0;
- color:#c9fcff;
+
+margin:0;
+
+color:#c9fcff;
+
 }
 
 .banner .sub{
- font-size:10px;
- color:#6cdff3;
- letter-spacing:2px;
- margin-top:7px;
+
+font-size:10px;
+
+color:#6cdff3;
+
+letter-spacing:2px;
+
+margin-top:7px;
+
 }
 
 .goal,
 .quest,
 .boss{
- padding:15px;
- margin-top:10px;
- animation:in .25s;
+
+padding:15px;
+
+margin-top:10px;
+
+animation:
+in .25s;
+
 }
 
 .goal,
 .quest{
- border-left:3px solid var(--cyan);
+
+border-left:
+3px solid var(--cyan);
+
 }
 
 .boss{
- border:1px solid #a879ff;
- border-left:4px solid var(--purple);
- box-shadow:0 0 20px #9b68ff1d;
+
+border:
+1px solid #a879ff;
+
+border-left:
+4px solid var(--purple);
+
+box-shadow:
+0 0 20px #9b68ff1d;
+
 }
 
 .goalname{
- font-size:18px;
- font-weight:bold;
+
+font-size:18px;
+
+font-weight:bold;
+
 }
 
 .goaltype{
- font-size:9px;
- letter-spacing:2px;
- color:#4cdefa;
- margin-top:4px;
+
+font-size:9px;
+
+letter-spacing:2px;
+
+color:#4cdefa;
+
+margin-top:4px;
+
 }
 
 .questhead{
- display:flex;
- justify-content:space-between;
- gap:10px;
+
+display:flex;
+
+justify-content:
+space-between;
+
+gap:10px;
+
 }
 
 .questtitle{
- font-weight:bold;
- color:white;
+
+font-weight:bold;
+
+color:white;
+
 }
 
 .diff{
- font-size:10px;
- letter-spacing:2px;
- color:var(--gold);
- white-space:nowrap;
+
+font-size:10px;
+
+letter-spacing:2px;
+
+color:var(--gold);
+
+white-space:nowrap;
+
 }
 
 .desc{
- font-size:12px;
- line-height:1.6;
- color:#8dafbd;
- margin-top:8px;
+
+font-size:12px;
+
+line-height:1.6;
+
+color:#8dafbd;
+
+margin-top:8px;
+
 }
 
 .tag{
- display:inline-block;
- border:1px solid #075775;
- color:#5edff9;
- padding:4px 7px;
- font-size:9px;
- margin:8px 4px 0 0;
+
+display:inline-block;
+
+border:
+1px solid #075775;
+
+color:#5edff9;
+
+padding:
+4px 7px;
+
+font-size:9px;
+
+margin:
+8px 4px 0 0;
+
 }
 
 .reward{
- color:var(--gold);
- font-weight:bold;
- margin-top:9px;
+
+color:var(--gold);
+
+font-weight:bold;
+
+margin-top:9px;
+
 }
 
 .steps{
- margin-top:11px;
- border-top:1px solid #0b4156;
- padding-top:8px;
+
+margin-top:11px;
+
+border-top:
+1px solid #0b4156;
+
+padding-top:8px;
+
 }
 
 .step{
- display:flex;
- gap:10px;
- align-items:flex-start;
- padding:8px 0;
- border-bottom:1px solid #092d3d;
- color:#b7dce5;
- font-size:12px;
- line-height:1.45;
+
+display:flex;
+
+gap:10px;
+
+align-items:flex-start;
+
+padding:
+8px 0;
+
+border-bottom:
+1px solid #092d3d;
+
+color:#b7dce5;
+
+font-size:12px;
+
+line-height:1.45;
+
 }
 
 .stepnum{
- flex:none;
- width:24px;
- height:24px;
- border:1px solid #0f89aa;
- color:var(--cyan);
- display:flex;
- align-items:center;
- justify-content:center;
- font-size:9px;
+
+flex:none;
+
+width:24px;
+
+height:24px;
+
+border:
+1px solid #0f89aa;
+
+color:var(--cyan);
+
+display:flex;
+
+align-items:center;
+
+justify-content:center;
+
+font-size:9px;
+
 }
 
 .daybadge{
- color:#e1caff;
- border-color:#855dc8;
+
+color:#e1caff;
+
+border-color:#855dc8;
+
 }
 
 .completed{
- opacity:.48;
+
+opacity:.48;
+
 }
 
 .skill{
- margin:11px 0;
+
+margin:
+11px 0;
+
 }
 
 .skillhead{
- display:flex;
- justify-content:space-between;
- font-size:11px;
- color:#acd9e4;
+
+display:flex;
+
+justify-content:
+space-between;
+
+font-size:11px;
+
+color:#acd9e4;
+
 }
 
 .skillbar{
- height:7px;
- background:#04121d;
- margin-top:5px;
- border:1px solid #07384d;
+
+height:7px;
+
+background:#04121d;
+
+margin-top:5px;
+
+border:
+1px solid #07384d;
+
 }
 
 .skillbar div{
- height:100%;
- background:linear-gradient(90deg,#0d7cff,#27e8ff);
+
+height:100%;
+
+background:
+
+linear-gradient(
+90deg,
+#0d7cff,
+#27e8ff
+);
+
 }
 
 input,
 textarea,
 select{
- width:100%;
- padding:11px;
- background:#020b14;
- color:#eaffff;
- border:1px solid #07536d;
- margin:7px 0 12px;
- font-family:inherit;
- outline:none;
+
+width:100%;
+
+padding:11px;
+
+background:#020b14;
+
+color:#eaffff;
+
+border:
+1px solid #07536d;
+
+margin:
+7px 0 12px;
+
+font-family:inherit;
+
+outline:none;
+
 }
 
 textarea{
- min-height:82px;
+
+min-height:82px;
+
 }
 
 label{
- font-size:10px;
- letter-spacing:1px;
- color:#8bb4c2;
+
+font-size:10px;
+
+letter-spacing:1px;
+
+color:#8bb4c2;
+
 }
 
 #create{
- position:fixed;
- inset:0;
- z-index:100;
- background:radial-gradient(circle,#07405f,#020712 65%);
- display:flex;
- align-items:center;
- justify-content:center;
- padding:18px;
+
+position:fixed;
+
+inset:0;
+
+z-index:100;
+
+background:
+
+radial-gradient(
+circle,
+#07405f,
+#020712 65%
+);
+
+display:flex;
+
+align-items:center;
+
+justify-content:center;
+
+padding:18px;
+
 }
 
 .createbox{
- width:min(590px,100%);
- padding:28px;
- border:1px solid var(--cyan);
- background:#020f1dfa;
- box-shadow:0 0 48px #00cfff4d;
- animation:pop .45s;
+
+width:
+min(
+590px,
+100%
+);
+
+padding:28px;
+
+border:
+1px solid var(--cyan);
+
+background:#020f1dfa;
+
+box-shadow:
+0 0 48px #00cfff4d;
+
+animation:
+pop .45s;
+
 }
 
 .createtitle{
- font-size:35px;
- letter-spacing:7px;
- text-shadow:0 0 16px #00cfff;
+
+font-size:35px;
+
+letter-spacing:7px;
+
+text-shadow:
+0 0 16px #00cfff;
+
 }
 
 .modal{
- position:fixed;
- inset:0;
- z-index:120;
- background:#000d;
- display:none;
- align-items:center;
- justify-content:center;
- padding:18px;
+
+position:fixed;
+
+inset:0;
+
+z-index:120;
+
+background:#000d;
+
+display:none;
+
+align-items:center;
+
+justify-content:center;
+
+padding:18px;
+
 }
 
 .modalbox{
- width:min(650px,100%);
- max-height:90vh;
- overflow:auto;
- padding:26px;
- border:1px solid var(--cyan);
- background:#031522;
- box-shadow:0 0 45px #00cfff55;
- animation:pop .3s;
+
+width:
+min(
+650px,
+100%
+);
+
+max-height:90vh;
+
+overflow:auto;
+
+padding:26px;
+
+border:
+1px solid var(--cyan);
+
+background:#031522;
+
+box-shadow:
+0 0 45px #00cfff55;
+
+animation:
+pop .3s;
+
 }
 
 .toast{
- display:none;
- position:fixed;
- right:16px;
- bottom:16px;
- background:#06334f;
- border:1px solid var(--cyan);
- padding:14px 18px;
- z-index:130;
- box-shadow:0 0 24px #00cfff55;
- animation:pop .25s;
+
+display:none;
+
+position:fixed;
+
+right:16px;
+
+bottom:16px;
+
+background:#06334f;
+
+border:
+1px solid var(--cyan);
+
+padding:
+14px 18px;
+
+z-index:130;
+
+box-shadow:
+0 0 24px #00cfff55;
+
+animation:
+pop .25s;
+
 }
 
 .proofbox{
- margin-top:14px;
- padding:13px;
- border:1px solid #0b526e;
- background:#02101b;
+
+margin-top:14px;
+
+padding:13px;
+
+border:
+1px solid #0b526e;
+
+background:#02101b;
+
 }
 
 .proofbox.verified{
- border-color:#38c98e;
- background:#032118;
+
+border-color:#38c98e;
+
+background:#032118;
+
 }
 
 .proof-title{
- color:#72eaff;
- font-size:11px;
- letter-spacing:2px;
+
+color:#72eaff;
+
+font-size:11px;
+
+letter-spacing:2px;
+
 }
 
 .verify-status{
- color:var(--gold);
- animation:verify 1s infinite;
+
+color:var(--gold);
+
+animation:
+verify 1s infinite;
+
+margin-top:8px;
+
 }
 
 .verified-text{
- color:var(--green);
- font-weight:bold;
+
+color:var(--green);
+
+font-weight:bold;
+
+margin-top:7px;
+
 }
 
 .profilebox{
- border:1px solid #0b526e;
- background:#03131f;
- padding:16px;
- margin-top:12px;
+
+border:
+1px solid #0b526e;
+
+background:#03131f;
+
+padding:16px;
+
+margin-top:12px;
+
 }
 
 .skilltree{
- display:grid;
- grid-template-columns:repeat(auto-fit,minmax(180px,1fr));
- gap:10px;
- margin-top:12px;
+
+display:grid;
+
+grid-template-columns:
+
+repeat(
+auto-fit,
+minmax(
+180px,
+1fr
+)
+);
+
+gap:10px;
+
+margin-top:12px;
+
 }
 
 .skillnode{
- padding:13px;
- border:1px solid #0a6381;
- background:#041827;
+
+padding:13px;
+
+border:
+1px solid #0a6381;
+
+background:#041827;
+
 }
 
 .skillnode h4{
- margin:0;
- color:#c8faff;
+
+margin:0;
+
+color:#c8faff;
+
 }
 
 .skilllevel{
- color:var(--cyan);
- font-size:11px;
- margin-top:5px;
+
+color:var(--cyan);
+
+font-size:11px;
+
+margin-top:5px;
+
 }
 
 .assessment-answer{
- padding:7px 0;
- border-bottom:1px solid #092e3f;
+
+padding:
+7px 0;
+
+border-bottom:
+1px solid #092e3f;
+
 }
 
 @media(max-width:700px){
 
- .grid{
-  grid-template-columns:1fr;
- }
+.grid{
 
- .full{
-  grid-column:auto;
- }
-
- .logo{
-  font-size:33px;
- }
-
- .nav button{
-  min-width:90px;
- }
+grid-template-columns:
+1fr;
 
 }
+
+.full{
+
+grid-column:auto;
+
+}
+
+.logo{
+
+font-size:33px;
+
+}
+
+.nav button{
+
+min-width:90px;
+
+}
+
+}
+
 </style>
 </head>
 
 <body>
 
-<!-- PLAYER CREATION -->
+
+<!-- ================================
+     CREATE PLAYER
+================================ -->
 
 <div id="create">
 
@@ -598,11 +1151,25 @@ ASCEND
 </div>
 
 <p class="small">
-YOUR LIFE IS THE CHARACTER.<br>
-YOUR DREAMS ARE THE QUESTLINES.<br>
-PROVE THE WORK. EARN THE XP.<br>
+
+YOUR LIFE IS THE CHARACTER.
+
+<br>
+
+YOUR DREAMS ARE THE QUESTLINES.
+
+<br>
+
+PROVE THE WORK.
+
+EARN THE XP.
+
+<br>
+
 LEVEL UP IN REAL LIFE.
+
 </p>
+
 
 <label>
 PLAYER NAME
@@ -612,6 +1179,7 @@ PLAYER NAME
 id="name"
 placeholder="Enter your player name">
 
+
 <label>
 FIRST MAJOR GOAL
 </label>
@@ -620,18 +1188,31 @@ FIRST MAJOR GOAL
 id="firstGoal"
 placeholder="Example: Become a professional baseball player">
 
+
 <label>
 CURRENT EXPERIENCE
 </label>
 
 <select id="firstExp">
 
-<option>Beginner</option>
-<option>Some experience</option>
-<option>Intermediate</option>
-<option>Advanced</option>
+<option>
+Beginner
+</option>
+
+<option>
+Some experience
+</option>
+
+<option>
+Intermediate
+</option>
+
+<option>
+Advanced
+</option>
 
 </select>
+
 
 <label>
 DAILY TIME AVAILABLE
@@ -639,12 +1220,24 @@ DAILY TIME AVAILABLE
 
 <select id="firstTime">
 
-<option value="15">15 minutes</option>
-<option value="30">30 minutes</option>
-<option value="60">1 hour</option>
-<option value="120">2 hours</option>
+<option value="15">
+15 minutes
+</option>
+
+<option value="30">
+30 minutes
+</option>
+
+<option value="60">
+1 hour
+</option>
+
+<option value="120">
+2 hours
+</option>
 
 </select>
+
 
 <button onclick="initializePlayer()">
 INITIALIZE PLAYER
@@ -655,12 +1248,21 @@ INITIALIZE PLAYER
 </div>
 
 
+
+<!-- ================================
+     MAIN APP
+================================ -->
+
 <div class="app">
+
 
 <header class="header">
 
 <div class="sys">
-SYSTEM ONLINE // VERIFIED PROGRESSION PROTOTYPE
+
+SYSTEM ONLINE //
+VERIFIED PROGRESSION PROTOTYPE
+
 </div>
 
 <div class="logo">
@@ -670,7 +1272,9 @@ ASCEND
 <div
 class="player"
 id="headerPlayer">
+
 PLAYER
+
 </div>
 
 </header>
@@ -678,73 +1282,105 @@ PLAYER
 
 <nav class="nav">
 
+
 <button
 id="n-home"
 class="active"
 onclick="page('home')">
+
 🏠 HOME
+
 </button>
+
 
 <button
 id="n-quests"
 onclick="page('quests')">
+
 ⚔️ QUESTS
+
 </button>
+
 
 <button
 id="n-missions"
 onclick="page('missions')">
+
 🎯 MISSIONS
+
 </button>
+
 
 <button
 id="n-progress"
 onclick="page('progress')">
+
 📈 PROGRESS
+
 </button>
+
 
 <button
 id="n-achievements"
 onclick="page('achievements')">
+
 🏆 ACHIEVEMENTS
+
 </button>
+
 
 <button
 id="n-settings"
 onclick="page('settings')">
+
 ⚙️ SETTINGS
+
 </button>
+
 
 </nav>
 
 
-<!-- HOME -->
+
+<!-- ================================
+     HOME
+================================ -->
 
 <section
 id="home"
 class="screen active">
 
+
 <div class="banner">
+
 
 <h2>
 ⚡ SYSTEM ACTIVE
 </h2>
 
+
 <div
 class="sub"
 id="todayStatus">
+
 INITIALIZING QUESTS...
-</div>
 
 </div>
+
+
+</div>
+
 
 <div class="grid">
 
+
 <div class="card">
+
 
 <div class="title">
 PLAYER STATUS
 </div>
+
 
 <div class="level">
 
@@ -756,11 +1392,15 @@ LEVEL
 
 </div>
 
+
 <div
 class="rank"
 id="playerRank">
+
 INITIATE
+
 </div>
+
 
 <div class="bar">
 
@@ -771,22 +1411,30 @@ id="playerXPFill">
 
 </div>
 
+
 <div
 class="xp"
 id="playerXPText">
+
 0 / 150 XP
-</div>
 
 </div>
+
+
+</div>
+
 
 
 <div class="card">
+
 
 <div class="title">
 SYSTEM STATUS
 </div>
 
+
 <div class="small">
+
 
 VERIFIED QUESTS:
 
@@ -794,7 +1442,9 @@ VERIFIED QUESTS:
 0
 </b>
 
+
 <br><br>
+
 
 ACTIVE GOALS:
 
@@ -802,7 +1452,9 @@ ACTIVE GOALS:
 0
 </b>
 
+
 <br><br>
+
 
 STREAK:
 
@@ -812,7 +1464,9 @@ STREAK:
 
 DAYS
 
+
 <br><br>
+
 
 WEEKLY BOSSES:
 
@@ -820,62 +1474,83 @@ WEEKLY BOSSES:
 0
 </b>
 
-</div>
 
 </div>
+
+
+</div>
+
 
 
 <div class="card full">
+
 
 <div class="title">
 ⚔️ ACTIVE QUESTLINES
 </div>
 
+
 <div id="homeGoals">
 </div>
 
+
 </div>
 
 
+
 <div class="card full">
+
 
 <div class="title">
 🎯 TODAY'S QUESTS
 </div>
 
+
 <div id="homeMissions">
 </div>
 
+
 </div>
 
 
+
 <div class="card full">
+
 
 <div class="title">
 👑 WEEKLY BOSS QUESTS
 </div>
 
+
 <div id="homeBoss">
 </div>
 
+
 </div>
+
 
 </div>
 
 </section>
 
 
-<!-- QUESTS -->
+
+<!-- ================================
+     QUESTS
+================================ -->
 
 <section
 id="quests"
 class="screen">
 
+
 <div class="card">
+
 
 <div class="title">
 ⚔️ ACTIVE QUESTLINES
 </div>
+
 
 <div class="small">
 
@@ -885,112 +1560,164 @@ and weekly Boss Quest.
 
 </div>
 
+
 <div id="questList">
 </div>
 
+
 </div>
+
 
 
 <div
 class="card"
 style="margin-top:12px">
 
+
 <div class="title">
 ➕ CREATE NEW QUESTLINE
 </div>
+
 
 <label>
 WHAT DO YOU WANT TO ACHIEVE?
 </label>
 
+
 <input
 id="newGoal"
 placeholder="Enter any dream, career, skill, hobby, business, or personal goal">
+
 
 <label>
 CURRENT EXPERIENCE
 </label>
 
+
 <select id="newExp">
 
-<option>Beginner</option>
-<option>Some experience</option>
-<option>Intermediate</option>
-<option>Advanced</option>
+<option>
+Beginner
+</option>
+
+<option>
+Some experience
+</option>
+
+<option>
+Intermediate
+</option>
+
+<option>
+Advanced
+</option>
 
 </select>
+
 
 <label>
 DAILY TIME
 </label>
 
+
 <select id="newTime">
 
-<option value="15">15 minutes</option>
-<option value="30">30 minutes</option>
-<option value="60">1 hour</option>
-<option value="120">2 hours</option>
+<option value="15">
+15 minutes
+</option>
+
+<option value="30">
+30 minutes
+</option>
+
+<option value="60">
+1 hour
+</option>
+
+<option value="120">
+2 hours
+</option>
 
 </select>
+
 
 <label>
 WHY DOES THIS MATTER TO YOU?
 </label>
+
 
 <textarea
 id="newWhy"
 placeholder="Why do you want to achieve this?">
 </textarea>
 
+
 <label>
 CURRENT STRENGTHS
 </label>
+
 
 <textarea
 id="newStrengths"
 placeholder="What are you already good at?">
 </textarea>
 
+
 <button onclick="addGoal()">
 START QUESTLINE
 </button>
 
+
 </div>
+
 
 </section>
 
 
-<!-- MISSIONS -->
+
+<!-- ================================
+     MISSIONS
+================================ -->
 
 <section
 id="missions"
 class="screen">
 
+
 <div class="banner">
+
 
 <h2>
 🎯 DAILY QUESTS
 </h2>
 
+
 <div
 class="sub"
 id="dailyStatus">
+
 THE SYSTEM HAS ASSIGNED TODAY'S WORK
-</div>
 
 </div>
+
+
+</div>
+
 
 <div id="dailyList">
 </div>
+
 
 
 <div
 class="card"
 style="margin-top:12px">
 
+
 <div class="title">
 👑 WEEKLY BOSS QUESTS
 </div>
+
 
 <div class="small">
 
@@ -1002,125 +1729,171 @@ is submitted.
 
 </div>
 
+
 <div id="weeklyList">
 </div>
 
+
 </div>
+
 
 </section>
 
 
-<!-- PROGRESS -->
+
+<!-- ================================
+     PROGRESS
+================================ -->
 
 <section
 id="progress"
 class="screen">
 
+
 <div class="grid">
 
+
 <div class="card full">
+
 
 <div class="title">
 📈 CHARACTER STATS
 </div>
 
+
 <div id="statsList">
 </div>
 
+
 </div>
 
 
+
 <div class="card full">
+
 
 <div class="title">
 🧬 SKILL TREES
 </div>
 
+
 <div id="skillTrees">
 </div>
 
+
 </div>
 
 
+
 <div class="card full">
+
 
 <div class="title">
 🎯 QUESTLINE PROGRESS
 </div>
 
+
 <div id="progressGoals">
 </div>
 
+
 </div>
 
 
+
 <div class="card full">
+
 
 <div class="title">
 🗺️ ROADMAPS
 </div>
 
+
 <div id="roadmaps">
 </div>
 
-</div>
 
 </div>
+
+
+</div>
+
 
 </section>
 
 
-<!-- ACHIEVEMENTS -->
+
+<!-- ================================
+     ACHIEVEMENTS
+================================ -->
 
 <section
 id="achievements"
 class="screen">
 
+
 <div class="card">
+
 
 <div class="title">
 🏆 ACHIEVEMENTS
 </div>
 
+
 <div id="achievementList">
 </div>
 
+
 </div>
+
 
 </section>
 
 
-<!-- SETTINGS -->
+
+<!-- ================================
+     SETTINGS
+================================ -->
 
 <section
 id="settings"
 class="screen">
 
+
 <div class="card">
+
 
 <div class="title">
 ⚙️ PLAYER SETTINGS
 </div>
 
+
+
 <div class="profilebox">
+
 
 <div class="goalname">
 PLAYER PROFILE
 </div>
+
 
 <div
 class="small"
 id="settingsProfile">
 </div>
 
+
 </div>
+
 
 
 <div class="profilebox">
 
+
 <div class="goalname">
 📹 PROOF SYSTEM
 </div>
+
 
 <div class="small">
 
@@ -1133,14 +1906,18 @@ AI verification and wearable/camera integrations.
 
 </div>
 
+
 </div>
+
 
 
 <div class="profilebox">
 
+
 <div class="goalname">
 RESET PLAYER
 </div>
+
 
 <div class="small">
 
@@ -1149,82 +1926,111 @@ ASCEND player stored in this browser.
 
 </div>
 
+
 <button
 class="danger"
 onclick="resetPlayer()">
+
 RESET PLAYER
+
 </button>
 
-</div>
 
 </div>
+
+
+</div>
+
 
 </section>
 
+
 </div>
 
 
-<!-- ASSESSMENT MODAL -->
+
+<!-- ================================
+     ASSESSMENT MODAL
+================================ -->
 
 <div
 class="modal"
 id="assessmentModal">
 
+
 <div class="modalbox">
+
 
 <div class="sys">
 SYSTEM ANALYSIS
 </div>
 
+
 <h2 style="color:#67eaff">
 PLAYER ASSESSMENT
 </h2>
+
 
 <div
 class="small"
 id="assessmentIntro">
 </div>
 
+
 <div id="assessmentFields">
 </div>
+
 
 <button onclick="saveAssessment()">
 COMPLETE ASSESSMENT
 </button>
 
-</div>
 
 </div>
 
 
-<!-- LEVEL MODAL -->
+</div>
+
+
+
+<!-- ================================
+     LEVEL MODAL
+================================ -->
 
 <div
 class="modal"
 id="levelModal">
 
+
 <div class="modalbox">
+
 
 <div class="sys">
 SYSTEM NOTIFICATION
 </div>
 
+
 <h2 style="color:#67eaff">
 LEVEL UP
 </h2>
+
 
 <div
 class="small"
 id="levelMessage">
 </div>
 
+
 <button onclick="closeLevelModal()">
 CONTINUE
 </button>
 
-</div>
 
 </div>
+
+
+</div>
+
 
 
 <div
@@ -1233,15 +2039,16 @@ id="toast">
 </div>
 
 
+
 <script>
 
+
 /* =========================================================
-   ASCEND V8
-   VERIFIED PROGRESSION PROTOTYPE
+   GAME DATA
 ========================================================= */
 
 const SAVE_KEY=
-"ASCEND_V8";
+"ASCEND_V8_FIXED_PROOF";
 
 
 let game=
@@ -1305,20 +2112,35 @@ const esc=
 text=>
 String(text)
 
-.replaceAll("&","&amp;")
+.replaceAll(
+"&",
+"&amp;"
+)
 
-.replaceAll("<","&lt;")
+.replaceAll(
+"<",
+"&lt;"
+)
 
-.replaceAll(">","&gt;")
+.replaceAll(
+">",
+"&gt;"
+)
 
-.replaceAll('"',"&quot;");
+.replaceAll(
+'"',
+"&quot;"
+);
 
 
 function save(){
 
 localStorage.setItem(
+
 SAVE_KEY,
+
 JSON.stringify(game)
+
 );
 
 }
@@ -1333,10 +2155,15 @@ return new Date()
 }
 
 
+/* =========================================================
+   WEEK KEY
+========================================================= */
+
 function weekKey(){
 
 const d=
 new Date();
+
 
 const onejan=
 new Date(
@@ -1344,6 +2171,7 @@ d.getFullYear(),
 0,
 1
 );
+
 
 const number=
 Math.ceil(
@@ -1358,17 +2186,20 @@ onejan.getDay()+
 7
 );
 
+
 return(
+
 d.getFullYear()+
 "-W"+
 number
+
 );
 
 }
 
 
 /* =========================================================
-   PLAYER LEVEL
+   LEVEL SYSTEM
 ========================================================= */
 
 function requiredXP(level){
@@ -1376,29 +2207,45 @@ function requiredXP(level){
 const table={
 
 1:150,
+
 2:225,
+
 3:325,
+
 4:450,
+
 5:600,
+
 6:775,
+
 7:975,
+
 8:1200,
+
 9:1450,
+
 10:1750
 
 };
 
 
 return(
+
 table[level]||
+
 Math.round(
+
 1750+
+
 Math.pow(
 level-10,
 1.4
 )*
+
 425
+
 )
+
 );
 
 }
@@ -1432,9 +2279,12 @@ return "ASCENDANT";
 function goalXPRequired(goal){
 
 return(
+
 200+
+
 goal.level*
 150
+
 );
 
 }
@@ -1449,100 +2299,148 @@ function analyzeGoal(name){
 const t=
 name.toLowerCase();
 
+
 const domains=[];
 
 
 if(
+
 /baseball|pitcher|catcher|shortstop|outfielder|first base|second base|third base/
+
 .test(t)
+
 ){
 
-domains.push("baseball");
+domains.push(
+"baseball"
+);
 
 }
 
 
 if(
+
 /basketball|football|soccer|tennis|golf|volleyball|hockey|athlete|sport/
+
 .test(t)
+
 ){
 
-domains.push("athlete");
+domains.push(
+"athlete"
+);
 
 }
 
 
 if(
+
 /fit|fitness|workout|muscle|strength|gym|conditioning|lose weight/
+
 .test(t)
+
 ){
 
-domains.push("fitness");
+domains.push(
+"fitness"
+);
 
 }
 
 
 if(
+
 /chef|cook|cooking|culinary|restaurant|baking/
+
 .test(t)
+
 ){
 
-domains.push("chef");
+domains.push(
+"chef"
+);
 
 }
 
 
 if(
+
 /language|japanese|spanish|french|german|korean|chinese|italian|arabic/
+
 .test(t)
+
 ){
 
-domains.push("language");
+domains.push(
+"language"
+);
 
 }
 
 
 if(
+
 /tattoo|artist|drawing|painting|photography|design|music|musician|creative/
+
 .test(t)
+
 ){
 
-domains.push("creative");
+domains.push(
+"creative"
+);
 
 }
 
 
 if(
+
 /business|company|brand|entrepreneur|wealth|money|income|startup|owner/
+
 .test(t)
+
 ){
 
-domains.push("business");
+domains.push(
+"business"
+);
 
 }
 
 
 if(
+
 /pilot|aviation|doctor|nurse|lawyer|teacher/
+
 .test(t)
+
 ){
 
-domains.push("professional");
+domains.push(
+"professional"
+);
 
 }
 
 
 if(
+
 /coding|developer|programming|software|app|website|engineering|technology/
+
 .test(t)
+
 ){
 
-domains.push("technical");
+domains.push(
+"technical"
+);
 
 }
 
 
-if(!domains.length){
+if(
+!domains.length
+){
 
 domains.push(
 "general"
@@ -1559,7 +2457,7 @@ return[
 
 
 /* =========================================================
-   ASSESSMENT QUESTIONS
+   ASSESSMENTS
 ========================================================= */
 
 const ASSESSMENTS={
@@ -1567,162 +2465,386 @@ const ASSESSMENTS={
 
 baseball:[
 
-["position","What position do you primarily play?","Pitcher, catcher, shortstop, outfield..."],
+[
+"position",
+"What position do you primarily play?",
+"Pitcher, catcher, shortstop, outfield..."
+],
 
-["competition","What level are you currently competing at?","Recreational, high school, college, amateur..."],
+[
+"competition",
+"What level are you currently competing at?",
+"Recreational, high school, college, amateur..."
+],
 
-["years","How many years have you played?","Example: 5"],
+[
+"years",
+"How many years have you played?",
+"Example: 5"
+],
 
-["strength","What is your strongest baseball skill?","Example: velocity, fielding, contact, speed"],
+[
+"strength",
+"What is your strongest baseball skill?",
+"Example: velocity, fielding, contact, speed"
+],
 
-["weakness","What baseball skill needs the most improvement?","Example: command, hitting off-speed, footwork"],
+[
+"weakness",
+"What baseball skill needs the most improvement?",
+"Example: command, hitting off-speed, footwork"
+],
 
-["resources","What training resources do you have?","Field, cage, gym, coach, throwing partner..."],
+[
+"resources",
+"What training resources do you have?",
+"Field, cage, gym, coach, throwing partner..."
+],
 
-["target","What is your next major baseball milestone?","Make varsity, college roster, improve velocity, pro opportunity..."]
+[
+"target",
+"What is your next major baseball milestone?",
+"Make varsity, college roster, improve velocity..."
+]
 
 ],
 
 
 athlete:[
 
-["sport","What exact sport do you play?",""],
+[
+"sport",
+"What exact sport do you play?",
+""
+],
 
-["position","What position/event do you compete in?",""],
+[
+"position",
+"What position or event do you compete in?",
+""
+],
 
-["level","What is your current competition level?",""],
+[
+"level",
+"What is your current competition level?",
+""
+],
 
-["weakness","What needs the most improvement?",""],
+[
+"weakness",
+"What needs the most improvement?",
+""
+],
 
-["resources","What equipment/coaching access do you have?",""],
+[
+"resources",
+"What equipment or coaching access do you have?",
+""
+],
 
-["target","What is your next major performance milestone?",""]
+[
+"target",
+"What is your next major performance milestone?",
+""
+]
 
 ],
 
 
 fitness:[
 
-["fitnessGoal","What does getting fit mean to you?","Strength, endurance, body composition, general health..."],
+[
+"fitnessGoal",
+"What does getting fit mean to you?",
+"Strength, endurance, general fitness..."
+],
 
-["currentActivity","How active are you currently?",""],
+[
+"currentActivity",
+"How active are you currently?",
+""
+],
 
-["equipment","What equipment do you have access to?","Gym, dumbbells, bodyweight only..."],
+[
+"equipment",
+"What equipment do you have access to?",
+"Gym, dumbbells, bodyweight only..."
+],
 
-["limitations","Any physical limitations you need to work around?",""],
+[
+"limitations",
+"Any physical limitations you need to work around?",
+""
+],
 
-["target","What measurable result are you working toward?",""]
+[
+"target",
+"What measurable result are you working toward?",
+""
+]
 
 ],
 
 
 chef:[
 
-["chefType","What kind of cooking interests you most?","Restaurant, pastry, private chef, home cooking..."],
+[
+"chefType",
+"What kind of cooking interests you most?",
+"Restaurant, pastry, private chef..."
+],
 
-["experience","What can you already cook confidently?",""],
+[
+"experience",
+"What can you already cook confidently?",
+""
+],
 
-["weakness","Which culinary skill needs the most development?","Knife skills, sauces, timing, baking..."],
+[
+"weakness",
+"Which culinary skill needs the most development?",
+"Knife skills, sauces, timing..."
+],
 
-["equipment","What kitchen equipment do you have access to?",""],
+[
+"equipment",
+"What kitchen equipment do you have access to?",
+""
+],
 
-["target","What is your next culinary milestone?","Cook a full menu, culinary school, restaurant job..."]
+[
+"target",
+"What is your next culinary milestone?",
+""
+]
 
 ],
 
 
 language:[
 
-["language","What language are you learning?",""],
+[
+"language",
+"What language are you learning?",
+""
+],
 
-["currentLevel","What can you currently do in the language?",""],
+[
+"currentLevel",
+"What can you currently do in the language?",
+""
+],
 
-["reason","Why are you learning it?","Travel, fluency, work, family..."],
+[
+"reason",
+"Why are you learning it?",
+"Travel, fluency, work..."
+],
 
-["weakness","Which area is hardest?","Speaking, listening, reading, writing..."],
+[
+"weakness",
+"Which area is hardest?",
+"Speaking, listening, reading, writing..."
+],
 
-["target","What would success look like in the next few months?",""]
+[
+"target",
+"What would success look like in the next few months?",
+""
+]
 
 ],
 
 
 business:[
 
-["businessType","What type of business or income path are you building?",""],
+[
+"businessType",
+"What type of business or income path are you building?",
+""
+],
 
-["skills","What skills or hobbies could you monetize?",""],
+[
+"skills",
+"What skills or hobbies could you monetize?",
+""
+],
 
-["customer","Who might pay for what you can provide?",""],
+[
+"customer",
+"Who might pay for what you can provide?",
+""
+],
 
-["stage","What stage are you currently at?","Idea, building, first customers, existing business..."],
+[
+"stage",
+"What stage are you currently at?",
+"Idea, building, first customers..."
+],
 
-["target","What is your next measurable business milestone?","First sale, $1,000 revenue, launch..."]
+[
+"target",
+"What is your next measurable business milestone?",
+""
+]
 
 ],
 
 
 creative:[
 
-["medium","What creative field or medium are you pursuing?","Tattooing, drawing, photography, music..."],
+[
+"medium",
+"What creative field or medium are you pursuing?",
+"Tattooing, drawing, photography, music..."
+],
 
-["experience","How long have you practiced it?",""],
+[
+"experience",
+"How long have you practiced it?",
+""
+],
 
-["style","What style or specialty interests you most?",""],
+[
+"style",
+"What style or specialty interests you most?",
+""
+],
 
-["weakness","What technical skill needs the most improvement?",""],
+[
+"weakness",
+"What technical skill needs the most improvement?",
+""
+],
 
-["portfolio","Do you currently have a portfolio/body of work?",""],
+[
+"portfolio",
+"Do you currently have a portfolio or body of work?",
+""
+],
 
-["target","What is your next major creative milestone?",""]
+[
+"target",
+"What is your next major creative milestone?",
+""
+]
 
 ],
 
 
 professional:[
 
-["career","What exact career path are you pursuing?",""],
+[
+"career",
+"What exact career path are you pursuing?",
+""
+],
 
-["stage","Where are you currently on that path?",""],
+[
+"stage",
+"Where are you currently on that path?",
+""
+],
 
-["qualification","What qualifications do you already have?",""],
+[
+"qualification",
+"What qualifications do you already have?",
+""
+],
 
-["gap","What is the biggest gap between you and the next step?",""],
+[
+"gap",
+"What is the biggest gap between you and the next step?",
+""
+],
 
-["target","What is your next career milestone?",""]
+[
+"target",
+"What is your next career milestone?",
+""
+]
 
 ],
 
 
 technical:[
 
-["field","What technical field are you pursuing?","Software, engineering, web development..."],
+[
+"field",
+"What technical field are you pursuing?",
+"Software, engineering, web development..."
+],
 
-["languages","What tools/languages do you currently know?",""],
+[
+"languages",
+"What tools or languages do you currently know?",
+""
+],
 
-["projects","What have you already built?",""],
+[
+"projects",
+"What have you already built?",
+""
+],
 
-["weakness","What topic is currently hardest?",""],
+[
+"weakness",
+"What topic is currently hardest?",
+""
+],
 
-["target","What is your next project/career milestone?",""]
+[
+"target",
+"What is your next project or career milestone?",
+""
+]
 
 ],
 
 
 general:[
 
-["destination","Describe exactly what success looks like.",""],
+[
+"destination",
+"Describe exactly what success looks like.",
+""
+],
 
-["current","Where are you currently compared with that goal?",""],
+[
+"current",
+"Where are you currently compared with that goal?",
+""
+],
 
-["skills","What skills do you think are required?",""],
+[
+"skills",
+"What skills do you think are required?",
+""
+],
 
-["strength","What are you already good at?",""],
+[
+"strength",
+"What are you already good at?",
+""
+],
 
-["weakness","What currently holds you back most?",""],
+[
+"weakness",
+"What currently holds you back most?",
+""
+],
 
-["resources","What resources do you have access to?",""],
+[
+"resources",
+"What resources do you have access to?",
+""
+],
 
-["target","What is the next measurable milestone?",""]
+[
+"target",
+"What is the next measurable milestone?",
+""
+]
 
 ]
 
@@ -1730,148 +2852,266 @@ general:[
 
 
 /* =========================================================
-   SKILL TREE GENERATION
+   SKILL TREES
 ========================================================= */
 
 const SKILL_TREES={
 
+
 baseball:[
+
 "Position Skill",
+
 "Throwing",
+
 "Hitting",
+
 "Fielding",
+
 "Game IQ",
+
 "Speed",
+
 "Strength",
+
 "Recovery",
+
 "Mental Game",
+
 "Career Development"
+
 ],
+
 
 athlete:[
+
 "Technical Skill",
+
 "Game IQ",
+
 "Strength",
+
 "Speed",
+
 "Conditioning",
+
 "Recovery",
+
 "Mental Performance",
+
 "Competition"
+
 ],
+
 
 fitness:[
+
 "Strength",
+
 "Endurance",
+
 "Mobility",
+
 "Consistency",
+
 "Recovery",
+
 "Nutrition Habits"
+
 ],
+
 
 chef:[
+
 "Knife Skills",
+
 "Cooking Technique",
+
 "Flavor",
+
 "Timing",
+
 "Ingredient Knowledge",
+
 "Plating",
+
 "Kitchen Organization",
+
 "Professional Skills"
+
 ],
+
 
 language:[
+
 "Vocabulary",
+
 "Speaking",
+
 "Listening",
+
 "Reading",
+
 "Writing",
+
 "Grammar",
+
 "Comprehension"
+
 ],
+
 
 business:[
+
 "Value Creation",
+
 "Market Research",
+
 "Product",
+
 "Sales",
+
 "Marketing",
+
 "Finance",
+
 "Communication",
+
 "Networking"
+
 ],
+
 
 creative:[
+
 "Fundamentals",
+
 "Technique",
+
 "Creativity",
+
 "Style",
+
 "Portfolio",
+
 "Professional Skills",
+
 "Business"
+
 ],
+
 
 professional:[
+
 "Knowledge",
+
 "Qualifications",
+
 "Technical Skill",
+
 "Communication",
+
 "Experience",
+
 "Networking",
+
 "Career Preparation"
+
 ],
+
 
 technical:[
+
 "Fundamentals",
+
 "Problem Solving",
+
 "Building",
+
 "Debugging",
+
 "Projects",
+
 "Technical Knowledge",
+
 "Career"
+
 ],
 
+
 general:[
+
 "Knowledge",
+
 "Core Skill",
+
 "Practice",
+
 "Execution",
+
 "Communication",
+
 "Discipline",
+
 "Professional Development"
+
 ]
 
 };
 
+
+/* =========================================================
+   PRIMARY DOMAIN
+========================================================= */
 
 function primaryDomain(goal){
 
 const order=[
 
 "baseball",
+
 "athlete",
+
 "fitness",
+
 "chef",
+
 "language",
+
 "business",
+
 "creative",
+
 "professional",
+
 "technical",
+
 "general"
 
 ];
 
 
 return(
+
 order.find(
+
 domain=>
+
 goal.domains
 .includes(domain)
+
 )||
+
 "general"
+
 );
 
 }
 
+
+/* =========================================================
+   CREATE SKILL TREE
+========================================================= */
 
 function createSkillTree(goal){
 
@@ -1880,10 +3120,15 @@ primaryDomain(goal);
 
 
 return(
+
 SKILL_TREES[domain]||
+
 SKILL_TREES.general
+
 )
+
 .map(
+
 name=>({
 
 name,
@@ -1893,6 +3138,7 @@ level:1,
 xp:0
 
 })
+
 );
 
 }
@@ -1908,7 +3154,8 @@ return[
 
 {
 
-name:"FOUNDATION",
+name:
+"FOUNDATION",
 
 desc:
 "Understand the path, build core habits, and establish your starting level."
@@ -1917,7 +3164,8 @@ desc:
 
 {
 
-name:"CORE SKILLS",
+name:
+"CORE SKILLS",
 
 desc:
 "Develop the abilities that directly determine performance in your goal."
@@ -1926,7 +3174,8 @@ desc:
 
 {
 
-name:"COMPLETE DEVELOPMENT",
+name:
+"COMPLETE DEVELOPMENT",
 
 desc:
 "Develop supporting areas that are easy to overlook but necessary for long-term success."
@@ -1935,7 +3184,8 @@ desc:
 
 {
 
-name:"REAL-WORLD APPLICATION",
+name:
+"REAL-WORLD APPLICATION",
 
 desc:
 "Use the skills in increasingly realistic situations and create measurable proof."
@@ -1944,7 +3194,8 @@ desc:
 
 {
 
-name:"OPPORTUNITY",
+name:
+"OPPORTUNITY",
 
 desc:
 "Build the connections, portfolio, competition results, credentials, or opportunities needed to advance."
@@ -1953,7 +3204,8 @@ desc:
 
 {
 
-name:"MASTERY",
+name:
+"MASTERY",
 
 desc:
 "Identify weaknesses, raise difficulty, and continue progressing beyond basic competence."
@@ -1970,11 +3222,17 @@ desc:
 ========================================================= */
 
 function createGoalObject(
+
 name,
+
 experience,
+
 time,
+
 why,
+
 strengths
+
 ){
 
 const goal={
@@ -1987,7 +3245,8 @@ name,
 
 experience,
 
-time:Number(time),
+time:
+Number(time),
 
 why,
 
@@ -2020,7 +3279,9 @@ goal.skills=
 createSkillTree(goal);
 
 
-game.goals.push(goal);
+game.goals.push(
+goal
+);
 
 
 game.dailyKey=null;
@@ -2037,27 +3298,34 @@ return goal;
 
 
 /* =========================================================
-   PLAYER CREATION
+   INITIALIZE PLAYER
 ========================================================= */
 
 function initializePlayer(){
 
 const name=
+
 $("name")
 .value
 .trim();
 
 
 const goal=
+
 $("firstGoal")
 .value
 .trim();
 
 
-if(!name||!goal){
+if(
+!name||
+!goal
+){
 
 alert(
+
 "Enter your player name and first goal."
+
 );
 
 return;
@@ -2065,10 +3333,12 @@ return;
 }
 
 
-game.player=name;
+game.player=
+name;
 
 
 const newGoal=
+
 createGoalObject(
 
 goal,
@@ -2104,6 +3374,7 @@ render();
 function addGoal(){
 
 const name=
+
 $("newGoal")
 .value
 .trim();
@@ -2121,6 +3392,7 @@ return;
 
 
 const goal=
+
 createGoalObject(
 
 name,
@@ -2129,18 +3401,27 @@ $("newExp").value,
 
 $("newTime").value,
 
-$("newWhy").value.trim(),
+$("newWhy")
+.value
+.trim(),
 
-$("newStrengths").value.trim()
+$("newStrengths")
+.value
+.trim()
 
 );
 
 
-$("newGoal").value="";
+$("newGoal")
+.value="";
 
-$("newWhy").value="";
 
-$("newStrengths").value="";
+$("newWhy")
+.value="";
+
+
+$("newStrengths")
+.value="";
 
 
 openAssessment(
@@ -2164,8 +3445,13 @@ goalId;
 
 
 const goal=
+
 game.goals.find(
-g=>g.id===goalId
+
+g=>
+g.id===
+goalId
+
 );
 
 
@@ -2174,27 +3460,42 @@ return;
 
 
 const domain=
-primaryDomain(goal);
+
+primaryDomain(
+goal
+);
 
 
 const questions=
+
 ASSESSMENTS[domain]||
+
 ASSESSMENTS.general;
 
 
 $("assessmentIntro")
 .innerHTML=
 
-"ASCEND is analyzing:<br><br><b>"+
+"ASCEND is analyzing:"+
+
+"<br><br>"+
+
+"<b>"+
 esc(goal.name)+
-"</b><br><br>"+
+"</b>"+
+
+"<br><br>"+
+
 "Answer these questions so the System can build a more personal progression path.";
 
 
 $("assessmentFields")
 .innerHTML=
 
-questions.map(
+questions
+
+.map(
+
 q=>
 
 '<label>'+
@@ -2202,25 +3503,40 @@ esc(q[1])+
 '</label>'+
 
 '<input '+
-'id="assessment_'+q[0]+'" '+
-'placeholder="'+esc(q[2])+'">'
+'id="assessment_'+
+q[0]+
+'" '+
+'placeholder="'+
+esc(q[2])+
+'">'
 
 )
+
 .join("");
 
 
 $("assessmentModal")
 .style
-.display="flex";
+.display=
+"flex";
 
 }
 
 
+/* =========================================================
+   SAVE ASSESSMENT
+========================================================= */
+
 function saveAssessment(){
 
 const goal=
+
 game.goals.find(
-g=>g.id===assessmentGoalId
+
+g=>
+g.id===
+assessmentGoalId
+
 );
 
 
@@ -2229,30 +3545,40 @@ return;
 
 
 const domain=
-primaryDomain(goal);
+
+primaryDomain(
+goal
+);
 
 
 const questions=
+
 ASSESSMENTS[domain]||
+
 ASSESSMENTS.general;
 
 
 const answers={};
 
 
-questions.forEach(
+questions
+.forEach(
+
 q=>{
 
 const el=
+
 $("assessment_"+q[0]);
 
 
 answers[q[0]]=
+
 el
 ?el.value.trim()
 :"";
 
 }
+
 );
 
 
@@ -2260,7 +3586,8 @@ goal.assessment=
 answers;
 
 
-goal.assessmentComplete=true;
+goal.assessmentComplete=
+true;
 
 
 game.dailyKey=null;
@@ -2273,7 +3600,8 @@ save();
 
 $("assessmentModal")
 .style
-.display="none";
+.display=
+"none";
 
 
 toast(
@@ -2295,15 +3623,19 @@ const MISSIONS={
 
 baseball:[
 
+
 {
 
-title:"POSITION SKILL LAB",
+title:
+"POSITION SKILL LAB",
 
-skill:"Position Skill",
+skill:
+"Position Skill",
 
 xp:75,
 
-stat:"skill",
+stat:
+"skill",
 
 steps:[
 
@@ -2324,13 +3656,16 @@ steps:[
 
 {
 
-title:"GAME IQ SCOUT",
+title:
+"GAME IQ SCOUT",
 
-skill:"Game IQ",
+skill:
+"Game IQ",
 
 xp:55,
 
-stat:"knowledge",
+stat:
+"knowledge",
 
 steps:[
 
@@ -2351,13 +3686,16 @@ steps:[
 
 {
 
-title:"THROWING DEVELOPMENT",
+title:
+"THROWING DEVELOPMENT",
 
-skill:"Throwing",
+skill:
+"Throwing",
 
 xp:70,
 
-stat:"skill",
+stat:
+"skill",
 
 steps:[
 
@@ -2378,13 +3716,16 @@ steps:[
 
 {
 
-title:"HITTING DEVELOPMENT",
+title:
+"HITTING DEVELOPMENT",
 
-skill:"Hitting",
+skill:
+"Hitting",
 
 xp:75,
 
-stat:"skill",
+stat:
+"skill",
 
 steps:[
 
@@ -2392,7 +3733,7 @@ steps:[
 
 "Choose one hitting focus.",
 
-"Complete 3 rounds of tee, front toss, cage, or other suitable hitting work.",
+"Complete 3 rounds of tee, front toss, cage, or another suitable hitting drill.",
 
 "Track quality contact rather than only total swings.",
 
@@ -2405,19 +3746,22 @@ steps:[
 
 {
 
-title:"ATHLETIC DEVELOPMENT",
+title:
+"ATHLETIC DEVELOPMENT",
 
-skill:"Strength",
+skill:
+"Strength",
 
 xp:60,
 
-stat:"health",
+stat:
+"health",
 
 steps:[
 
 "Complete an appropriate warm-up.",
 
-"Train one supporting physical quality: strength, sprinting, agility, balance, or conditioning.",
+"Train one supporting physical quality such as strength, sprinting, agility, balance, or conditioning.",
 
 "Keep the session appropriate for your current training plan.",
 
@@ -2432,13 +3776,16 @@ steps:[
 
 {
 
-title:"RECOVERY PROTOCOL",
+title:
+"RECOVERY PROTOCOL",
 
-skill:"Recovery",
+skill:
+"Recovery",
 
 xp:45,
 
-stat:"health",
+stat:
+"health",
 
 steps:[
 
@@ -2459,13 +3806,16 @@ steps:[
 
 {
 
-title:"MENTAL GAME",
+title:
+"MENTAL GAME",
 
-skill:"Mental Game",
+skill:
+"Mental Game",
 
 xp:45,
 
-stat:"discipline",
+stat:
+"discipline",
 
 steps:[
 
@@ -2488,15 +3838,19 @@ steps:[
 
 fitness:[
 
+
 {
 
-title:"FULL-BODY GAUNTLET",
+title:
+"FULL-BODY GAUNTLET",
 
-skill:"Strength",
+skill:
+"Strength",
 
 xp:65,
 
-stat:"health",
+stat:
+"health",
 
 steps:[
 
@@ -2517,13 +3871,16 @@ steps:[
 
 {
 
-title:"ENDURANCE QUEST",
+title:
+"ENDURANCE QUEST",
 
-skill:"Endurance",
+skill:
+"Endurance",
 
 xp:55,
 
-stat:"health",
+stat:
+"health",
 
 steps:[
 
@@ -2544,13 +3901,16 @@ steps:[
 
 {
 
-title:"MOBILITY RESET",
+title:
+"MOBILITY RESET",
 
-skill:"Mobility",
+skill:
+"Mobility",
 
 xp:40,
 
-stat:"health",
+stat:
+"health",
 
 steps:[
 
@@ -2573,15 +3933,19 @@ steps:[
 
 chef:[
 
+
 {
 
-title:"COOKING BATTLE",
+title:
+"COOKING BATTLE",
 
-skill:"Cooking Technique",
+skill:
+"Cooking Technique",
 
 xp:75,
 
-stat:"skill",
+stat:
+"skill",
 
 steps:[
 
@@ -2602,13 +3966,16 @@ steps:[
 
 {
 
-title:"KNIFE SKILL LAB",
+title:
+"KNIFE SKILL LAB",
 
-skill:"Knife Skills",
+skill:
+"Knife Skills",
 
 xp:55,
 
-stat:"skill",
+stat:
+"skill",
 
 steps:[
 
@@ -2629,13 +3996,16 @@ steps:[
 
 {
 
-title:"KITCHEN TIMING RAID",
+title:
+"KITCHEN TIMING RAID",
 
-skill:"Timing",
+skill:
+"Timing",
 
 xp:70,
 
-stat:"discipline",
+stat:
+"discipline",
 
 steps:[
 
@@ -2656,13 +4026,16 @@ steps:[
 
 {
 
-title:"FLAVOR DEVELOPMENT",
+title:
+"FLAVOR DEVELOPMENT",
 
-skill:"Flavor",
+skill:
+"Flavor",
 
 xp:55,
 
-stat:"knowledge",
+stat:
+"knowledge",
 
 steps:[
 
@@ -2683,13 +4056,16 @@ steps:[
 
 {
 
-title:"INGREDIENT INTELLIGENCE",
+title:
+"INGREDIENT INTELLIGENCE",
 
-skill:"Ingredient Knowledge",
+skill:
+"Ingredient Knowledge",
 
 xp:50,
 
-stat:"knowledge",
+stat:
+"knowledge",
 
 steps:[
 
@@ -2710,13 +4086,16 @@ steps:[
 
 {
 
-title:"PROFESSIONAL KITCHEN MODE",
+title:
+"PROFESSIONAL KITCHEN MODE",
 
-skill:"Professional Skills",
+skill:
+"Professional Skills",
 
 xp:65,
 
-stat:"career",
+stat:
+"career",
 
 steps:[
 
@@ -2739,15 +4118,19 @@ steps:[
 
 language:[
 
+
 {
 
-title:"VOCABULARY COMBO",
+title:
+"VOCABULARY COMBO",
 
-skill:"Vocabulary",
+skill:
+"Vocabulary",
 
 xp:50,
 
-stat:"knowledge",
+stat:
+"knowledge",
 
 steps:[
 
@@ -2768,13 +4151,16 @@ steps:[
 
 {
 
-title:"SPEAKING RAID",
+title:
+"SPEAKING RAID",
 
-skill:"Speaking",
+skill:
+"Speaking",
 
 xp:65,
 
-stat:"skill",
+stat:
+"skill",
 
 steps:[
 
@@ -2795,13 +4181,16 @@ steps:[
 
 {
 
-title:"LISTENING DUNGEON",
+title:
+"LISTENING DUNGEON",
 
-skill:"Listening",
+skill:
+"Listening",
 
 xp:55,
 
-stat:"knowledge",
+stat:
+"knowledge",
 
 steps:[
 
@@ -2824,15 +4213,19 @@ steps:[
 
 business:[
 
+
 {
 
-title:"MARKET SCOUT",
+title:
+"MARKET SCOUT",
 
-skill:"Market Research",
+skill:
+"Market Research",
 
 xp:65,
 
-stat:"career",
+stat:
+"career",
 
 steps:[
 
@@ -2853,13 +4246,16 @@ steps:[
 
 {
 
-title:"OFFER FORGE",
+title:
+"OFFER FORGE",
 
-skill:"Product",
+skill:
+"Product",
 
 xp:75,
 
-stat:"career",
+stat:
+"career",
 
 steps:[
 
@@ -2880,13 +4276,16 @@ steps:[
 
 {
 
-title:"OUTREACH QUEST",
+title:
+"OUTREACH QUEST",
 
-skill:"Sales",
+skill:
+"Sales",
 
 xp:70,
 
-stat:"career",
+stat:
+"career",
 
 steps:[
 
@@ -2909,15 +4308,19 @@ steps:[
 
 creative:[
 
+
 {
 
-title:"TECHNIQUE LAB",
+title:
+"TECHNIQUE LAB",
 
-skill:"Technique",
+skill:
+"Technique",
 
 xp:60,
 
-stat:"skill",
+stat:
+"skill",
 
 steps:[
 
@@ -2938,13 +4341,16 @@ steps:[
 
 {
 
-title:"ORIGINAL CREATION",
+title:
+"ORIGINAL CREATION",
 
-skill:"Creativity",
+skill:
+"Creativity",
 
 xp:70,
 
-stat:"creativity",
+stat:
+"creativity",
 
 steps:[
 
@@ -2965,13 +4371,16 @@ steps:[
 
 {
 
-title:"PORTFOLIO UPGRADE",
+title:
+"PORTFOLIO UPGRADE",
 
-skill:"Portfolio",
+skill:
+"Portfolio",
 
 xp:60,
 
-stat:"career",
+stat:
+"career",
 
 steps:[
 
@@ -2994,15 +4403,19 @@ steps:[
 
 technical:[
 
+
 {
 
-title:"BUILD MODE",
+title:
+"BUILD MODE",
 
-skill:"Building",
+skill:
+"Building",
 
 xp:75,
 
-stat:"skill",
+stat:
+"skill",
 
 steps:[
 
@@ -3023,13 +4436,16 @@ steps:[
 
 {
 
-title:"DEBUG DUNGEON",
+title:
+"DEBUG DUNGEON",
 
-skill:"Debugging",
+skill:
+"Debugging",
 
 xp:65,
 
-stat:"knowledge",
+stat:
+"knowledge",
 
 steps:[
 
@@ -3052,15 +4468,19 @@ steps:[
 
 professional:[
 
+
 {
 
-title:"CAREER INTELLIGENCE",
+title:
+"CAREER INTELLIGENCE",
 
-skill:"Career Preparation",
+skill:
+"Career Preparation",
 
 xp:60,
 
-stat:"career",
+stat:
+"career",
 
 steps:[
 
@@ -3081,13 +4501,16 @@ steps:[
 
 {
 
-title:"PROFESSIONAL PROFILE",
+title:
+"PROFESSIONAL PROFILE",
 
-skill:"Experience",
+skill:
+"Experience",
 
 xp:60,
 
-stat:"career",
+stat:
+"career",
 
 steps:[
 
@@ -3110,15 +4533,19 @@ steps:[
 
 general:[
 
+
 {
 
-title:"CORE SKILL QUEST",
+title:
+"CORE SKILL QUEST",
 
-skill:"Core Skill",
+skill:
+"Core Skill",
 
 xp:60,
 
-stat:"skill",
+stat:
+"skill",
 
 steps:[
 
@@ -3139,13 +4566,16 @@ steps:[
 
 {
 
-title:"REAL-WORLD ACTION",
+title:
+"REAL-WORLD ACTION",
 
-skill:"Execution",
+skill:
+"Execution",
 
 xp:65,
 
-stat:"career",
+stat:
+"career",
 
 steps:[
 
@@ -3169,7 +4599,7 @@ steps:[
 
 
 /* =========================================================
-   DAILY QUEST CREATION
+   MISSION POOL
 ========================================================= */
 
 function getMissionPool(goal){
@@ -3179,12 +4609,19 @@ primaryDomain(goal);
 
 
 return(
+
 MISSIONS[domain]||
+
 MISSIONS.general
+
 );
 
 }
 
+
+/* =========================================================
+   CREATE DAILY MISSION
+========================================================= */
 
 function createDailyMission(
 goal,
@@ -3196,16 +4633,22 @@ getMissionPool(goal);
 
 
 let unused=
+
 pool.filter(
+
 mission=>
+
 !goal.missionHistory
 .includes(
 mission.title
 )
+
 );
 
 
-if(!unused.length){
+if(
+!unused.length
+){
 
 goal.missionHistory=[];
 
@@ -3215,15 +4658,21 @@ unused=pool;
 
 
 const mission=
+
 unused[
+
 (
 offset+
+
 Math.floor(
 Date.now()/
 86400000
 )
+
 )%
+
 unused.length
+
 ];
 
 
@@ -3258,13 +4707,17 @@ stat:
 mission.stat,
 
 difficulty:
+
 goal.level>=8
 ?"A"
-:goal.level>=5
+:
+goal.level>=5
 ?"B"
-:goal.level>=2
+:
+goal.level>=2
 ?"C"
-:"D",
+:
+"D",
 
 proofRequired:true,
 
@@ -3287,9 +4740,7 @@ done:false
    WEEKLY BOSS
 ========================================================= */
 
-function createWeeklyBoss(
-goal
-){
+function createWeeklyBoss(goal){
 
 const domain=
 primaryDomain(goal);
@@ -3302,7 +4753,9 @@ let title=
 let steps=[];
 
 
-if(domain==="baseball"){
+if(
+domain==="baseball"
+){
 
 title=
 "7-DAY COMPLETE PLAYER ARC";
@@ -3328,7 +4781,9 @@ steps=[
 
 }
 
-else if(domain==="chef"){
+else if(
+domain==="chef"
+){
 
 title=
 "7-DAY KITCHEN ASCENSION";
@@ -3338,7 +4793,7 @@ steps=[
 
 "Day 1: cook a complete dish and establish your baseline.",
 
-"Day 2: practice knife/preparation skills and use them in cooking.",
+"Day 2: practice knife and preparation skills and use them in cooking.",
 
 "Day 3: cook a dish focused on flavor and seasoning.",
 
@@ -3354,7 +4809,9 @@ steps=[
 
 }
 
-else if(domain==="fitness"){
+else if(
+domain==="fitness"
+){
 
 title=
 "7-DAY FITNESS ASCENSION";
@@ -3380,7 +4837,9 @@ steps=[
 
 }
 
-else if(domain==="language"){
+else if(
+domain==="language"
+){
 
 title=
 "7-DAY LANGUAGE RAID";
@@ -3406,7 +4865,9 @@ steps=[
 
 }
 
-else if(domain==="business"){
+else if(
+domain==="business"
+){
 
 title=
 "7-DAY BUSINESS BUILD BOSS";
@@ -3503,7 +4964,7 @@ done:false
 
 
 /* =========================================================
-   AUTOMATIC ASSIGNMENT
+   AUTOMATIC ASSIGNMENTS
 ========================================================= */
 
 function initializeAssignments(){
@@ -3529,15 +4990,21 @@ game.daily=[];
 
 
 game.goals
+
 .filter(
+
 goal=>
 goal.assessmentComplete
+
 )
+
 .forEach(
+
 (goal,index)=>{
 
 
 const count=
+
 game.goals.length===1
 ?3
 :2;
@@ -3550,15 +5017,21 @@ i++
 ){
 
 game.daily.push(
+
 createDailyMission(
+
 goal,
+
 index+i
+
 )
+
 );
 
 }
 
 }
+
 );
 
 }
@@ -3574,11 +5047,16 @@ currentWeek;
 
 
 game.weekly=
+
 game.goals
+
 .filter(
+
 goal=>
 goal.assessmentComplete
+
 )
+
 .map(
 createWeeklyBoss
 );
@@ -3592,7 +5070,7 @@ save();
 
 
 /* =========================================================
-   PROOF SUBMISSION
+   FIXED PROOF SUBMISSION
 ========================================================= */
 
 function submitProof(
@@ -3601,44 +5079,64 @@ type
 ){
 
 const list=
+
 type==="daily"
 ?game.daily
 :game.weekly;
 
 
 const mission=
+
 list.find(
-m=>m.id==missionId
+
+m=>
+
+String(m.id)===
+String(missionId)
+
 );
 
 
 if(
 !mission||
 mission.done
-)
+){
+
 return;
+
+}
 
 
 const fileInput=
+
 document.getElementById(
-"proof_file_"+missionId
+
+"proof_file_"+
+mission.id
+
 );
 
 
-const note=
+const noteInput=
+
 document.getElementById(
-"proof_note_"+missionId
+
+"proof_note_"+
+mission.id
+
 );
 
 
 if(
 !fileInput||
 !fileInput.files||
-!fileInput.files.length
+fileInput.files.length===0
 ){
 
 alert(
-"Upload proof before submitting this quest."
+
+"Choose a photo, video, screenshot, or file first."
+
 );
 
 return;
@@ -3650,18 +5148,37 @@ const file=
 fileInput.files[0];
 
 
-mission.proofSubmitted=true;
+mission.proofSubmitted=
+true;
+
 
 mission.proofFileName=
-file.name;
+
+file.name||
+
+"Uploaded proof";
+
 
 mission.proofType=
+
 file.type||
+
 "file";
 
+
+mission.proofSize=
+
+file.size||
+
+0;
+
+
 mission.proofNote=
-note
-?note.value.trim()
+
+noteInput
+
+?noteInput.value.trim()
+
 :"";
 
 
@@ -3671,26 +5188,74 @@ mission.verificationStatus=
 
 save();
 
-render();
+
+/*
+Update ONLY the proof box.
+
+This avoids rebuilding the page
+while Safari/iPad is still handling
+the selected file.
+*/
+
+
+const proofBox=
+
+document.getElementById(
+
+"proof_box_"+
+mission.id
+
+);
+
+
+if(proofBox){
+
+proofBox.innerHTML=
+
+'<div class="proof-title">'+
+'SYSTEM VERIFICATION'+
+'</div>'+
+
+'<div class="verify-status">'+
+'ANALYZING PROOF...'+
+'</div>'+
+
+'<div class="small" style="margin-top:8px;">'+
+
+'FILE: '+
+
+esc(
+mission.proofFileName
+)+
+
+'</div>';
+
+}
 
 
 setTimeout(
+
 ()=>{
 
 verifyProof(
-missionId,
+
+mission.id,
+
 type
+
 );
 
 },
-1200
+
+1500
+
 );
 
 }
 
 
 /* =========================================================
-   PROTOTYPE VERIFICATION
+   FIXED PROTOTYPE VERIFICATION
 ========================================================= */
 
 function verifyProof(
@@ -3699,65 +5264,125 @@ type
 ){
 
 const list=
+
 type==="daily"
 ?game.daily
 :game.weekly;
 
 
 const mission=
+
 list.find(
-m=>m.id==missionId
+
+m=>
+
+String(m.id)===
+String(missionId)
+
 );
 
 
-if(!mission)
+if(!mission){
+
+alert(
+
+"ASCEND could not locate this quest. Refresh the page and try again."
+
+);
+
 return;
 
-
-/*
-IMPORTANT:
-
-This is prototype verification.
-
-A real ASCEND app would send
-the evidence to a secure backend
-for automated/manual verification.
-
-For now, requiring an uploaded file
-prevents XP from being awarded
-through a normal button press.
-*/
+}
 
 
 if(
-mission.proofSubmitted&&
-mission.proofFileName
+
+!mission.proofSubmitted||
+
+!mission.proofFileName
+
 ){
+
+mission.verificationStatus=
+"failed";
+
+
+save();
+
+
+alert(
+
+"Proof could not be verified. Please upload the file again."
+
+);
+
+
+render();
+
+
+return;
+
+}
+
+
+/*
+Prototype verification.
+
+Future ASCEND versions will replace
+this with backend/AI evidence analysis.
+*/
+
 
 mission.verificationStatus=
 "verified";
 
 
-mission.done=true;
+mission.done=
+true;
 
 
 awardMission(
+
 mission,
+
 type
+
+);
+
+
+save();
+
+
+toast(
+
+"✓ PROOF VERIFIED • XP AWARDED"
+
+);
+
+
+/*
+Only redraw after verification
+and rewards are complete.
+*/
+
+
+setTimeout(
+
+()=>{
+
+render();
+
+},
+
+500
+
 );
 
 }
 
 
-save();
-
-render();
-
-}
-
-
 /* =========================================================
-   REWARDS
+   ADD PLAYER XP
 ========================================================= */
 
 function addPlayerXP(
@@ -3781,16 +5406,20 @@ let levels=0;
 
 
 while(
+
 game.xp>=
 requiredXP(
 game.level
 )
+
 ){
 
 game.xp-=
+
 requiredXP(
 game.level
 );
+
 
 game.level++;
 
@@ -3806,21 +5435,31 @@ showLevel(
 "LEVEL UP",
 
 "You advanced "+
+
 levels+
+
 " level"+
+
 (
 levels===1
 ?""
 :"s"
 )+
+
 ".<br><br>"+
+
 "NEW LEVEL: <b>"+
+
 game.level+
+
 "</b><br>"+
+
 "RANK: <b>"+
+
 playerRank(
 game.level
 )+
+
 "</b>"
 
 );
@@ -3830,6 +5469,10 @@ game.level
 }
 
 
+/* =========================================================
+   SKILL XP
+========================================================= */
+
 function addSkillXP(
 goal,
 skillName,
@@ -3837,10 +5480,14 @@ amount
 ){
 
 let skill=
+
 goal.skills.find(
+
 s=>
+
 s.name===
 skillName
+
 );
 
 
@@ -3881,6 +5528,10 @@ skill.level++;
 }
 
 
+/* =========================================================
+   GOAL XP
+========================================================= */
+
 function addGoalXP(
 goal,
 amount
@@ -3890,16 +5541,20 @@ goal.xp+=amount;
 
 
 while(
+
 goal.xp>=
 goalXPRequired(
 goal
 )
+
 ){
 
 goal.xp-=
+
 goalXPRequired(
 goal
 );
+
 
 goal.level++;
 
@@ -3908,28 +5563,42 @@ goal.level++;
 }
 
 
+/* =========================================================
+   AWARD VERIFIED MISSION
+========================================================= */
+
 function awardMission(
 mission,
 type
 ){
 
 const goal=
+
 game.goals.find(
+
 g=>
+
 g.id===
 mission.goalId
+
 );
 
 
-if(type==="weekly"){
+if(
+type==="weekly"
+){
 
 addPlayerXP(
+
 mission.xp,
+
 mission.stat
+
 );
 
 
 game.level+=
+
 mission.levelReward;
 
 
@@ -3937,13 +5606,22 @@ showLevel(
 
 "BOSS QUEST CLEARED",
 
-"VERIFIED BOSS QUEST<br><br>"+
+"VERIFIED BOSS QUEST"+
+
+"<br><br>"+
+
 "<b>+"+
 mission.xp+
-" XP</b><br>"+
+" XP</b>"+
+
+"<br>"+
+
 "<b>+"+
 mission.levelReward+
-" PLAYER LEVELS</b><br><br>"+
+" PLAYER LEVELS</b>"+
+
+"<br><br>"+
+
 "NEW LEVEL: <b>"+
 game.level+
 "</b>"
@@ -3951,11 +5629,15 @@ game.level+
 );
 
 }
+
 else{
 
 addPlayerXP(
+
 mission.xp,
+
 mission.stat
+
 );
 
 }
@@ -3965,22 +5647,35 @@ if(goal){
 
 goal.verifiedCompleted++;
 
+
 addGoalXP(
+
 goal,
+
 mission.xp
+
 );
 
 
 addSkillXP(
+
 goal,
+
 mission.skill,
+
 Math.max(
+
 15,
+
 Math.round(
+
 mission.xp/
 2
+
 )
+
 )
+
 );
 
 }
@@ -3995,9 +5690,7 @@ updateStreak();
 checkAchievements();
 
 
-toast(
-"PROOF VERIFIED • XP AWARDED"
-);
+save();
 
 }
 
@@ -4013,31 +5706,47 @@ today();
 
 
 if(
-game.lastComplete===d
-)
+game.lastComplete===
+d
+){
+
 return;
 
+}
 
-if(game.lastComplete){
+
+if(
+game.lastComplete
+){
 
 const difference=
+
 Math.floor(
+
 (
 new Date(d)-
+
 new Date(
 game.lastComplete
 )
+
 )/
+
 86400000
+
 );
 
 
 game.streak=
+
 difference===1
+
 ?game.streak+1
+
 :1;
 
 }
+
 else{
 
 game.streak=1;
@@ -4045,7 +5754,8 @@ game.streak=1;
 }
 
 
-game.lastComplete=d;
+game.lastComplete=
+d;
 
 }
 
@@ -4057,15 +5767,20 @@ game.lastComplete=d;
 function page(name){
 
 document
+
 .querySelectorAll(
 ".screen"
 )
+
 .forEach(
+
 screen=>
+
 screen.classList
 .remove(
 "active"
 )
+
 );
 
 
@@ -4077,15 +5792,20 @@ $(name)
 
 
 document
+
 .querySelectorAll(
 ".nav button"
 )
+
 .forEach(
+
 button=>
+
 button.classList
 .remove(
 "active"
 )
+
 );
 
 
@@ -4117,22 +5837,31 @@ mission.verificationStatus===
 
 return(
 
-'<div class="proofbox verified">'+
+'<div class="proofbox verified" id="proof_box_'+
+mission.id+
+'">'+
+
 
 '<div class="proof-title">'+
 '✓ PROOF VERIFIED'+
 '</div>'+
 
+
 '<div class="small">'+
+
 'Evidence: '+
+
 esc(
 mission.proofFileName
 )+
+
 '</div>'+
+
 
 '<div class="verified-text">'+
 'XP AWARDED'+
 '</div>'+
+
 
 '</div>'
 
@@ -4148,15 +5877,20 @@ mission.verificationStatus===
 
 return(
 
-'<div class="proofbox">'+
+'<div class="proofbox" id="proof_box_'+
+mission.id+
+'">'+
+
 
 '<div class="proof-title">'+
 'SYSTEM VERIFICATION'+
 '</div>'+
 
+
 '<div class="verify-status">'+
 'ANALYZING PROOF...'+
 '</div>'+
+
 
 '</div>'
 
@@ -4167,39 +5901,58 @@ return(
 
 return(
 
-'<div class="proofbox">'+
+'<div class="proofbox" id="proof_box_'+
+mission.id+
+'">'+
+
 
 '<div class="proof-title">'+
 'SUBMIT PROOF'+
 '</div>'+
 
+
 '<div class="small">'+
+
 'Upload a photo, video, screenshot, or document showing the completed work.'+
+
 '</div>'+
+
 
 '<input '+
 'type="file" '+
+
 'id="proof_file_'+
 mission.id+
 '" '+
+
 'accept="image/*,video/*,audio/*,.pdf,.txt,.doc,.docx">'+
 
+
 '<textarea '+
+
 'id="proof_note_'+
 mission.id+
 '" '+
+
 'placeholder="Optional: describe what you completed, result, score, reps, time, or what improved.">'+
+
 '</textarea>'+
 
+
 '<button onclick="submitProof('+
+
 mission.id+
+
 ',\''+
+
 type+
+
 '\')">'+
 
 'SUBMIT FOR VERIFICATION'+
 
 '</button>'+
+
 
 '</div>'
 
@@ -4209,7 +5962,7 @@ type+
 
 
 /* =========================================================
-   STEPS HTML
+   STEPS
 ========================================================= */
 
 function stepsHTML(
@@ -4221,34 +5974,48 @@ return(
 
 '<div class="steps">'+
 
+
 steps.map(
+
 (step,index)=>
 
 '<div class="step">'+
 
+
 '<div class="stepnum '+
+
 (
 boss
 ?"daybadge"
 :""
 )+
+
 '">'+
+
 
 (
 boss
+
 ?"D"+(index+1)
+
 :index+1
 )+
 
+
 '</div>'+
+
 
 '<div>'+
 esc(step)+
 '</div>'+
 
+
 '</div>'
 
-).join("")+
+)
+
+.join("")+
+
 
 '</div>'
 
@@ -4268,23 +6035,28 @@ type
 ){
 
 const boss=
+
 type==="weekly";
 
 
 return(
 
 '<div class="'+
+
 (
 boss
 ?"boss"
 :"quest"
 )+
+
 ' '+
+
 (
 mission.done
 ?"completed"
 :""
 )+
+
 '">'+
 
 
@@ -4310,7 +6082,9 @@ mission.title
 
 (
 boss
+
 ?"👑 BOSS"
+
 :mission.difficulty+
 "-RANK"
 )+
@@ -4335,25 +6109,33 @@ goal.name
 
 
 stepsHTML(
+
 mission.steps,
+
 boss
+
 )+
 
 
 '<span class="tag">'+
+
 esc(
 mission.skill
 )+
+
 '</span>'+
 
 
 '<span class="tag">'+
+
 mission.stat
 .toUpperCase()+
+
 '</span>'+
 
 
 '<div class="reward">'+
+
 
 (
 boss
@@ -4367,15 +6149,18 @@ mission.levelReward+
 :"✦ +"+
 mission.xp+
 " XP"
-
 )+
+
 
 '</div>'+
 
 
 proofHTML(
+
 mission,
+
 type
+
 )+
 
 
@@ -4390,11 +6175,10 @@ type
    GOAL HTML
 ========================================================= */
 
-function goalHTML(
-goal
-){
+function goalHTML(goal){
 
 const required=
+
 goalXPRequired(
 goal
 );
@@ -4406,45 +6190,63 @@ return(
 
 
 '<div class="goalname">'+
+
 '⚔️ '+
+
 esc(
 goal.name
 )+
+
 '</div>'+
 
 
 '<div class="goaltype">'+
+
 goal.domains
+
 .join(" // ")
+
 .toUpperCase()+
+
 '</div>'+
 
 
 '<div class="small">'+
 
+
 'GOAL LEVEL '+
+
 goal.level+
+
 
 ' • '+
 
+
 goal.verifiedCompleted+
+
 ' VERIFIED QUESTS'+
+
 
 '</div>'+
 
 
 '<div class="bar" style="margin-top:8px">'+
 
+
 '<div class="fill" style="width:'+
 
 Math.min(
+
 100,
+
 goal.xp/
 required*
 100
+
 )+
 
 '%">'+
+
 
 '</div>'+
 
@@ -4454,10 +6256,15 @@ required*
 
 '<div class="xp">'+
 
+
 goal.xp+
+
 ' / '+
+
 required+
+
 ' GOAL XP'+
+
 
 '</div>'+
 
@@ -4470,16 +6277,20 @@ required+
 
 
 /* =========================================================
-   RENDER MAIN
+   MAIN RENDER
 ========================================================= */
 
 function render(){
 
-if(!game.player){
+if(
+!game.player
+){
 
 $("create")
 .style
-.display="flex";
+.display=
+"flex";
+
 
 return;
 
@@ -4488,7 +6299,8 @@ return;
 
 $("create")
 .style
-.display="none";
+.display=
+"none";
 
 
 initializeAssignments();
@@ -4498,22 +6310,26 @@ $("headerPlayer")
 .textContent=
 
 "PLAYER // "+
+
 game.player;
 
 
 $("playerLevel")
 .textContent=
+
 game.level;
 
 
 $("playerRank")
 .textContent=
+
 playerRank(
 game.level
 );
 
 
 const required=
+
 requiredXP(
 game.level
 );
@@ -4523,8 +6339,11 @@ $("playerXPText")
 .textContent=
 
 game.xp+
+
 " / "+
+
 required+
+
 " XP";
 
 
@@ -4533,40 +6352,53 @@ $("playerXPFill")
 .width=
 
 Math.min(
+
 100,
+
 game.xp/
 required*
 100
+
 )+
 "%";
 
 
 $("verifiedCount")
 .textContent=
+
 game.verifiedCompleted;
 
 
 $("activeGoalCount")
 .textContent=
+
 game.goals.length;
 
 
 $("streakCount")
 .textContent=
+
 game.streak;
 
 
 $("weeklyCount")
 .textContent=
+
 game.weekly.length;
 
 
 const dailyVerified=
+
 game.daily
+
 .filter(
+
 mission=>
+
 mission.done
+
 )
+
 .length;
 
 
@@ -4574,8 +6406,11 @@ $("todayStatus")
 .textContent=
 
 dailyVerified+
+
 " / "+
+
 game.daily.length+
+
 " VERIFIED DAILY QUESTS";
 
 
@@ -4583,8 +6418,11 @@ $("dailyStatus")
 .textContent=
 
 dailyVerified+
+
 " / "+
+
 game.daily.length+
+
 " VERIFIED // XP REQUIRES PROOF";
 
 
@@ -4592,12 +6430,17 @@ $("homeGoals")
 .innerHTML=
 
 game.goals
+
 .map(
+
 goal=>
+
 goalHTML(
 goal
 )
+
 )
+
 .join("");
 
 
@@ -4605,26 +6448,35 @@ $("homeMissions")
 .innerHTML=
 
 game.daily
+
 .slice(
 0,
 6
 )
+
 .map(
+
 mission=>
+
 missionHTML(
 
 mission,
 
 game.goals.find(
+
 goal=>
+
 goal.id===
 mission.goalId
+
 ),
 
 "daily"
 
 )
+
 )
+
 .join("");
 
 
@@ -4632,22 +6484,30 @@ $("homeBoss")
 .innerHTML=
 
 game.weekly
+
 .map(
+
 mission=>
+
 missionHTML(
 
 mission,
 
 game.goals.find(
+
 goal=>
+
 goal.id===
 mission.goalId
+
 ),
 
 "weekly"
 
 )
+
 )
+
 .join("");
 
 
@@ -4655,22 +6515,30 @@ $("dailyList")
 .innerHTML=
 
 game.daily
+
 .map(
+
 mission=>
+
 missionHTML(
 
 mission,
 
 game.goals.find(
+
 goal=>
+
 goal.id===
 mission.goalId
+
 ),
 
 "daily"
 
 )
+
 )
+
 .join("");
 
 
@@ -4678,30 +6546,41 @@ $("weeklyList")
 .innerHTML=
 
 game.weekly
+
 .map(
+
 mission=>
+
 missionHTML(
 
 mission,
 
 game.goals.find(
+
 goal=>
+
 goal.id===
 mission.goalId
+
 ),
 
 "weekly"
 
 )
+
 )
+
 .join("");
 
 
 renderQuestList();
 
+
 renderProgress();
 
+
 renderAchievements();
+
 
 renderSettings();
 
@@ -4721,18 +6600,28 @@ $("questList")
 .innerHTML=
 
 game.goals
+
 .map(
+
 goal=>{
 
 
 const assessment=
+
 Object.entries(
+
 goal.assessment||
+
 {}
+
 )
+
 .filter(
+
 ([key,value])=>
+
 value
+
 );
 
 
@@ -4742,33 +6631,52 @@ return(
 
 
 '<div class="questtitle">'+
+
 '⚔ '+
+
 esc(
 goal.name
 )+
+
 '</div>'+
 
 
 '<div class="goaltype">'+
+
 goal.domains
+
 .join(" // ")
+
 .toUpperCase()+
+
 '</div>'+
 
 
 '<div class="desc">'+
 
+
 'GOAL LEVEL: <b>'+
+
 goal.level+
-'</b><br><br>'+
+
+'</b>'+
+
+
+'<br><br>'+
+
 
 'ASSESSMENT: <b>'+
+
 (
 goal.assessmentComplete
+
 ?"COMPLETE"
+
 :"REQUIRED"
 )+
+
 '</b>'+
+
 
 '</div>'+
 
@@ -4787,7 +6695,6 @@ goal.id+
 ')">'+
 'COMPLETE ASSESSMENT'+
 '</button>'
-
 )+
 
 
@@ -4796,23 +6703,32 @@ assessment.length
 
 ?'<div class="steps">'+
 
+
 assessment
+
 .slice(
 0,
 4
 )
+
 .map(
+
 ([key,value])=>
 
 '<div class="assessment-answer">'+
+
 '<b>'+
 esc(key)+
 ':</b> '+
+
 esc(value)+
+
 '</div>'
 
 )
+
 .join("")+
+
 
 '</div>'
 
@@ -4825,7 +6741,9 @@ esc(value)+
 );
 
 }
+
 )
+
 .join("");
 
 }
@@ -4845,34 +6763,44 @@ game.stats
 )
 
 .map(
+
 ([name,value])=>
 
 '<div class="skill">'+
 
+
 '<div class="skillhead">'+
+
 
 '<span>'+
 name.toUpperCase()+
 '</span>'+
 
+
 '<span>'+
 value+
 '</span>'+
+
 
 '</div>'+
 
 
 '<div class="skillbar">'+
 
+
 '<div style="width:'+
 
 Math.min(
+
 100,
+
 value*
 4
+
 )+
 
 '%">'+
+
 
 '</div>'+
 
@@ -4891,12 +6819,17 @@ $("progressGoals")
 .innerHTML=
 
 game.goals
+
 .map(
+
 goal=>
+
 goalHTML(
 goal
 )
+
 )
+
 .join("");
 
 
@@ -4904,50 +6837,77 @@ $("skillTrees")
 .innerHTML=
 
 game.goals
+
 .map(
+
 goal=>
 
 '<div class="goal">'+
 
+
 '<div class="goalname">'+
+
 esc(
 goal.name
 )+
+
 '</div>'+
 
 
 '<div class="skilltree">'+
 
+
 goal.skills
 
 .map(
+
 skill=>
 
 '<div class="skillnode">'+
 
+
 '<h4>'+
+
 esc(
 skill.name
 )+
+
 '</h4>'+
 
+
 '<div class="skilllevel">'+
-'SKILL LV '+skill.level+
+
+'SKILL LV '+
+
+skill.level+
+
 '</div>'+
+
 
 '<div class="bar" style="margin-top:8px">'+
 
+
 '<div class="fill" style="width:'+
+
 skill.xp+
+
 '%">'+
-'</div>'+
+
 
 '</div>'+
+
+
+'</div>'+
+
 
 '<div class="xp">'+
+
 skill.xp+
+
 ' / 100 SKILL XP'+
+
 '</div>'+
+
 
 '</div>'
 
@@ -4955,12 +6915,14 @@ skill.xp+
 
 .join("")+
 
+
 '</div>'+
 
 
 '</div>'
 
 )
+
 .join("");
 
 
@@ -4968,50 +6930,68 @@ $("roadmaps")
 .innerHTML=
 
 game.goals
+
 .map(
+
 goal=>
 
 '<div class="goal">'+
 
+
 '<div class="goalname">'+
+
 esc(
 goal.name
 )+
+
 '</div>'+
 
 
 goal.roadmap
 
 .map(
+
 (phase,index)=>
 
 '<div class="quest">'+
 
+
 '<div class="questtitle">'+
+
 
 (
 index<
 Math.min(
+
 goal.level,
+
 goal.roadmap.length
+
 )
+
 ?"◆"
+
 :"◇"
 )+
 
+
 ' '+
+
 
 esc(
 phase.name
 )+
 
+
 '</div>'+
 
 
 '<div class="desc">'+
+
 esc(
 phase.desc
 )+
+
 '</div>'+
 
 
@@ -5025,6 +7005,7 @@ phase.desc
 '</div>'
 
 )
+
 .join("");
 
 }
@@ -5036,55 +7017,98 @@ phase.desc
 
 const ACHIEVEMENTS=[
 
+
 [
+
 "FIRST PROOF",
+
 "Complete and verify your first quest.",
+
 ()=>game.verifiedCompleted>=1
+
 ],
 
+
 [
+
 "QUEST HUNTER",
+
 "Verify 10 completed quests.",
+
 ()=>game.verifiedCompleted>=10
+
 ],
 
+
 [
+
 "PROVEN",
+
 "Verify 25 completed quests.",
+
 ()=>game.verifiedCompleted>=25
+
 ],
 
+
 [
+
 "BOSS SLAYER",
+
 "Complete a verified weekly Boss Quest.",
+
 ()=>game.weekly.some(
+
 mission=>
+
 mission.done
+
 )
+
 ],
 
+
 [
+
 "DOUBLE DIGITS",
+
 "Reach Player Level 10.",
+
 ()=>game.level>=10
+
 ],
 
+
 [
+
 "SEVEN DAY STREAK",
+
 "Reach a seven-day verified streak.",
+
 ()=>game.streak>=7
+
 ],
 
+
 [
+
 "MULTI-PATH",
+
 "Maintain at least two active goals.",
+
 ()=>game.goals.length>=2
+
 ],
 
+
 [
+
 "CENTURY",
+
 "Verify 100 quests.",
+
 ()=>game.verifiedCompleted>=100
+
 ]
 
 ];
@@ -5093,15 +7117,20 @@ mission.done
 function checkAchievements(){
 
 ACHIEVEMENTS
+
 .forEach(
+
 achievement=>{
 
 if(
+
 achievement[2]()&&
+
 !game.achievements
 .includes(
 achievement[0]
 )
+
 ){
 
 game.achievements
@@ -5112,10 +7141,15 @@ achievement[0]
 }
 
 }
+
 );
 
 }
 
+
+/* =========================================================
+   RENDER ACHIEVEMENTS
+========================================================= */
 
 function renderAchievements(){
 
@@ -5128,11 +7162,14 @@ $("achievementList")
 ACHIEVEMENTS
 
 .map(
+
 achievement=>{
 
 
 const unlocked=
+
 game.achievements
+
 .includes(
 achievement[0]
 );
@@ -5141,15 +7178,18 @@ achievement[0]
 return(
 
 '<div class="quest '+
+
 (
 unlocked
 ?""
 :"completed"
 )+
+
 '">'+
 
 
 '<div class="questtitle">'+
+
 
 (
 unlocked
@@ -5157,15 +7197,20 @@ unlocked
 :"◇"
 )+
 
+
 ' '+
 
+
 achievement[0]+
+
 
 '</div>'+
 
 
 '<div class="desc">'+
+
 achievement[1]+
+
 '</div>'+
 
 
@@ -5174,6 +7219,7 @@ achievement[1]+
 );
 
 }
+
 )
 
 .join("");
@@ -5191,59 +7237,82 @@ $("settingsProfile")
 .innerHTML=
 
 '<b>'+
+
 esc(
 game.player
 )+
+
 '</b>'+
+
 
 '<br><br>'+
 
+
 'PLAYER LEVEL: '+
+
 game.level+
+
 
 '<br>'+
 
+
 'RANK: '+
+
 playerRank(
 game.level
 )+
 
+
 '<br>'+
+
 
 'VERIFIED QUESTS: '+
+
 game.verifiedCompleted+
 
+
 '<br>'+
+
 
 'ACTIVE GOALS: '+
+
 game.goals.length+
+
 
 '<br>'+
 
+
 'CURRENT STREAK: '+
+
 game.streak+
+
 ' DAYS';
 
 }
 
 
 /* =========================================================
-   RESET
+   RESET PLAYER
 ========================================================= */
 
 function resetPlayer(){
 
 const yes=
+
 confirm(
 
 "RESET ASCEND PLAYER?\n\n"+
+
 "This permanently deletes your player, goals, assessments, XP, skill trees, quests, achievements, and streaks stored on this device."
 
 );
 
 
-if(!yes)
+if(!yes){
+
 return;
+
+}
 
 
 localStorage.removeItem(
@@ -5269,23 +7338,36 @@ $("levelMessage")
 .innerHTML=
 
 '<b style="color:#c7fbff">'+
+
 title+
-'</b><br><br>'+
+
+'</b>'+
+
+
+'<br><br>'+
+
+
 message;
 
 
 $("levelModal")
 .style
-.display="flex";
+.display=
+"flex";
 
 }
 
+
+/* =========================================================
+   CLOSE LEVEL
+========================================================= */
 
 function closeLevelModal(){
 
 $("levelModal")
 .style
-.display="none";
+.display=
+"none";
 
 }
 
@@ -5294,9 +7376,7 @@ $("levelModal")
    TOAST
 ========================================================= */
 
-function toast(
-message
-){
+function toast(message){
 
 const box=
 $("toast");
@@ -5311,13 +7391,16 @@ box.style.display=
 
 
 setTimeout(
+
 ()=>{
 
 box.style.display=
 "none";
 
 },
+
 2400
+
 );
 
 }
@@ -5328,6 +7411,7 @@ box.style.display=
 ========================================================= */
 
 render();
+
 
 </script>
 
