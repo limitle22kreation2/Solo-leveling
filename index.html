@@ -6,976 +6,584 @@
 <title>ASCEND — Life RPG</title>
 
 <style>
-
-*{
-  box-sizing:border-box;
-}
+*{box-sizing:border-box}
 
 :root{
-  --cyan:#27e8ff;
-  --blue:#0d7cff;
-  --deep:#020712;
-  --panel:#06172a;
-  --line:#106787;
-  --text:#eaffff;
-  --muted:#85aaba;
-  --gold:#ffe36b;
-  --green:#57ffb0;
-  --purple:#a87cff;
-  --red:#ff718c;
+ --cyan:#27e8ff;
+ --blue:#0d7cff;
+ --dark:#020712;
+ --panel:#06172a;
+ --line:#106787;
+ --text:#eaffff;
+ --muted:#85aaba;
+ --gold:#ffe36b;
+ --green:#50ffad;
+ --purple:#a87cff;
+ --red:#ff718c;
 }
 
-html,
-body{
-  margin:0;
-  min-height:100%;
-  background:var(--deep);
+html,body{
+ margin:0;
+ min-height:100%;
+ background:var(--dark);
 }
 
 body{
-  color:var(--text);
-  font-family:
-    "Trebuchet MS",
-    Arial,
-    sans-serif;
-
-  overflow-x:hidden;
-
-  background:
-    radial-gradient(
-      circle at 50% 0,
-      #0b496b 0,
-      #04172a 32%,
-      #020712 68%,
-      #01040a 100%
-    );
+ color:var(--text);
+ font-family:Trebuchet MS,Arial,sans-serif;
+ overflow-x:hidden;
+ background:
+ radial-gradient(circle at 50% 0,#0b496b 0,#04172a 32%,#020712 68%,#01040a 100%);
 }
 
 body:before{
-  content:"";
-  position:fixed;
-  inset:0;
-  z-index:-2;
-
-  opacity:.3;
-
-  pointer-events:none;
-
-  background:
-    linear-gradient(
-      #27e8ff0a 1px,
-      transparent 1px
-    ),
-    linear-gradient(
-      90deg,
-      #27e8ff0a 1px,
-      transparent 1px
-    );
-
-  background-size:
-    38px 38px;
-
-  animation:
-    gridmove 15s linear infinite;
+ content:"";
+ position:fixed;
+ inset:0;
+ z-index:-2;
+ opacity:.3;
+ pointer-events:none;
+ background:
+ linear-gradient(#27e8ff0a 1px,transparent 1px),
+ linear-gradient(90deg,#27e8ff0a 1px,transparent 1px);
+ background-size:38px 38px;
+ animation:gridmove 15s linear infinite;
 }
 
 body:after{
-  content:"";
-
-  position:fixed;
-
-  left:0;
-  right:0;
-
-  height:2px;
-
-  top:-5%;
-
-  z-index:80;
-
-  pointer-events:none;
-
-  background:
-    linear-gradient(
-      90deg,
-      transparent,
-      #bffcff,
-      transparent
-    );
-
-  box-shadow:
-    0 0 18px #27e8ff;
-
-  opacity:.35;
-
-  animation:
-    scan 8s linear infinite;
+ content:"";
+ position:fixed;
+ left:0;
+ right:0;
+ height:2px;
+ top:-5%;
+ z-index:80;
+ pointer-events:none;
+ background:linear-gradient(90deg,transparent,#bffcff,transparent);
+ box-shadow:0 0 18px #27e8ff;
+ opacity:.35;
+ animation:scan 8s linear infinite;
 }
 
 @keyframes gridmove{
-
-  to{
-    background-position:
-      38px 38px;
-  }
-
+ to{background-position:38px 38px}
 }
 
 @keyframes scan{
-
-  to{
-    top:105%;
-  }
-
+ to{top:105%}
 }
 
 @keyframes in{
-
-  from{
-    opacity:0;
-    transform:
-      translateY(14px);
-  }
-
-  to{
-    opacity:1;
-    transform:none;
-  }
-
+ from{
+  opacity:0;
+  transform:translateY(14px)
+ }
+ to{
+  opacity:1;
+  transform:none
+ }
 }
 
 @keyframes pop{
-
-  from{
-    opacity:0;
-    transform:
-      scale(.82);
-  }
-
-  70%{
-    transform:
-      scale(1.04);
-  }
-
-  to{
-    opacity:1;
-    transform:
-      scale(1);
-  }
-
+ from{
+  opacity:0;
+  transform:scale(.82)
+ }
+ 70%{
+  transform:scale(1.04)
+ }
+ to{
+  opacity:1;
+  transform:scale(1)
+ }
 }
 
+@keyframes verify{
+ 0%{opacity:.4}
+ 50%{opacity:1}
+ 100%{opacity:.4}
+}
 
 .app{
-  max-width:1120px;
-  margin:auto;
-  padding:12px;
+ max-width:1120px;
+ margin:auto;
+ padding:12px;
 }
-
 
 .header{
-
-  border:
-    1px solid #1689b1;
-
-  background:
-    linear-gradient(
-      145deg,
-      #071d32f8,
-      #020d19f8
-    );
-
-  padding:18px;
-
-  position:relative;
-
-  overflow:hidden;
-
-  box-shadow:
-    0 0 28px #00cfff22;
+ border:1px solid #1689b1;
+ background:linear-gradient(145deg,#071d32f8,#020d19f8);
+ padding:18px;
+ position:relative;
+ overflow:hidden;
+ box-shadow:0 0 28px #00cfff22;
 }
-
 
 .sys{
-
-  font-size:10px;
-
-  letter-spacing:4px;
-
-  color:var(--cyan);
+ font-size:10px;
+ letter-spacing:4px;
+ color:var(--cyan);
 }
-
 
 .logo{
-
-  font-size:42px;
-
-  letter-spacing:8px;
-
-  text-shadow:
-    0 0 9px #00d5ff,
-    0 0 28px #087dff;
+ font-size:42px;
+ letter-spacing:8px;
+ text-shadow:0 0 9px #00d5ff,0 0 28px #087dff;
 }
-
 
 .player{
-
-  font-size:11px;
-
-  color:#7fa9ba;
-
-  letter-spacing:2px;
+ font-size:11px;
+ color:#7fa9ba;
+ letter-spacing:2px;
 }
-
-
-/* ================= NAV ================= */
 
 .nav{
-
-  display:flex;
-
-  gap:5px;
-
-  margin:12px 0;
-
-  overflow:auto;
+ display:flex;
+ gap:5px;
+ margin:12px 0;
+ overflow:auto;
 }
-
 
 .nav button{
-
-  flex:1;
-
-  min-width:98px;
-
-  margin:0;
+ flex:1;
+ min-width:98px;
+ margin:0;
 }
-
 
 button{
-
-  background:#041c2e;
-
-  border:
-    1px solid #0fb9e5;
-
-  color:#6beaff;
-
-  padding:
-    11px 14px;
-
-  font-weight:bold;
-
-  letter-spacing:1px;
-
-  cursor:pointer;
-
-  margin-top:8px;
-
-  transition:.2s;
+ background:#041c2e;
+ border:1px solid #0fb9e5;
+ color:#6beaff;
+ padding:11px 14px;
+ font-weight:bold;
+ letter-spacing:1px;
+ cursor:pointer;
+ margin-top:8px;
+ transition:.2s;
 }
-
 
 button:hover,
 .nav button.active{
-
-  background:#084663;
-
-  box-shadow:
-    0 0 16px #00cfff44;
-
-  color:#fff;
+ background:#084663;
+ box-shadow:0 0 16px #00cfff44;
+ color:white;
 }
 
+button:disabled{
+ opacity:.4;
+ cursor:not-allowed;
+ box-shadow:none;
+}
 
 button.danger{
-
-  border-color:
-    #d54866;
-
-  color:#ff91a7;
-
-  background:
-    #2b0b15;
+ border-color:#d54866;
+ color:#ff91a7;
+ background:#2b0b15;
 }
-
-
-button.danger:hover{
-
-  background:
-    #541326;
-
-  box-shadow:
-    0 0 18px #ff547955;
-}
-
-
-/* ================= SCREENS ================= */
 
 .screen{
-  display:none;
+ display:none;
 }
 
 .screen.active{
-
-  display:block;
-
-  animation:
-    in .25s;
+ display:block;
+ animation:in .25s;
 }
-
 
 .grid{
-
-  display:grid;
-
-  grid-template-columns:
-    1fr 1fr;
-
-  gap:12px;
+ display:grid;
+ grid-template-columns:1fr 1fr;
+ gap:12px;
 }
-
 
 .full{
-  grid-column:1/-1;
+ grid-column:1/-1;
 }
-
-
-/* ================= CARDS ================= */
 
 .card,
 .quest,
 .goal,
 .boss{
-
-  border:
-    1px solid var(--line);
-
-  background:
-    linear-gradient(
-      145deg,
-      #071d31f5,
-      #020d18f8
-    );
-
-  box-shadow:
-    inset 0 0 25px #009dff08;
+ border:1px solid var(--line);
+ background:linear-gradient(145deg,#071d31f5,#020d18f8);
+ box-shadow:inset 0 0 25px #009dff08;
 }
-
 
 .card{
-  padding:18px;
+ padding:18px;
 }
-
 
 .title{
-
-  font-size:13px;
-
-  letter-spacing:2px;
-
-  color:var(--cyan);
-
-  margin-bottom:12px;
+ font-size:13px;
+ letter-spacing:2px;
+ color:var(--cyan);
+ margin-bottom:12px;
 }
-
 
 .small{
-
-  font-size:12px;
-
-  line-height:1.6;
-
-  color:var(--muted);
+ font-size:12px;
+ line-height:1.6;
+ color:var(--muted);
 }
-
 
 .level{
-
-  font-size:38px;
-
-  font-weight:bold;
-
-  text-shadow:
-    0 0 14px #27e8ff66;
+ font-size:38px;
+ font-weight:bold;
+ text-shadow:0 0 14px #27e8ff66;
 }
-
 
 .rank{
-
-  font-size:10px;
-
-  color:var(--cyan);
-
-  letter-spacing:3px;
-
-  margin:
-    4px 0 12px;
+ font-size:10px;
+ color:var(--cyan);
+ letter-spacing:3px;
+ margin:4px 0 12px;
 }
-
-
-/* ================= XP ================= */
 
 .bar{
-
-  height:10px;
-
-  background:#020a13;
-
-  border:
-    1px solid #07536d;
-
-  overflow:hidden;
+ height:10px;
+ background:#020a13;
+ border:1px solid #07536d;
+ overflow:hidden;
 }
-
 
 .fill{
-
-  height:100%;
-
-  background:
-    linear-gradient(
-      90deg,
-      #087dff,
-      #27e8ff,
-      #c5ffff
-    );
-
-  box-shadow:
-    0 0 14px #00cfff;
-
-  transition:.55s;
+ height:100%;
+ background:linear-gradient(90deg,#087dff,#27e8ff,#c5ffff);
+ box-shadow:0 0 14px #00cfff;
+ transition:.55s;
 }
-
 
 .xp{
-
-  font-size:10px;
-
-  color:var(--muted);
-
-  margin-top:6px;
+ font-size:10px;
+ color:var(--muted);
+ margin-top:6px;
 }
-
-
-/* ================= BANNER ================= */
 
 .banner{
-
-  padding:17px;
-
-  border:
-    1px solid #168db5;
-
-  background:
-    linear-gradient(
-      90deg,
-      #084260,
-      #041523
-    );
-
-  margin-bottom:12px;
-
-  box-shadow:
-    0 0 22px #00cfff16;
+ padding:17px;
+ border:1px solid #168db5;
+ background:linear-gradient(90deg,#084260,#041523);
+ margin-bottom:12px;
+ box-shadow:0 0 22px #00cfff16;
 }
-
 
 .banner h2{
-
-  margin:0;
-
-  color:#c9fcff;
+ margin:0;
+ color:#c9fcff;
 }
-
 
 .banner .sub{
-
-  font-size:10px;
-
-  color:#6cdff3;
-
-  letter-spacing:2px;
-
-  margin-top:7px;
+ font-size:10px;
+ color:#6cdff3;
+ letter-spacing:2px;
+ margin-top:7px;
 }
-
-
-/* ================= GOALS / MISSIONS ================= */
 
 .goal,
 .quest,
 .boss{
-
-  padding:15px;
-
-  margin-top:10px;
-
-  animation:
-    in .25s;
+ padding:15px;
+ margin-top:10px;
+ animation:in .25s;
 }
-
 
 .goal,
 .quest{
-
-  border-left:
-    3px solid var(--cyan);
+ border-left:3px solid var(--cyan);
 }
-
 
 .boss{
-
-  border:
-    1px solid #a879ff;
-
-  border-left:
-    4px solid var(--purple);
-
-  box-shadow:
-    0 0 20px #9b68ff1d;
+ border:1px solid #a879ff;
+ border-left:4px solid var(--purple);
+ box-shadow:0 0 20px #9b68ff1d;
 }
-
 
 .goalname{
-
-  font-size:18px;
-
-  font-weight:bold;
+ font-size:18px;
+ font-weight:bold;
 }
-
 
 .goaltype{
-
-  font-size:9px;
-
-  letter-spacing:2px;
-
-  color:#4cdefa;
-
-  margin-top:4px;
+ font-size:9px;
+ letter-spacing:2px;
+ color:#4cdefa;
+ margin-top:4px;
 }
-
 
 .questhead{
-
-  display:flex;
-
-  justify-content:
-    space-between;
-
-  gap:10px;
+ display:flex;
+ justify-content:space-between;
+ gap:10px;
 }
-
 
 .questtitle{
-
-  font-weight:bold;
-
-  color:#fff;
+ font-weight:bold;
+ color:white;
 }
-
 
 .diff{
-
-  font-size:10px;
-
-  letter-spacing:2px;
-
-  color:var(--gold);
-
-  white-space:nowrap;
+ font-size:10px;
+ letter-spacing:2px;
+ color:var(--gold);
+ white-space:nowrap;
 }
-
 
 .desc{
-
-  font-size:12px;
-
-  line-height:1.6;
-
-  color:#8dafbd;
-
-  margin-top:8px;
+ font-size:12px;
+ line-height:1.6;
+ color:#8dafbd;
+ margin-top:8px;
 }
-
 
 .tag{
-
-  display:inline-block;
-
-  border:
-    1px solid #075775;
-
-  color:#5edff9;
-
-  padding:
-    4px 7px;
-
-  font-size:9px;
-
-  margin:
-    8px 4px 0 0;
+ display:inline-block;
+ border:1px solid #075775;
+ color:#5edff9;
+ padding:4px 7px;
+ font-size:9px;
+ margin:8px 4px 0 0;
 }
-
 
 .reward{
-
-  color:var(--gold);
-
-  font-weight:bold;
-
-  margin-top:9px;
+ color:var(--gold);
+ font-weight:bold;
+ margin-top:9px;
 }
-
-
-.boss .reward{
-
-  color:#d3b7ff;
-}
-
-
-/* ================= STEPS ================= */
 
 .steps{
-
-  margin-top:11px;
-
-  border-top:
-    1px solid #0b4156;
-
-  padding-top:8px;
+ margin-top:11px;
+ border-top:1px solid #0b4156;
+ padding-top:8px;
 }
-
 
 .step{
-
-  display:flex;
-
-  gap:10px;
-
-  align-items:
-    flex-start;
-
-  padding:
-    8px 0;
-
-  border-bottom:
-    1px solid #092d3d;
-
-  color:#b7dce5;
-
-  font-size:12px;
-
-  line-height:1.45;
+ display:flex;
+ gap:10px;
+ align-items:flex-start;
+ padding:8px 0;
+ border-bottom:1px solid #092d3d;
+ color:#b7dce5;
+ font-size:12px;
+ line-height:1.45;
 }
-
 
 .stepnum{
-
-  flex:none;
-
-  width:24px;
-
-  height:24px;
-
-  border:
-    1px solid #0f89aa;
-
-  color:var(--cyan);
-
-  display:flex;
-
-  align-items:center;
-
-  justify-content:center;
-
-  font-size:9px;
+ flex:none;
+ width:24px;
+ height:24px;
+ border:1px solid #0f89aa;
+ color:var(--cyan);
+ display:flex;
+ align-items:center;
+ justify-content:center;
+ font-size:9px;
 }
-
 
 .daybadge{
-
-  color:#e1caff;
-
-  border-color:#855dc8;
+ color:#e1caff;
+ border-color:#855dc8;
 }
-
 
 .completed{
-
-  opacity:.43;
+ opacity:.48;
 }
-
-
-/* ================= SKILLS ================= */
 
 .skill{
-
-  margin:
-    11px 0;
+ margin:11px 0;
 }
-
 
 .skillhead{
-
-  display:flex;
-
-  justify-content:
-    space-between;
-
-  font-size:11px;
-
-  color:#acd9e4;
+ display:flex;
+ justify-content:space-between;
+ font-size:11px;
+ color:#acd9e4;
 }
-
 
 .skillbar{
-
-  height:6px;
-
-  background:#04121d;
-
-  margin-top:5px;
+ height:7px;
+ background:#04121d;
+ margin-top:5px;
+ border:1px solid #07384d;
 }
-
 
 .skillbar div{
-
-  height:100%;
-
-  background:#19d3fa;
+ height:100%;
+ background:linear-gradient(90deg,#0d7cff,#27e8ff);
 }
-
-
-/* ================= FORMS ================= */
 
 input,
 textarea,
 select{
-
-  width:100%;
-
-  padding:11px;
-
-  background:#020b14;
-
-  color:#eaffff;
-
-  border:
-    1px solid #07536d;
-
-  margin:
-    7px 0 12px;
-
-  font-family:inherit;
-
-  outline:none;
+ width:100%;
+ padding:11px;
+ background:#020b14;
+ color:#eaffff;
+ border:1px solid #07536d;
+ margin:7px 0 12px;
+ font-family:inherit;
+ outline:none;
 }
-
 
 textarea{
-  min-height:82px;
+ min-height:82px;
 }
-
 
 label{
-
-  font-size:10px;
-
-  letter-spacing:1px;
-
-  color:#8bb4c2;
+ font-size:10px;
+ letter-spacing:1px;
+ color:#8bb4c2;
 }
-
-
-/* ================= CREATE PLAYER ================= */
 
 #create{
-
-  position:fixed;
-
-  inset:0;
-
-  z-index:100;
-
-  background:
-    radial-gradient(
-      circle,
-      #07405f,
-      #020712 65%
-    );
-
-  display:flex;
-
-  align-items:center;
-
-  justify-content:center;
-
-  padding:18px;
+ position:fixed;
+ inset:0;
+ z-index:100;
+ background:radial-gradient(circle,#07405f,#020712 65%);
+ display:flex;
+ align-items:center;
+ justify-content:center;
+ padding:18px;
 }
-
 
 .createbox{
-
-  width:min(
-    590px,
-    100%
-  );
-
-  padding:28px;
-
-  border:
-    1px solid var(--cyan);
-
-  background:#020f1dfa;
-
-  box-shadow:
-    0 0 48px #00cfff4d;
-
-  animation:
-    pop .45s;
+ width:min(590px,100%);
+ padding:28px;
+ border:1px solid var(--cyan);
+ background:#020f1dfa;
+ box-shadow:0 0 48px #00cfff4d;
+ animation:pop .45s;
 }
-
 
 .createtitle{
-
-  font-size:35px;
-
-  letter-spacing:7px;
-
-  text-shadow:
-    0 0 16px #00cfff;
+ font-size:35px;
+ letter-spacing:7px;
+ text-shadow:0 0 16px #00cfff;
 }
-
-
-/* ================= MODAL ================= */
 
 .modal{
-
-  position:fixed;
-
-  inset:0;
-
-  z-index:120;
-
-  background:#000c;
-
-  display:none;
-
-  align-items:center;
-
-  justify-content:center;
-
-  padding:18px;
+ position:fixed;
+ inset:0;
+ z-index:120;
+ background:#000d;
+ display:none;
+ align-items:center;
+ justify-content:center;
+ padding:18px;
 }
-
 
 .modalbox{
-
-  width:min(
-    580px,
-    100%
-  );
-
-  padding:26px;
-
-  border:
-    1px solid var(--cyan);
-
-  background:#031522;
-
-  box-shadow:
-    0 0 45px #00cfff55;
-
-  animation:
-    pop .3s;
+ width:min(650px,100%);
+ max-height:90vh;
+ overflow:auto;
+ padding:26px;
+ border:1px solid var(--cyan);
+ background:#031522;
+ box-shadow:0 0 45px #00cfff55;
+ animation:pop .3s;
 }
-
 
 .toast{
-
-  display:none;
-
-  position:fixed;
-
-  right:16px;
-
-  bottom:16px;
-
-  background:#06334f;
-
-  border:
-    1px solid var(--cyan);
-
-  padding:
-    14px 18px;
-
-  z-index:130;
-
-  box-shadow:
-    0 0 24px #00cfff55;
-
-  animation:
-    pop .25s;
+ display:none;
+ position:fixed;
+ right:16px;
+ bottom:16px;
+ background:#06334f;
+ border:1px solid var(--cyan);
+ padding:14px 18px;
+ z-index:130;
+ box-shadow:0 0 24px #00cfff55;
+ animation:pop .25s;
 }
 
-
-.safe{
-
-  font-size:10px;
-
-  color:#739baa;
-
-  line-height:1.45;
-
-  margin-top:8px;
+.proofbox{
+ margin-top:14px;
+ padding:13px;
+ border:1px solid #0b526e;
+ background:#02101b;
 }
 
-
-.settings-box{
-
-  border:
-    1px solid #0b526e;
-
-  background:#03131f;
-
-  padding:16px;
-
-  margin-top:12px;
+.proofbox.verified{
+ border-color:#38c98e;
+ background:#032118;
 }
 
+.proof-title{
+ color:#72eaff;
+ font-size:11px;
+ letter-spacing:2px;
+}
+
+.verify-status{
+ color:var(--gold);
+ animation:verify 1s infinite;
+}
+
+.verified-text{
+ color:var(--green);
+ font-weight:bold;
+}
+
+.profilebox{
+ border:1px solid #0b526e;
+ background:#03131f;
+ padding:16px;
+ margin-top:12px;
+}
+
+.skilltree{
+ display:grid;
+ grid-template-columns:repeat(auto-fit,minmax(180px,1fr));
+ gap:10px;
+ margin-top:12px;
+}
+
+.skillnode{
+ padding:13px;
+ border:1px solid #0a6381;
+ background:#041827;
+}
+
+.skillnode h4{
+ margin:0;
+ color:#c8faff;
+}
+
+.skilllevel{
+ color:var(--cyan);
+ font-size:11px;
+ margin-top:5px;
+}
+
+.assessment-answer{
+ padding:7px 0;
+ border-bottom:1px solid #092e3f;
+}
 
 @media(max-width:700px){
 
-  .grid{
-    grid-template-columns:1fr;
-  }
+ .grid{
+  grid-template-columns:1fr;
+ }
 
-  .full{
-    grid-column:auto;
-  }
+ .full{
+  grid-column:auto;
+ }
 
-  .logo{
-    font-size:33px;
-  }
+ .logo{
+  font-size:33px;
+ }
 
-  .nav button{
-    min-width:90px;
-  }
+ .nav button{
+  min-width:90px;
+ }
 
 }
-
 </style>
 </head>
 
-
 <body>
 
-
-<!-- =========================================
-     CREATE PLAYER
-========================================= -->
+<!-- PLAYER CREATION -->
 
 <div id="create">
 
@@ -990,23 +598,11 @@ ASCEND
 </div>
 
 <p class="small">
-
-YOUR LIFE IS THE CHARACTER.
-
-<br>
-
-YOUR DREAMS ARE THE QUESTLINES.
-
-<br>
-
-THE SYSTEM ASSIGNS THE WORK.
-
-<br>
-
-YOU EARN THE LEVELS.
-
+YOUR LIFE IS THE CHARACTER.<br>
+YOUR DREAMS ARE THE QUESTLINES.<br>
+PROVE THE WORK. EARN THE XP.<br>
+LEVEL UP IN REAL LIFE.
 </p>
-
 
 <label>
 PLAYER NAME
@@ -1014,69 +610,43 @@ PLAYER NAME
 
 <input
 id="name"
-placeholder="Enter your name">
-
+placeholder="Enter your player name">
 
 <label>
 FIRST MAJOR GOAL
 </label>
 
 <input
-id="firstgoal"
+id="firstGoal"
 placeholder="Example: Become a professional baseball player">
-
 
 <label>
 CURRENT EXPERIENCE
 </label>
 
-<select id="firstexp">
+<select id="firstExp">
 
-<option>
-Beginner
-</option>
-
-<option>
-Some experience
-</option>
-
-<option>
-Intermediate
-</option>
-
-<option>
-Advanced
-</option>
+<option>Beginner</option>
+<option>Some experience</option>
+<option>Intermediate</option>
+<option>Advanced</option>
 
 </select>
-
 
 <label>
 DAILY TIME AVAILABLE
 </label>
 
-<select id="firsttime">
+<select id="firstTime">
 
-<option value="15">
-15 minutes
-</option>
-
-<option value="30">
-30 minutes
-</option>
-
-<option value="60">
-1 hour
-</option>
-
-<option value="120">
-2 hours
-</option>
+<option value="15">15 minutes</option>
+<option value="30">30 minutes</option>
+<option value="60">1 hour</option>
+<option value="120">2 hours</option>
 
 </select>
 
-
-<button onclick="startGame()">
+<button onclick="initializePlayer()">
 INITIALIZE PLAYER
 </button>
 
@@ -1085,19 +655,12 @@ INITIALIZE PLAYER
 </div>
 
 
-
-<!-- =========================================
-     MAIN APP
-========================================= -->
-
 <div class="app">
-
 
 <header class="header">
 
 <div class="sys">
-SYSTEM ONLINE //
-AUTOMATIC QUEST ASSIGNMENT ACTIVE
+SYSTEM ONLINE // VERIFIED PROGRESSION PROTOTYPE
 </div>
 
 <div class="logo">
@@ -1106,14 +669,11 @@ ASCEND
 
 <div
 class="player"
-id="player">
-
+id="headerPlayer">
 PLAYER
-
 </div>
 
 </header>
-
 
 
 <nav class="nav">
@@ -1122,88 +682,63 @@ PLAYER
 id="n-home"
 class="active"
 onclick="page('home')">
-
 🏠 HOME
-
 </button>
-
 
 <button
 id="n-quests"
 onclick="page('quests')">
-
 ⚔️ QUESTS
-
 </button>
-
 
 <button
 id="n-missions"
 onclick="page('missions')">
-
 🎯 MISSIONS
-
 </button>
-
 
 <button
 id="n-progress"
 onclick="page('progress')">
-
 📈 PROGRESS
-
 </button>
-
 
 <button
 id="n-achievements"
 onclick="page('achievements')">
-
 🏆 ACHIEVEMENTS
-
 </button>
-
 
 <button
 id="n-settings"
 onclick="page('settings')">
-
 ⚙️ SETTINGS
-
 </button>
 
 </nav>
 
 
-
-<!-- =========================================
-     HOME
-========================================= -->
+<!-- HOME -->
 
 <section
 id="home"
 class="screen active">
 
-
 <div class="banner">
 
 <h2>
-⚡ TODAY'S SYSTEM
+⚡ SYSTEM ACTIVE
 </h2>
 
 <div
 class="sub"
 id="todayStatus">
-
-INITIALIZING...
-
+INITIALIZING QUESTS...
 </div>
 
 </div>
-
 
 <div class="grid">
-
 
 <div class="card">
 
@@ -1215,7 +750,7 @@ PLAYER STATUS
 
 LEVEL
 
-<span id="level">
+<span id="playerLevel">
 1
 </span>
 
@@ -1223,31 +758,26 @@ LEVEL
 
 <div
 class="rank"
-id="rank">
-
+id="playerRank">
 INITIATE
-
 </div>
 
 <div class="bar">
 
 <div
 class="fill"
-id="xpFill">
+id="playerXPFill">
 </div>
 
 </div>
 
 <div
 class="xp"
-id="xpText">
-
+id="playerXPText">
 0 / 150 XP
-
 </div>
 
 </div>
-
 
 
 <div class="card">
@@ -1258,9 +788,9 @@ SYSTEM STATUS
 
 <div class="small">
 
-DAILY QUESTS COMPLETE:
+VERIFIED QUESTS:
 
-<b id="dailyDone">
+<b id="verifiedCount">
 0
 </b>
 
@@ -1268,7 +798,7 @@ DAILY QUESTS COMPLETE:
 
 ACTIVE GOALS:
 
-<b id="goalCount">
+<b id="activeGoalCount">
 0
 </b>
 
@@ -1276,7 +806,7 @@ ACTIVE GOALS:
 
 STREAK:
 
-<b id="streak">
+<b id="streakCount">
 0
 </b>
 
@@ -1284,16 +814,15 @@ DAYS
 
 <br><br>
 
-WEEKLY BOSS QUESTS:
+WEEKLY BOSSES:
 
-<b id="bossCount">
+<b id="weeklyCount">
 0
 </b>
 
 </div>
 
 </div>
-
 
 
 <div class="card full">
@@ -1308,18 +837,16 @@ WEEKLY BOSS QUESTS:
 </div>
 
 
-
 <div class="card full">
 
 <div class="title">
-🎯 TODAY'S ASSIGNMENTS
+🎯 TODAY'S QUESTS
 </div>
 
-<div id="homeDaily">
+<div id="homeMissions">
 </div>
 
 </div>
-
 
 
 <div class="card full">
@@ -1333,21 +860,16 @@ WEEKLY BOSS QUESTS:
 
 </div>
 
-
 </div>
 
 </section>
 
 
-
-<!-- =========================================
-     QUESTS
-========================================= -->
+<!-- QUESTS -->
 
 <section
 id="quests"
 class="screen">
-
 
 <div class="card">
 
@@ -1357,13 +879,9 @@ class="screen">
 
 <div class="small">
 
-ASCEND trains the entire goal.
-
-That can include technical skill,
-knowledge, physical preparation,
-strategy, creativity, career work,
-practice, recovery, reflection,
-and real-world experience.
+Every goal receives its own assessment,
+skill tree, daily training system,
+and weekly Boss Quest.
 
 </div>
 
@@ -1373,25 +891,21 @@ and real-world experience.
 </div>
 
 
-
 <div
 class="card"
 style="margin-top:12px">
 
-
 <div class="title">
-➕ CREATE ANOTHER QUESTLINE
+➕ CREATE NEW QUESTLINE
 </div>
 
-
 <label>
-GOAL
+WHAT DO YOU WANT TO ACHIEVE?
 </label>
 
 <input
 id="newGoal"
-placeholder="Enter any dream, career, skill, hobby, or personal objective">
-
+placeholder="Enter any dream, career, skill, hobby, business, or personal goal">
 
 <label>
 CURRENT EXPERIENCE
@@ -1399,24 +913,12 @@ CURRENT EXPERIENCE
 
 <select id="newExp">
 
-<option>
-Beginner
-</option>
-
-<option>
-Some experience
-</option>
-
-<option>
-Intermediate
-</option>
-
-<option>
-Advanced
-</option>
+<option>Beginner</option>
+<option>Some experience</option>
+<option>Intermediate</option>
+<option>Advanced</option>
 
 </select>
-
 
 <label>
 DAILY TIME
@@ -1424,43 +926,33 @@ DAILY TIME
 
 <select id="newTime">
 
-<option value="15">
-15 minutes
-</option>
-
-<option value="30">
-30 minutes
-</option>
-
-<option value="60">
-1 hour
-</option>
-
-<option value="120">
-2 hours
-</option>
+<option value="15">15 minutes</option>
+<option value="30">30 minutes</option>
+<option value="60">1 hour</option>
+<option value="120">2 hours</option>
 
 </select>
 
-
 <label>
-WHY DOES THIS MATTER?
+WHY DOES THIS MATTER TO YOU?
 </label>
 
-<textarea id="newWhy">
+<textarea
+id="newWhy"
+placeholder="Why do you want to achieve this?">
 </textarea>
-
 
 <label>
-WHAT ARE YOU ALREADY GOOD AT?
+CURRENT STRENGTHS
 </label>
 
-<textarea id="newStrengths">
+<textarea
+id="newStrengths"
+placeholder="What are you already good at?">
 </textarea>
-
 
 <button onclick="addGoal()">
-CREATE QUESTLINE
+START QUESTLINE
 </button>
 
 </div>
@@ -1468,15 +960,11 @@ CREATE QUESTLINE
 </section>
 
 
-
-<!-- =========================================
-     MISSIONS
-========================================= -->
+<!-- MISSIONS -->
 
 <section
 id="missions"
 class="screen">
-
 
 <div class="banner">
 
@@ -1487,81 +975,77 @@ class="screen">
 <div
 class="sub"
 id="dailyStatus">
-
-THE SYSTEM HAS PREPARED
-YOUR OBJECTIVES
-
+THE SYSTEM HAS ASSIGNED TODAY'S WORK
 </div>
 
 </div>
-
 
 <div id="dailyList">
 </div>
-
 
 
 <div
 class="card"
 style="margin-top:12px">
 
-
 <div class="title">
 👑 WEEKLY BOSS QUESTS
 </div>
 
-
 <div class="small">
 
-Every active goal receives
-one weekly Boss Quest.
+One Boss Quest is assigned to every
+active goal each week.
 
-Boss Quests combine multiple
-parts of the goal and are meant
-to take most of the week.
+Boss rewards are locked until proof
+is submitted.
 
 </div>
-
 
 <div id="weeklyList">
 </div>
-
 
 </div>
 
 </section>
 
 
-
-<!-- =========================================
-     PROGRESS
-========================================= -->
+<!-- PROGRESS -->
 
 <section
 id="progress"
 class="screen">
 
-
 <div class="grid">
 
+<div class="card full">
+
+<div class="title">
+📈 CHARACTER STATS
+</div>
+
+<div id="statsList">
+</div>
+
+</div>
+
 
 <div class="card full">
 
 <div class="title">
-📈 CHARACTER DEVELOPMENT
+🧬 SKILL TREES
 </div>
 
-<div id="stats">
+<div id="skillTrees">
 </div>
 
 </div>
-
 
 
 <div class="card full">
 
 <div class="title">
-🎯 GOAL PROGRESSION
+🎯 QUESTLINE PROGRESS
 </div>
 
 <div id="progressGoals">
@@ -1570,11 +1054,10 @@ class="screen">
 </div>
 
 
-
 <div class="card full">
 
 <div class="title">
-🗺️ QUEST ROADMAPS
+🗺️ ROADMAPS
 </div>
 
 <div id="roadmaps">
@@ -1582,21 +1065,16 @@ class="screen">
 
 </div>
 
-
 </div>
 
 </section>
 
 
-
-<!-- =========================================
-     ACHIEVEMENTS
-========================================= -->
+<!-- ACHIEVEMENTS -->
 
 <section
 id="achievements"
 class="screen">
-
 
 <div class="card">
 
@@ -1604,24 +1082,19 @@ class="screen">
 🏆 ACHIEVEMENTS
 </div>
 
-<div id="achievementsList">
+<div id="achievementList">
 </div>
 
 </div>
-
 
 </section>
 
 
-
-<!-- =========================================
-     SETTINGS
-========================================= -->
+<!-- SETTINGS -->
 
 <section
 id="settings"
 class="screen">
-
 
 <div class="card">
 
@@ -1629,8 +1102,7 @@ class="screen">
 ⚙️ PLAYER SETTINGS
 </div>
 
-
-<div class="settings-box">
+<div class="profilebox">
 
 <div class="goalname">
 PLAYER PROFILE
@@ -1638,83 +1110,117 @@ PLAYER PROFILE
 
 <div
 class="small"
-id="settingsPlayer">
+id="settingsProfile">
 </div>
 
 </div>
 
 
-<div class="settings-box">
+<div class="profilebox">
+
+<div class="goalname">
+📹 PROOF SYSTEM
+</div>
+
+<div class="small">
+
+Current prototype verification requires
+a photo, video, screenshot, or document
+before XP can be awarded.
+
+Future app versions can add server-side
+AI verification and wearable/camera integrations.
+
+</div>
+
+</div>
+
+
+<div class="profilebox">
 
 <div class="goalname">
 RESET PLAYER
 </div>
 
-<p class="small">
+<div class="small">
 
-This completely erases your player,
-goals, XP, levels, streaks,
-achievements, daily quests,
-and weekly Boss Quests.
+This permanently deletes the current
+ASCEND player stored in this browser.
 
-You will return to the
-player creation screen.
-
-</p>
+</div>
 
 <button
 class="danger"
 onclick="resetPlayer()">
-
 RESET PLAYER
-
 </button>
 
 </div>
 
-
 </div>
-
 
 </section>
 
+</div>
+
+
+<!-- ASSESSMENT MODAL -->
+
+<div
+class="modal"
+id="assessmentModal">
+
+<div class="modalbox">
+
+<div class="sys">
+SYSTEM ANALYSIS
+</div>
+
+<h2 style="color:#67eaff">
+PLAYER ASSESSMENT
+</h2>
+
+<div
+class="small"
+id="assessmentIntro">
+</div>
+
+<div id="assessmentFields">
+</div>
+
+<button onclick="saveAssessment()">
+COMPLETE ASSESSMENT
+</button>
+
+</div>
 
 </div>
 
 
-
-<!-- =========================================
-     LEVEL MODAL
-========================================= -->
+<!-- LEVEL MODAL -->
 
 <div
 class="modal"
 id="levelModal">
 
-
 <div class="modalbox">
-
 
 <div class="sys">
 SYSTEM NOTIFICATION
 </div>
 
-
-<h2 style="color:#65ebff">
+<h2 style="color:#67eaff">
 LEVEL UP
 </h2>
 
-
 <div
-id="levelMessage"
-class="small">
+class="small"
+id="levelMessage">
 </div>
 
-
-<button onclick="closeLevel()">
+<button onclick="closeLevelModal()">
 CONTINUE
 </button>
-
 
 </div>
 
@@ -1727,20 +1233,20 @@ id="toast">
 </div>
 
 
-
 <script>
 
-/* =========================================
-   GAME DATA
-========================================= */
+/* =========================================================
+   ASCEND V8
+   VERIFIED PROGRESSION PROTOTYPE
+========================================================= */
 
-const KEY=
-"ASCEND_GAME_V7";
+const SAVE_KEY=
+"ASCEND_V8";
 
 
 let game=
 JSON.parse(
-localStorage.getItem(KEY)
+localStorage.getItem(SAVE_KEY)
 )||
 {
 
@@ -1754,7 +1260,7 @@ streak:0,
 
 lastComplete:null,
 
-completed:0,
+verifiedCompleted:0,
 
 goals:[],
 
@@ -1764,7 +1270,7 @@ weekly:[],
 
 dailyKey:null,
 
-weekKey:null,
+weeklyKey:null,
 
 stats:{
 
@@ -1787,148 +1293,104 @@ achievements:[]
 };
 
 
+let assessmentGoalId=null;
+
+
 const $=
 id=>
 document.getElementById(id);
 
 
 const esc=
-s=>
-String(s)
+text=>
+String(text)
 
-.replaceAll(
-"&",
-"&amp;"
-)
+.replaceAll("&","&amp;")
 
-.replaceAll(
-"<",
-"&lt;"
-)
+.replaceAll("<","&lt;")
 
-.replaceAll(
-">",
-"&gt;"
-)
+.replaceAll(">","&gt;")
 
-.replaceAll(
-'"',
-"&quot;"
-);
+.replaceAll('"',"&quot;");
 
-
-/* =========================================
-   DATE
-========================================= */
-
-const dayKey=
-()=>new Date()
-.toISOString()
-.slice(0,10);
-
-
-function isoWeekKey(){
-
-const d=
-new Date();
-
-const date=
-new Date(
-Date.UTC(
-d.getFullYear(),
-d.getMonth(),
-d.getDate()
-)
-);
-
-const day=
-date.getUTCDay()||7;
-
-date.setUTCDate(
-date.getUTCDate()+
-4-
-day
-);
-
-const yearStart=
-new Date(
-Date.UTC(
-date.getUTCFullYear(),
-0,
-1
-)
-);
-
-const week=
-Math.ceil(
-(
-(
-(
-date-yearStart
-)/
-86400000
-)+
-1
-)/
-7
-);
-
-return(
-date.getUTCFullYear()+
-"-W"+
-String(week)
-.padStart(2,"0")
-);
-
-}
-
-
-/* =========================================
-   SAVE
-========================================= */
 
 function save(){
 
 localStorage.setItem(
-KEY,
+SAVE_KEY,
 JSON.stringify(game)
 );
 
 }
 
 
-/* =========================================
-   LEVELING
-========================================= */
+function today(){
+
+return new Date()
+.toISOString()
+.slice(0,10);
+
+}
+
+
+function weekKey(){
+
+const d=
+new Date();
+
+const onejan=
+new Date(
+d.getFullYear(),
+0,
+1
+);
+
+const number=
+Math.ceil(
+(
+(
+d-onejan
+)/
+86400000+
+onejan.getDay()+
+1
+)/
+7
+);
+
+return(
+d.getFullYear()+
+"-W"+
+number
+);
+
+}
+
+
+/* =========================================================
+   PLAYER LEVEL
+========================================================= */
 
 function requiredXP(level){
 
-const t={
+const table={
 
 1:150,
-
 2:225,
-
 3:325,
-
 4:450,
-
 5:600,
-
 6:775,
-
 7:975,
-
 8:1200,
-
 9:1450,
-
 10:1750
 
 };
 
+
 return(
-t[level]||
+table[level]||
 Math.round(
 1750+
 Math.pow(
@@ -1942,7 +1404,7 @@ level-10,
 }
 
 
-function rank(level){
+function playerRank(level){
 
 if(level<5)
 return "INITIATE";
@@ -1967,247 +1429,534 @@ return "ASCENDANT";
 }
 
 
-function goalNeed(g){
+function goalXPRequired(goal){
 
 return(
-150+
-g.level*
-125
+200+
+goal.level*
+150
 );
 
 }
 
 
-/* =========================================
-   GOAL DETECTION
-========================================= */
+/* =========================================================
+   GOAL ANALYSIS
+========================================================= */
 
 function analyzeGoal(name){
 
 const t=
 name.toLowerCase();
 
-const d=[];
+const domains=[];
 
-
-/* FITNESS */
-
-if(
-/fit|fitness|muscle|strength|workout|gym|lose weight|conditioning/
-.test(t)
-){
-
-d.push("fitness");
-
-}
-
-
-/* SPORTS */
-
-if(
-/baseball|basketball|football|soccer|athlete|sport|pitcher|catcher|outfielder|shortstop|tennis|golf|volleyball|hockey/
-.test(t)
-){
-
-d.push("sport");
-
-}
-
-
-/* BASEBALL */
 
 if(
 /baseball|pitcher|catcher|shortstop|outfielder|first base|second base|third base/
 .test(t)
 ){
 
-d.push("baseball");
+domains.push("baseball");
 
 }
 
 
-/* CHEF */
-
 if(
-/chef|cook|cooking|baking|culinary|restaurant/
+/basketball|football|soccer|tennis|golf|volleyball|hockey|athlete|sport/
 .test(t)
 ){
 
-d.push("chef");
+domains.push("athlete");
 
 }
 
 
-/* LANGUAGE */
+if(
+/fit|fitness|workout|muscle|strength|gym|conditioning|lose weight/
+.test(t)
+){
+
+domains.push("fitness");
+
+}
+
+
+if(
+/chef|cook|cooking|culinary|restaurant|baking/
+.test(t)
+){
+
+domains.push("chef");
+
+}
+
 
 if(
 /language|japanese|spanish|french|german|korean|chinese|italian|arabic/
 .test(t)
 ){
 
-d.push("language");
+domains.push("language");
 
 }
 
 
-/* BUSINESS */
-
 if(
-/business|brand|company|entrepreneur|money|wealth|financial|freelance|startup|owner|income/
+/tattoo|artist|drawing|painting|photography|design|music|musician|creative/
 .test(t)
 ){
 
-d.push("business");
+domains.push("creative");
 
 }
 
 
-/* CREATIVE */
-
 if(
-/tattoo|drawing|painting|artist|photography|design|music|musician|fashion|creative/
+/business|company|brand|entrepreneur|wealth|money|income|startup|owner/
 .test(t)
 ){
 
-d.push("creative");
+domains.push("business");
 
 }
 
 
-/* PROFESSIONAL */
-
 if(
-/pilot|aviation|doctor|nurse|lawyer|teacher|career/
+/pilot|aviation|doctor|nurse|lawyer|teacher/
 .test(t)
 ){
 
-d.push("professional");
+domains.push("professional");
 
 }
 
 
-/* TECH */
-
 if(
-/coding|programming|developer|software|app|website|engineering|technology/
+/coding|developer|programming|software|app|website|engineering|technology/
 .test(t)
 ){
 
-d.push("technical");
+domains.push("technical");
 
 }
 
 
-return(
-d.length
-?[...new Set(d)]
-:["general"]
+if(!domains.length){
+
+domains.push(
+"general"
 );
 
 }
 
 
-/* =========================================
-   ROADMAP
-========================================= */
+return[
+...new Set(domains)
+];
 
-function roadmapFor(g){
+}
+
+
+/* =========================================================
+   ASSESSMENT QUESTIONS
+========================================================= */
+
+const ASSESSMENTS={
+
+
+baseball:[
+
+["position","What position do you primarily play?","Pitcher, catcher, shortstop, outfield..."],
+
+["competition","What level are you currently competing at?","Recreational, high school, college, amateur..."],
+
+["years","How many years have you played?","Example: 5"],
+
+["strength","What is your strongest baseball skill?","Example: velocity, fielding, contact, speed"],
+
+["weakness","What baseball skill needs the most improvement?","Example: command, hitting off-speed, footwork"],
+
+["resources","What training resources do you have?","Field, cage, gym, coach, throwing partner..."],
+
+["target","What is your next major baseball milestone?","Make varsity, college roster, improve velocity, pro opportunity..."]
+
+],
+
+
+athlete:[
+
+["sport","What exact sport do you play?",""],
+
+["position","What position/event do you compete in?",""],
+
+["level","What is your current competition level?",""],
+
+["weakness","What needs the most improvement?",""],
+
+["resources","What equipment/coaching access do you have?",""],
+
+["target","What is your next major performance milestone?",""]
+
+],
+
+
+fitness:[
+
+["fitnessGoal","What does getting fit mean to you?","Strength, endurance, body composition, general health..."],
+
+["currentActivity","How active are you currently?",""],
+
+["equipment","What equipment do you have access to?","Gym, dumbbells, bodyweight only..."],
+
+["limitations","Any physical limitations you need to work around?",""],
+
+["target","What measurable result are you working toward?",""]
+
+],
+
+
+chef:[
+
+["chefType","What kind of cooking interests you most?","Restaurant, pastry, private chef, home cooking..."],
+
+["experience","What can you already cook confidently?",""],
+
+["weakness","Which culinary skill needs the most development?","Knife skills, sauces, timing, baking..."],
+
+["equipment","What kitchen equipment do you have access to?",""],
+
+["target","What is your next culinary milestone?","Cook a full menu, culinary school, restaurant job..."]
+
+],
+
+
+language:[
+
+["language","What language are you learning?",""],
+
+["currentLevel","What can you currently do in the language?",""],
+
+["reason","Why are you learning it?","Travel, fluency, work, family..."],
+
+["weakness","Which area is hardest?","Speaking, listening, reading, writing..."],
+
+["target","What would success look like in the next few months?",""]
+
+],
+
+
+business:[
+
+["businessType","What type of business or income path are you building?",""],
+
+["skills","What skills or hobbies could you monetize?",""],
+
+["customer","Who might pay for what you can provide?",""],
+
+["stage","What stage are you currently at?","Idea, building, first customers, existing business..."],
+
+["target","What is your next measurable business milestone?","First sale, $1,000 revenue, launch..."]
+
+],
+
+
+creative:[
+
+["medium","What creative field or medium are you pursuing?","Tattooing, drawing, photography, music..."],
+
+["experience","How long have you practiced it?",""],
+
+["style","What style or specialty interests you most?",""],
+
+["weakness","What technical skill needs the most improvement?",""],
+
+["portfolio","Do you currently have a portfolio/body of work?",""],
+
+["target","What is your next major creative milestone?",""]
+
+],
+
+
+professional:[
+
+["career","What exact career path are you pursuing?",""],
+
+["stage","Where are you currently on that path?",""],
+
+["qualification","What qualifications do you already have?",""],
+
+["gap","What is the biggest gap between you and the next step?",""],
+
+["target","What is your next career milestone?",""]
+
+],
+
+
+technical:[
+
+["field","What technical field are you pursuing?","Software, engineering, web development..."],
+
+["languages","What tools/languages do you currently know?",""],
+
+["projects","What have you already built?",""],
+
+["weakness","What topic is currently hardest?",""],
+
+["target","What is your next project/career milestone?",""]
+
+],
+
+
+general:[
+
+["destination","Describe exactly what success looks like.",""],
+
+["current","Where are you currently compared with that goal?",""],
+
+["skills","What skills do you think are required?",""],
+
+["strength","What are you already good at?",""],
+
+["weakness","What currently holds you back most?",""],
+
+["resources","What resources do you have access to?",""],
+
+["target","What is the next measurable milestone?",""]
+
+]
+
+};
+
+
+/* =========================================================
+   SKILL TREE GENERATION
+========================================================= */
+
+const SKILL_TREES={
+
+baseball:[
+"Position Skill",
+"Throwing",
+"Hitting",
+"Fielding",
+"Game IQ",
+"Speed",
+"Strength",
+"Recovery",
+"Mental Game",
+"Career Development"
+],
+
+athlete:[
+"Technical Skill",
+"Game IQ",
+"Strength",
+"Speed",
+"Conditioning",
+"Recovery",
+"Mental Performance",
+"Competition"
+],
+
+fitness:[
+"Strength",
+"Endurance",
+"Mobility",
+"Consistency",
+"Recovery",
+"Nutrition Habits"
+],
+
+chef:[
+"Knife Skills",
+"Cooking Technique",
+"Flavor",
+"Timing",
+"Ingredient Knowledge",
+"Plating",
+"Kitchen Organization",
+"Professional Skills"
+],
+
+language:[
+"Vocabulary",
+"Speaking",
+"Listening",
+"Reading",
+"Writing",
+"Grammar",
+"Comprehension"
+],
+
+business:[
+"Value Creation",
+"Market Research",
+"Product",
+"Sales",
+"Marketing",
+"Finance",
+"Communication",
+"Networking"
+],
+
+creative:[
+"Fundamentals",
+"Technique",
+"Creativity",
+"Style",
+"Portfolio",
+"Professional Skills",
+"Business"
+],
+
+professional:[
+"Knowledge",
+"Qualifications",
+"Technical Skill",
+"Communication",
+"Experience",
+"Networking",
+"Career Preparation"
+],
+
+technical:[
+"Fundamentals",
+"Problem Solving",
+"Building",
+"Debugging",
+"Projects",
+"Technical Knowledge",
+"Career"
+],
+
+general:[
+"Knowledge",
+"Core Skill",
+"Practice",
+"Execution",
+"Communication",
+"Discipline",
+"Professional Development"
+]
+
+};
+
+
+function primaryDomain(goal){
+
+const order=[
+
+"baseball",
+"athlete",
+"fitness",
+"chef",
+"language",
+"business",
+"creative",
+"professional",
+"technical",
+"general"
+
+];
+
+
+return(
+order.find(
+domain=>
+goal.domains
+.includes(domain)
+)||
+"general"
+);
+
+}
+
+
+function createSkillTree(goal){
+
+const domain=
+primaryDomain(goal);
+
+
+return(
+SKILL_TREES[domain]||
+SKILL_TREES.general
+)
+.map(
+name=>({
+
+name,
+
+level:1,
+
+xp:0
+
+})
+);
+
+}
+
+
+/* =========================================================
+   ROADMAP
+========================================================= */
+
+function createRoadmap(){
 
 return[
 
 {
 
-name:
-"FOUNDATION",
+name:"FOUNDATION",
 
 desc:
-"Build the knowledge, habits and baseline skills required for this path.",
-
-skills:[
-"Fundamentals",
-"Consistency",
-"Knowledge"
-]
+"Understand the path, build core habits, and establish your starting level."
 
 },
 
 {
 
-name:
-"SKILL DEVELOPMENT",
+name:"CORE SKILLS",
 
 desc:
-"Develop the technical skills that directly determine your performance.",
-
-skills:[
-"Technique",
-"Practice",
-"Feedback"
-]
+"Develop the abilities that directly determine performance in your goal."
 
 },
 
 {
 
-name:
-"COMPLETE DEVELOPMENT",
+name:"COMPLETE DEVELOPMENT",
 
 desc:
-"Train supporting abilities such as strategy, preparation, creativity, physical readiness, recovery, and decision-making.",
-
-skills:[
-"Preparation",
-"Adaptability",
-"Discipline"
-]
+"Develop supporting areas that are easy to overlook but necessary for long-term success."
 
 },
 
 {
 
-name:
-"REAL-WORLD APPLICATION",
+name:"REAL-WORLD APPLICATION",
 
 desc:
-"Use your skills in realistic situations and produce measurable results.",
-
-skills:[
-"Execution",
-"Experience",
-"Performance"
-]
+"Use the skills in increasingly realistic situations and create measurable proof."
 
 },
 
 {
 
-name:
-"PROFESSIONAL DEVELOPMENT",
+name:"OPPORTUNITY",
 
 desc:
-"Build opportunities, reputation, relationships and proof of ability.",
-
-skills:[
-"Networking",
-"Portfolio",
-"Career"
-]
+"Build the connections, portfolio, competition results, credentials, or opportunities needed to advance."
 
 },
 
 {
 
-name:
-"MASTERY",
+name:"MASTERY",
 
 desc:
-"Refine weaknesses and raise the difficulty of your work.",
-
-skills:[
-"Advanced Skill",
-"Independence",
-"Mastery"
-]
+"Identify weaknesses, raise difficulty, and continue progressing beyond basic competence."
 
 }
 
@@ -2216,19 +1965,19 @@ skills:[
 }
 
 
-/* =========================================
+/* =========================================================
    CREATE GOAL
-========================================= */
+========================================================= */
 
-function createGoal(
+function createGoalObject(
 name,
-exp,
+experience,
 time,
 why,
 strengths
 ){
 
-const g={
+const goal={
 
 id:
 Date.now()+
@@ -2236,9 +1985,9 @@ Math.random(),
 
 name,
 
-exp,
+experience,
 
-time:+time,
+time:Number(time),
 
 why,
 
@@ -2247,61 +1996,65 @@ strengths,
 domains:
 analyzeGoal(name),
 
+assessment:{},
+
+assessmentComplete:false,
+
 level:1,
 
 xp:0,
 
-completed:0,
+verifiedCompleted:0,
 
-roadmap:[],
+skills:[],
 
-usedDaily:[],
+roadmap:
+createRoadmap(),
 
-created:
-Date.now()
+missionHistory:[]
 
 };
 
 
-g.roadmap=
-roadmapFor(g);
+goal.skills=
+createSkillTree(goal);
 
 
-game.goals.push(g);
+game.goals.push(goal);
 
 
 game.dailyKey=null;
 
-game.weekKey=null;
+game.weeklyKey=null;
 
 
 save();
 
 
-return g;
+return goal;
 
 }
 
 
-/* =========================================
-   PLAYER
-========================================= */
+/* =========================================================
+   PLAYER CREATION
+========================================================= */
 
-function startGame(){
+function initializePlayer(){
 
-const n=
+const name=
 $("name")
 .value
 .trim();
 
 
-const g=
-$("firstgoal")
+const goal=
+$("firstGoal")
 .value
 .trim();
 
 
-if(!n||!g){
+if(!name||!goal){
 
 alert(
 "Enter your player name and first goal."
@@ -2312,16 +2065,17 @@ return;
 }
 
 
-game.player=n;
+game.player=name;
 
 
-createGoal(
+const newGoal=
+createGoalObject(
 
-g,
+goal,
 
-$("firstexp").value,
+$("firstExp").value,
 
-$("firsttime").value,
+$("firstTime").value,
 
 "",
 
@@ -2332,24 +2086,30 @@ $("firsttime").value,
 
 save();
 
+
+openAssessment(
+newGoal.id
+);
+
+
 render();
 
 }
 
 
-/* =========================================
+/* =========================================================
    ADD GOAL
-========================================= */
+========================================================= */
 
 function addGoal(){
 
-const n=
+const name=
 $("newGoal")
 .value
 .trim();
 
 
-if(!n){
+if(!name){
 
 alert(
 "Enter a goal."
@@ -2360,21 +2120,18 @@ return;
 }
 
 
-createGoal(
+const goal=
+createGoalObject(
 
-n,
+name,
 
 $("newExp").value,
 
 $("newTime").value,
 
-$("newWhy")
-.value
-.trim(),
+$("newWhy").value.trim(),
 
-$("newStrengths")
-.value
-.trim()
+$("newStrengths").value.trim()
 
 );
 
@@ -2386,75 +2143,393 @@ $("newWhy").value="";
 $("newStrengths").value="";
 
 
-toast(
-"NEW QUESTLINE CREATED"
+openAssessment(
+goal.id
 );
 
 
 render();
 
-page("quests");
+}
+
+
+/* =========================================================
+   ASSESSMENT
+========================================================= */
+
+function openAssessment(goalId){
+
+assessmentGoalId=
+goalId;
+
+
+const goal=
+game.goals.find(
+g=>g.id===goalId
+);
+
+
+if(!goal)
+return;
+
+
+const domain=
+primaryDomain(goal);
+
+
+const questions=
+ASSESSMENTS[domain]||
+ASSESSMENTS.general;
+
+
+$("assessmentIntro")
+.innerHTML=
+
+"ASCEND is analyzing:<br><br><b>"+
+esc(goal.name)+
+"</b><br><br>"+
+"Answer these questions so the System can build a more personal progression path.";
+
+
+$("assessmentFields")
+.innerHTML=
+
+questions.map(
+q=>
+
+'<label>'+
+esc(q[1])+
+'</label>'+
+
+'<input '+
+'id="assessment_'+q[0]+'" '+
+'placeholder="'+esc(q[2])+'">'
+
+)
+.join("");
+
+
+$("assessmentModal")
+.style
+.display="flex";
 
 }
 
 
-/* =========================================
-   MISSION DATABASE
-========================================= */
+function saveAssessment(){
+
+const goal=
+game.goals.find(
+g=>g.id===assessmentGoalId
+);
 
 
-/* -------- FITNESS -------- */
+if(!goal)
+return;
 
-const FITNESS={
 
-skill:[
+const domain=
+primaryDomain(goal);
+
+
+const questions=
+ASSESSMENTS[domain]||
+ASSESSMENTS.general;
+
+
+const answers={};
+
+
+questions.forEach(
+q=>{
+
+const el=
+$("assessment_"+q[0]);
+
+
+answers[q[0]]=
+el
+?el.value.trim()
+:"";
+
+}
+);
+
+
+goal.assessment=
+answers;
+
+
+goal.assessmentComplete=true;
+
+
+game.dailyKey=null;
+
+game.weeklyKey=null;
+
+
+save();
+
+
+$("assessmentModal")
+.style
+.display="none";
+
+
+toast(
+"PLAYER ASSESSMENT COMPLETE"
+);
+
+
+render();
+
+}
+
+
+/* =========================================================
+   MISSION LIBRARY
+========================================================= */
+
+const MISSIONS={
+
+
+baseball:[
 
 {
 
-title:
-"STRENGTH GAUNTLET",
+title:"POSITION SKILL LAB",
 
-desc:
-"Build full-body strength with controlled repetitions.",
+skill:"Position Skill",
+
+xp:75,
+
+stat:"skill",
+
+steps:[
+
+"Choose one skill directly connected to your position.",
+
+"Complete an appropriate warm-up.",
+
+"Perform 3 focused drill blocks of 10–15 minutes.",
+
+"Track a measurable result such as targets hit, clean repetitions, strikes, quality contacts, or successful plays.",
+
+"Finish with 5–10 game-speed repetitions."
+
+]
+
+},
+
+
+{
+
+title:"GAME IQ SCOUT",
+
+skill:"Game IQ",
+
+xp:55,
+
+stat:"knowledge",
+
+steps:[
+
+"Watch 15–20 minutes of high-level baseball involving your position.",
+
+"Pause before several plays and predict what the player should do.",
+
+"Write down three positioning or decision-making lessons.",
+
+"Choose one lesson to rehearse mentally.",
+
+"Use that lesson during your next practice."
+
+]
+
+},
+
+
+{
+
+title:"THROWING DEVELOPMENT",
+
+skill:"Throwing",
+
+xp:70,
+
+stat:"skill",
+
+steps:[
+
+"Warm up gradually.",
+
+"Choose one throwing target or technical focus.",
+
+"Complete a controlled throwing progression.",
+
+"Track accuracy or quality instead of only throwing harder.",
+
+"Stop if pain develops and record how your arm felt afterward."
+
+]
+
+},
+
+
+{
+
+title:"HITTING DEVELOPMENT",
+
+skill:"Hitting",
+
+xp:75,
+
+stat:"skill",
+
+steps:[
+
+"Complete a movement or swing warm-up.",
+
+"Choose one hitting focus.",
+
+"Complete 3 rounds of tee, front toss, cage, or other suitable hitting work.",
+
+"Track quality contact rather than only total swings.",
+
+"Finish with a small game-like challenge."
+
+]
+
+},
+
+
+{
+
+title:"ATHLETIC DEVELOPMENT",
+
+skill:"Strength",
+
+xp:60,
+
+stat:"health",
+
+steps:[
+
+"Complete an appropriate warm-up.",
+
+"Train one supporting physical quality: strength, sprinting, agility, balance, or conditioning.",
+
+"Keep the session appropriate for your current training plan.",
+
+"Record one measurable result.",
+
+"Finish with an easy cooldown."
+
+]
+
+},
+
+
+{
+
+title:"RECOVERY PROTOCOL",
+
+skill:"Recovery",
+
+xp:45,
+
+stat:"health",
+
+steps:[
+
+"Perform light mobility or easy movement.",
+
+"Review soreness and fatigue honestly.",
+
+"Prioritize normal hydration and meals.",
+
+"Avoid unnecessary hard training if recovery is poor.",
+
+"Prepare for adequate sleep."
+
+]
+
+},
+
+
+{
+
+title:"MENTAL GAME",
+
+skill:"Mental Game",
+
+xp:45,
+
+stat:"discipline",
+
+steps:[
+
+"Choose one pressure situation you face in baseball.",
+
+"Write the best decision or routine for that situation.",
+
+"Visualize three successful repetitions.",
+
+"Create a short mental cue.",
+
+"Use that cue during your next practice or game."
+
+]
+
+}
+
+],
+
+
+fitness:[
+
+{
+
+title:"FULL-BODY GAUNTLET",
+
+skill:"Strength",
+
+xp:65,
+
+stat:"health",
 
 steps:[
 
 "Complete 20–50 push-ups total using a suitable variation.",
 
-"Complete 30–60 bodyweight squats total.",
+"Complete 30–60 squats total.",
 
-"Complete 20–40 reverse lunges total.",
+"Complete 20–40 lunges total.",
 
-"Complete 3 controlled core sets.",
+"Complete three controlled core sets.",
 
-"Record your totals so future quests can improve them."
+"Record your totals."
 
-],
+]
 
-xp:65,
+},
 
-stat:"health"
-
-}
-
-],
-
-
-conditioning:[
 
 {
 
-title:
-"ENDURANCE RUN",
+title:"ENDURANCE QUEST",
 
-desc:
-"Improve cardiovascular conditioning.",
+skill:"Endurance",
+
+xp:55,
+
+stat:"health",
 
 steps:[
 
 "Complete an easy warm-up.",
 
-"Perform 15–30 minutes of walking, jogging, cycling, swimming, or another suitable cardio activity.",
+"Perform 15–30 minutes of suitable cardio.",
 
 "Keep your pace sustainable.",
 
@@ -2462,500 +2537,217 @@ steps:[
 
 "Record time or distance."
 
-],
+]
 
-xp:55,
+},
 
-stat:"health"
-
-}
-
-],
-
-
-recovery:[
 
 {
 
-title:
-"RECOVERY PROTOCOL",
+title:"MOBILITY RESET",
 
-desc:
-"Progress requires recovering from training, not only adding more training.",
-
-steps:[
-
-"Complete 10–15 minutes of comfortable mobility.",
-
-"Drink enough fluids throughout the day.",
-
-"Eat normal balanced meals that support your activity.",
-
-"Avoid unnecessary hard training if you are unusually sore.",
-
-"Set yourself up for adequate sleep tonight."
-
-],
+skill:"Mobility",
 
 xp:40,
 
-stat:"discipline"
-
-}
-
-]
-
-};
-
-
-/* -------- BASEBALL / SPORT -------- */
-
-const SPORT={
-
-
-technical:[
-
-{
-
-title:
-"SPORT SKILL LAB",
-
-desc:
-"Work directly on one skill required by your sport or position.",
+stat:"health",
 
 steps:[
 
-"Choose one technical skill that directly affects your performance.",
+"Choose 4–6 comfortable mobility movements.",
 
-"Complete an appropriate warm-up.",
+"Spend 10–15 minutes moving slowly.",
 
-"Complete three focused drill blocks.",
+"Focus on areas that feel stiff rather than forcing range.",
 
-"Track successful attempts, accuracy, quality, or another measurable result.",
+"Finish with easy breathing.",
 
-"Write one correction to carry into your next session."
+"Record how you feel afterward."
+
+]
+
+}
 
 ],
+
+
+chef:[
+
+{
+
+title:"COOKING BATTLE",
+
+skill:"Cooking Technique",
 
 xp:75,
 
-stat:"skill"
-
-}
-
-],
-
-
-baseball:[
-
-{
-
-title:
-"BASEBALL DEVELOPMENT SESSION",
-
-desc:
-"Train actual baseball skill rather than only general athleticism.",
+stat:"skill",
 
 steps:[
 
-"Choose today's baseball focus: throwing, fielding, hitting, pitching, catching, footwork, or position work.",
+"Choose a complete dish appropriate to your current level.",
 
-"Warm up appropriately.",
-
-"Complete 25–50 controlled repetitions related to that skill.",
-
-"Track a measurable result such as strikes, clean fields, quality contacts, targets hit, or successful repetitions.",
-
-"Finish with five game-speed repetitions."
-
-],
-
-xp:80,
-
-stat:"skill"
-
-},
-
-
-{
-
-title:
-"GAME IQ SCOUTING",
-
-desc:
-"Develop the decision-making side of baseball.",
-
-steps:[
-
-"Watch 15–20 minutes of high-level baseball involving your position.",
-
-"Study positioning before the play.",
-
-"Identify three decisions the player made.",
-
-"Write what situation caused each decision.",
-
-"Choose one decision you want to recognize faster in your own games."
-
-],
-
-xp:55,
-
-stat:"knowledge"
-
-},
-
-
-{
-
-title:
-"POSITION MASTERY",
-
-desc:
-"Practice the responsibilities of your position.",
-
-steps:[
-
-"Choose one common play or responsibility at your position.",
-
-"Walk through the correct positioning.",
-
-"Practice the movement or footwork slowly.",
-
-"Complete 10–25 realistic repetitions.",
-
-"Finish with several repetitions at game speed."
-
-],
-
-xp:70,
-
-stat:"skill"
-
-}
-
-],
-
-
-conditioning:[
-
-{
-
-title:
-"ATHLETIC DEVELOPMENT",
-
-desc:
-"Develop the physical qualities supporting sport performance.",
-
-steps:[
-
-"Complete an appropriate warm-up.",
-
-"Choose one focus: strength, sprint mechanics, agility, balance, or conditioning.",
-
-"Complete a controlled training session appropriate to your ability.",
-
-"Keep quality high instead of chasing exhaustion.",
-
-"Record one measurable result."
-
-],
-
-xp:60,
-
-stat:"health"
-
-}
-
-],
-
-
-recovery:[
-
-{
-
-title:
-"ATHLETE RECOVERY DAY",
-
-desc:
-"Allow training adaptations to happen while preparing for the next performance.",
-
-steps:[
-
-"Complete light mobility or an easy walk.",
-
-"Review soreness and fatigue honestly.",
-
-"Hydrate and eat normally throughout the day.",
-
-"Avoid adding a hard workout merely to earn more XP.",
-
-"Prepare for a consistent night of sleep."
-
-],
-
-xp:45,
-
-stat:"health"
-
-}
-
-],
-
-
-mental:[
-
-{
-
-title:
-"MENTAL GAME QUEST",
-
-desc:
-"Improve focus and confidence under pressure.",
-
-steps:[
-
-"Visualize three successful game situations.",
-
-"Choose one situation that normally creates pressure.",
-
-"Write the decision or routine you want to use in that situation.",
-
-"Spend five minutes mentally rehearsing it.",
-
-"Create one short cue you can use during competition."
-
-],
-
-xp:45,
-
-stat:"discipline"
-
-}
-
-]
-
-};
-
-
-/* -------- CHEF -------- */
-
-const CHEF={
-
-
-cooking:[
-
-{
-
-title:
-"COOKING BATTLE",
-
-desc:
-"Prepare a complete dish while deliberately practicing technique.",
-
-steps:[
-
-"Choose a dish appropriate to your current ability.",
-
-"Prepare ingredients before cooking.",
+"Prepare ingredients before starting.",
 
 "Cook the dish from beginning to end.",
 
-"Taste and adjust seasoning intentionally.",
+"Taste and adjust intentionally.",
 
-"Plate it, photograph it, and write one improvement for next time."
+"Plate it and photograph the final result."
 
-],
+]
 
-xp:75,
+},
 
-stat:"skill"
-
-}
-
-],
-
-
-knife:[
 
 {
 
-title:
-"KNIFE SKILL LAB",
+title:"KNIFE SKILL LAB",
 
-desc:
-"Improve preparation accuracy and efficiency.",
-
-steps:[
-
-"Choose one safe cutting technique appropriate to what you are preparing.",
-
-"Prepare your workstation.",
-
-"Practice consistent pieces rather than rushing.",
-
-"Use the prepared ingredients in an actual dish.",
-
-"Review your consistency and organization."
-
-],
+skill:"Knife Skills",
 
 xp:55,
 
-stat:"skill"
+stat:"skill",
 
-}
+steps:[
 
-],
+"Choose ingredients for an actual dish.",
 
+"Practice consistent preparation and cuts.",
 
-timing:[
+"Focus on control rather than speed.",
+
+"Use the prepared ingredients in cooking.",
+
+"Review consistency afterward."
+
+]
+
+},
+
 
 {
 
-title:
-"KITCHEN TIMING RAID",
+title:"KITCHEN TIMING RAID",
 
-desc:
-"Practice having multiple parts of a meal finish together.",
+skill:"Timing",
+
+xp:70,
+
+stat:"discipline",
 
 steps:[
 
 "Choose a meal with at least two components.",
 
-"Write the order each component needs to begin.",
+"Write when each component must begin.",
 
-"Prepare everything before starting.",
+"Prepare ingredients first.",
 
-"Cook the components according to your timing plan.",
+"Cook everything according to the plan.",
 
-"Record where your timing succeeded or failed."
-
-],
-
-xp:70,
-
-stat:"discipline"
-
-}
-
-],
-
-
-flavor:[
-
-{
-
-title:
-"FLAVOR DEVELOPMENT",
-
-desc:
-"Train your ability to understand why food tastes the way it does.",
-
-steps:[
-
-"Cook one simple component or dish.",
-
-"Taste it before making final adjustments.",
-
-"Change only one element at a time.",
-
-"Notice what salt, acidity, sweetness, fat, heat, or texture changes.",
-
-"Record the final adjustment that helped most."
-
-],
-
-xp:55,
-
-stat:"knowledge"
-
-}
-
-],
-
-
-knowledge:[
-
-{
-
-title:
-"INGREDIENT INTELLIGENCE",
-
-desc:
-"Learn how ingredients behave so you can cook with more independence.",
-
-steps:[
-
-"Choose one ingredient used in your cooking.",
-
-"Learn how different cooking methods affect it.",
-
-"Identify two flavors it commonly pairs with.",
-
-"Cook or prepare it one way today.",
-
-"Record one thing you learned from the result."
-
-],
-
-xp:50,
-
-stat:"knowledge"
-
-}
-
-],
-
-
-professional:[
-
-{
-
-title:
-"CHEF PROFESSIONAL MODE",
-
-desc:
-"Develop the habits required beyond simply knowing recipes.",
-
-steps:[
-
-"Organize your workspace before cooking.",
-
-"Prepare ingredients before heat is applied.",
-
-"Keep the workspace clean during the process.",
-
-"Track waste or unnecessary steps.",
-
-"Identify one way to become faster without sacrificing quality."
-
-],
-
-xp:65,
-
-stat:"career"
-
-}
+"Record what finished early, late, or on time."
 
 ]
 
-};
+},
 
-
-/* -------- LANGUAGE -------- */
-
-const LANGUAGE={
-
-vocabulary:[
 
 {
 
-title:
-"VOCABULARY COMBO",
+title:"FLAVOR DEVELOPMENT",
 
-desc:
-"Build useful vocabulary you can actually use.",
+skill:"Flavor",
+
+xp:55,
+
+stat:"knowledge",
+
+steps:[
+
+"Cook one dish or component.",
+
+"Taste before making final adjustments.",
+
+"Change one element at a time.",
+
+"Notice the effect of salt, acid, sweetness, fat, heat, or texture.",
+
+"Write which adjustment helped most."
+
+]
+
+},
+
+
+{
+
+title:"INGREDIENT INTELLIGENCE",
+
+skill:"Ingredient Knowledge",
+
+xp:50,
+
+stat:"knowledge",
+
+steps:[
+
+"Choose one ingredient.",
+
+"Research how different cooking methods affect it.",
+
+"Identify common flavor pairings.",
+
+"Cook or prepare it today.",
+
+"Record one thing you learned."
+
+]
+
+},
+
+
+{
+
+title:"PROFESSIONAL KITCHEN MODE",
+
+skill:"Professional Skills",
+
+xp:65,
+
+stat:"career",
+
+steps:[
+
+"Set up your workspace before cooking.",
+
+"Prepare everything needed before heat is applied.",
+
+"Keep the station clean while working.",
+
+"Track waste and unnecessary movement.",
+
+"Identify one efficiency improvement."
+
+]
+
+}
+
+],
+
+
+language:[
+
+{
+
+title:"VOCABULARY COMBO",
+
+skill:"Vocabulary",
+
+xp:50,
+
+stat:"knowledge",
 
 steps:[
 
@@ -2963,32 +2755,26 @@ steps:[
 
 "Say each aloud.",
 
-"Use every item in a sentence.",
+"Use each in a sentence.",
 
-"Review them without looking.",
+"Test yourself without looking.",
 
-"Retest yourself later today."
+"Review the missed items later today."
 
-],
+]
 
-xp:50,
+},
 
-stat:"knowledge"
-
-}
-
-],
-
-
-speaking:[
 
 {
 
-title:
-"SPEAKING RAID",
+title:"SPEAKING RAID",
 
-desc:
-"Turn passive knowledge into active language.",
+skill:"Speaking",
+
+xp:65,
+
+stat:"skill",
 
 steps:[
 
@@ -2996,32 +2782,26 @@ steps:[
 
 "Review five relevant phrases.",
 
-"Speak aloud for three to five minutes.",
+"Speak aloud for several minutes.",
 
-"Record yourself if possible.",
+"Record yourself.",
 
-"Repeat the attempt while correcting obvious mistakes."
+"Repeat once after correcting mistakes."
 
-],
+]
 
-xp:65,
+},
 
-stat:"skill"
-
-}
-
-],
-
-
-listening:[
 
 {
 
-title:
-"LISTENING DUNGEON",
+title:"LISTENING DUNGEON",
 
-desc:
-"Train your ability to understand real speech.",
+skill:"Listening",
+
+xp:55,
+
+stat:"knowledge",
 
 steps:[
 
@@ -3031,75 +2811,61 @@ steps:[
 
 "Write what you understood.",
 
-"Listen again with support if necessary.",
+"Listen again with support if needed.",
 
-"Record five useful expressions you heard."
-
-],
-
-xp:55,
-
-stat:"knowledge"
-
-}
+"Save five useful phrases."
 
 ]
 
-};
+}
+
+],
 
 
-/* -------- BUSINESS -------- */
-
-const BUSINESS={
-
-market:[
+business:[
 
 {
 
-title:
-"MARKET SCOUT",
+title:"MARKET SCOUT",
 
-desc:
-"Understand the people your business could serve.",
+skill:"Market Research",
+
+xp:65,
+
+stat:"career",
 
 steps:[
 
 "Identify three potential customers or customer types.",
 
-"Write one important problem each may have.",
+"Write one important problem each experiences.",
 
 "Study two competitors.",
 
-"Record one useful thing each competitor does.",
+"Record something each competitor does well.",
 
-"Identify one possible way your idea could be more useful."
+"Identify one possible opportunity."
 
-],
+]
 
-xp:65,
+},
 
-stat:"career"
-
-}
-
-],
-
-
-build:[
 
 {
 
-title:
-"OFFER FORGE",
+title:"OFFER FORGE",
 
-desc:
-"Turn ideas into something someone could actually buy.",
+skill:"Product",
+
+xp:75,
+
+stat:"career",
 
 steps:[
 
 "Choose one product or service.",
 
-"Define who it is for.",
+"Define the intended customer.",
 
 "Write the problem it solves.",
 
@@ -3107,170 +2873,136 @@ steps:[
 
 "Create a rough price or pricing approach."
 
-],
+]
 
-xp:75,
+},
 
-stat:"career"
-
-}
-
-],
-
-
-sales:[
 
 {
 
-title:
-"OUTREACH QUEST",
+title:"OUTREACH QUEST",
 
-desc:
-"Practice creating real opportunities instead of only planning.",
-
-steps:[
-
-"Find three appropriate potential contacts or customers.",
-
-"Research them briefly.",
-
-"Write one personalized professional message.",
-
-"Send at least one appropriate inquiry.",
-
-"Record the next action."
-
-],
+skill:"Sales",
 
 xp:70,
 
-stat:"career"
+stat:"career",
 
-}
+steps:[
+
+"Identify three appropriate potential contacts.",
+
+"Research them briefly.",
+
+"Write one personalized message.",
+
+"Send at least one legitimate inquiry.",
+
+"Record the next follow-up."
 
 ]
 
-};
+}
+
+],
 
 
-/* -------- CREATIVE -------- */
-
-const CREATIVE={
-
-practice:[
+creative:[
 
 {
 
-title:
-"TECHNIQUE LAB",
+title:"TECHNIQUE LAB",
 
-desc:
-"Improve one technical part of your creative craft.",
+skill:"Technique",
+
+xp:60,
+
+stat:"skill",
 
 steps:[
 
 "Choose one specific technique.",
 
-"Study one strong reference.",
+"Study a strong reference.",
 
-"Create three focused practice studies.",
+"Complete three practice studies.",
 
-"Compare the studies.",
+"Compare the results.",
 
-"Repeat the weakest area once."
+"Repeat the weakest area."
 
-],
+]
 
-xp:60,
+},
 
-stat:"skill"
-
-}
-
-],
-
-
-create:[
 
 {
 
-title:
-"ORIGINAL CREATION",
+title:"ORIGINAL CREATION",
 
-desc:
-"Create something that reflects your own decisions and style.",
+skill:"Creativity",
+
+xp:70,
+
+stat:"creativity",
 
 steps:[
 
-"Choose an idea or theme.",
+"Choose an original concept.",
 
-"Make a quick plan or sketch.",
+"Create a quick plan or sketch.",
 
-"Create the piece.",
+"Develop the piece.",
 
 "Review it after a short break.",
 
 "Make one meaningful revision."
 
-],
+]
 
-xp:70,
+},
 
-stat:"creativity"
-
-}
-
-],
-
-
-portfolio:[
 
 {
 
-title:
-"PORTFOLIO UPGRADE",
+title:"PORTFOLIO UPGRADE",
 
-desc:
-"Build proof of your growing ability.",
-
-steps:[
-
-"Choose one existing piece.",
-
-"Identify three weaknesses.",
-
-"Improve at least one weakness.",
-
-"Document the work cleanly.",
-
-"Save it in your portfolio or organized archive."
-
-],
+skill:"Portfolio",
 
 xp:60,
 
-stat:"career"
+stat:"career",
 
-}
+steps:[
+
+"Choose an existing piece.",
+
+"Identify three weaknesses.",
+
+"Improve one or more weaknesses.",
+
+"Document the result cleanly.",
+
+"Add it to your organized portfolio."
 
 ]
 
-};
+}
+
+],
 
 
-/* -------- TECHNICAL -------- */
-
-const TECHNICAL={
-
-build:[
+technical:[
 
 {
 
-title:
-"BUILD MODE",
+title:"BUILD MODE",
 
-desc:
-"Learn through creating something functional.",
+skill:"Building",
+
+xp:75,
+
+stat:"skill",
 
 steps:[
 
@@ -3282,34 +3014,28 @@ steps:[
 
 "Test it in at least three situations.",
 
-"Fix one problem you discover."
+"Fix one issue."
 
-],
+]
 
-xp:75,
+},
 
-stat:"skill"
-
-}
-
-],
-
-
-problem:[
 
 {
 
-title:
-"DEBUG DUNGEON",
+title:"DEBUG DUNGEON",
 
-desc:
-"Train systematic problem solving.",
+skill:"Debugging",
+
+xp:65,
+
+stat:"knowledge",
 
 steps:[
 
 "Choose one problem.",
 
-"Write your best hypothesis before searching.",
+"Write your hypothesis before searching.",
 
 "Test the hypothesis.",
 
@@ -3317,69 +3043,55 @@ steps:[
 
 "Document the cause and solution."
 
-],
-
-xp:65,
-
-stat:"knowledge"
+]
 
 }
 
-]
-
-};
+],
 
 
-/* -------- PROFESSIONAL -------- */
-
-const PROFESSIONAL={
-
-research:[
+professional:[
 
 {
 
-title:
-"CAREER INTELLIGENCE",
+title:"CAREER INTELLIGENCE",
 
-desc:
-"Learn what the real pathway requires.",
+skill:"Career Preparation",
+
+xp:60,
+
+stat:"career",
 
 steps:[
 
-"Find one real opportunity related to your goal.",
+"Find one real next-step opportunity.",
 
 "List its requirements.",
 
-"Identify which requirements you already meet.",
+"Identify which requirements you meet.",
 
 "Identify your largest gap.",
 
 "Take one concrete step toward closing that gap."
 
-],
+]
 
-xp:60,
+},
 
-stat:"career"
-
-}
-
-],
-
-
-profile:[
 
 {
 
-title:
-"PROFESSIONAL PROFILE",
+title:"PROFESSIONAL PROFILE",
 
-desc:
-"Build proof that you are becoming capable of entering the field.",
+skill:"Experience",
+
+xp:60,
+
+stat:"career",
 
 steps:[
 
-"Review your résumé, portfolio, profile, application, or log.",
+"Review your professional materials.",
 
 "Choose one weak section.",
 
@@ -3387,118 +3099,67 @@ steps:[
 
 "Compare it with a strong example.",
 
-"Write your next improvement."
-
-],
-
-xp:60,
-
-stat:"career"
-
-}
+"Record your next improvement."
 
 ]
 
-};
+}
+
+],
 
 
-/* -------- GENERAL -------- */
-
-const GENERAL={
-
-skill:[
+general:[
 
 {
 
-title:
-"SKILL DEVELOPMENT",
+title:"CORE SKILL QUEST",
 
-desc:
-"Identify and practice one ability directly connected to your goal.",
-
-steps:[
-
-"Choose one skill required for your goal.",
-
-"Define a measurable practice target.",
-
-"Practice for your available time.",
-
-"Review the result.",
-
-"Repeat the weakest part once."
-
-],
+skill:"Core Skill",
 
 xp:60,
 
-stat:"skill"
-
-}
-
-],
-
-
-research:[
-
-{
-
-title:
-"PATH INTELLIGENCE",
-
-desc:
-"Learn more about what success in this goal actually requires.",
+stat:"skill",
 
 steps:[
 
-"Research someone who has already reached a similar goal.",
+"Choose one skill directly required for your goal.",
 
-"Identify three important skills they developed.",
+"Set a measurable practice target.",
 
-"Identify one opportunity they pursued.",
+"Practice it for your available time.",
 
-"Compare their path with yours.",
+"Review the result.",
 
-"Choose one useful action to copy or adapt."
+"Repeat the weakest part."
 
-],
+]
 
-xp:50,
+},
 
-stat:"knowledge"
-
-}
-
-],
-
-
-realworld:[
 
 {
 
-title:
-"REAL-WORLD ACTION",
+title:"REAL-WORLD ACTION",
 
-desc:
-"Do something that changes your actual position rather than only planning.",
+skill:"Execution",
+
+xp:65,
+
+stat:"career",
 
 steps:[
 
 "Identify one real opportunity related to your goal.",
 
-"Learn what it requires.",
+"Research what it requires.",
 
 "Prepare one thing you need.",
 
-"Take one actual action.",
+"Take one real action.",
 
 "Record the next follow-up."
 
-],
-
-xp:65,
-
-stat:"career"
+]
 
 }
 
@@ -3507,205 +3168,69 @@ stat:"career"
 };
 
 
-/* =========================================
-   DAILY PILLARS
-========================================= */
+/* =========================================================
+   DAILY QUEST CREATION
+========================================================= */
 
-function dailyPools(g){
+function getMissionPool(goal){
 
-const pools=[];
+const domain=
+primaryDomain(goal);
 
 
-if(
-g.domains.includes("baseball")
-){
-
-pools.push(
-...SPORT.baseball
+return(
+MISSIONS[domain]||
+MISSIONS.general
 );
 
 }
 
 
-if(
-g.domains.includes("sport")
-){
-
-pools.push(
-...SPORT.technical,
-...SPORT.conditioning,
-...SPORT.mental,
-...SPORT.recovery
-);
-
-}
-
-
-if(
-g.domains.includes("fitness") &&
-!g.domains.includes("sport")
-){
-
-pools.push(
-...FITNESS.skill,
-...FITNESS.conditioning,
-...FITNESS.recovery
-);
-
-}
-
-
-if(
-g.domains.includes("chef")
-){
-
-pools.push(
-...CHEF.cooking,
-...CHEF.knife,
-...CHEF.timing,
-...CHEF.flavor,
-...CHEF.knowledge,
-...CHEF.professional
-);
-
-}
-
-
-if(
-g.domains.includes("language")
-){
-
-pools.push(
-...LANGUAGE.vocabulary,
-...LANGUAGE.speaking,
-...LANGUAGE.listening
-);
-
-}
-
-
-if(
-g.domains.includes("business")
-){
-
-pools.push(
-...BUSINESS.market,
-...BUSINESS.build,
-...BUSINESS.sales
-);
-
-}
-
-
-if(
-g.domains.includes("creative")
-){
-
-pools.push(
-...CREATIVE.practice,
-...CREATIVE.create,
-...CREATIVE.portfolio
-);
-
-}
-
-
-if(
-g.domains.includes("technical")
-){
-
-pools.push(
-...TECHNICAL.build,
-...TECHNICAL.problem
-);
-
-}
-
-
-if(
-g.domains.includes("professional")
-){
-
-pools.push(
-...PROFESSIONAL.research,
-...PROFESSIONAL.profile
-);
-
-}
-
-
-if(!pools.length){
-
-pools.push(
-...GENERAL.skill,
-...GENERAL.research,
-...GENERAL.realworld
-);
-
-}
-
-
-return pools;
-
-}
-
-
-/* =========================================
-   DAILY MISSIONS
-========================================= */
-
-function makeDaily(
-g,
-index
+function createDailyMission(
+goal,
+offset
 ){
 
 const pool=
-dailyPools(g);
+getMissionPool(goal);
 
 
-let available=
+let unused=
 pool.filter(
-x=>
-!g.usedDaily.includes(
-x.title
+mission=>
+!goal.missionHistory
+.includes(
+mission.title
 )
 );
 
 
-if(!available.length){
+if(!unused.length){
 
-g.usedDaily=[];
+goal.missionHistory=[];
 
-available=pool;
+unused=pool;
 
 }
 
 
-const pick=
-available[
+const mission=
+unused[
 (
-index+
+offset+
 Math.floor(
 Date.now()/
 86400000
 )
 )%
-available.length
+unused.length
 ];
 
 
-g.usedDaily.push(
-pick.title
+goal.missionHistory
+.push(
+mission.title
 );
-
-
-if(
-g.usedDaily.length>20
-){
-
-g.usedDaily.shift();
-
-}
 
 
 return{
@@ -3714,20 +3239,42 @@ id:
 Date.now()+
 Math.random(),
 
-goalId:g.id,
+goalId:
+goal.id,
 
-title:pick.title,
+title:
+mission.title,
 
-desc:pick.desc,
+steps:
+mission.steps,
 
-steps:pick.steps,
+skill:
+mission.skill,
 
-xp:pick.xp,
+xp:
+mission.xp,
 
-stat:pick.stat,
+stat:
+mission.stat,
 
 difficulty:
-difficulty(g),
+goal.level>=8
+?"A"
+:goal.level>=5
+?"B"
+:goal.level>=2
+?"C"
+:"D",
+
+proofRequired:true,
+
+proofSubmitted:false,
+
+proofFileName:"",
+
+proofType:"",
+
+verificationStatus:"none",
 
 done:false
 
@@ -3736,194 +3283,150 @@ done:false
 }
 
 
-function difficulty(g){
+/* =========================================================
+   WEEKLY BOSS
+========================================================= */
 
-if(g.level>=10)
-return "S";
+function createWeeklyBoss(
+goal
+){
 
-if(g.level>=7)
-return "A";
+const domain=
+primaryDomain(goal);
 
-if(g.level>=4)
-return "B";
-
-if(g.level>=2)
-return "C";
-
-return "D";
-
-}
-
-
-/* =========================================
-   WEEKLY BOSS QUESTS
-========================================= */
-
-function makeBoss(g){
-
-let steps=[];
 
 let title=
 "7-DAY ASCENSION BOSS";
 
 
-if(
-g.domains.includes("baseball")
-){
+let steps=[];
+
+
+if(domain==="baseball"){
 
 title=
-"7-DAY BASEBALL ASCENSION ARC";
+"7-DAY COMPLETE PLAYER ARC";
+
 
 steps=[
 
-"Day 1: evaluate one major baseball skill and record your current baseline.",
+"Day 1: test one baseball skill and record your baseline.",
 
-"Day 2: complete a focused position-specific technical session.",
+"Day 2: complete a position-specific technical session.",
 
-"Day 3: complete athletic development or appropriate strength/conditioning work.",
+"Day 3: complete appropriate athletic development.",
 
-"Day 4: study game film for your position and identify three decisions or techniques.",
+"Day 4: study game film and record three tactical lessons.",
 
-"Day 5: complete another baseball skill session and apply one lesson from film study.",
+"Day 5: complete another skill session applying one film-study lesson.",
 
-"Day 6: use a lighter recovery-focused day with mobility, easy movement, hydration, and mental preparation.",
+"Day 6: complete a recovery-focused day with light movement, mobility, and preparation.",
 
-"Day 7: complete a final skill test, compare results with Day 1, and choose next week's development focus."
+"Day 7: retest the target baseball skill and compare results with Day 1."
 
 ];
 
 }
 
-else if(
-g.domains.includes("sport")
-){
+else if(domain==="chef"){
 
 title=
-"7-DAY ATHLETE DEVELOPMENT BOSS";
+"7-DAY KITCHEN ASCENSION";
+
 
 steps=[
 
-"Day 1: establish a technical or performance baseline.",
+"Day 1: cook a complete dish and establish your baseline.",
 
-"Day 2: complete focused sport-specific skill practice.",
+"Day 2: practice knife/preparation skills and use them in cooking.",
 
-"Day 3: complete appropriate athletic development or conditioning.",
+"Day 3: cook a dish focused on flavor and seasoning.",
 
-"Day 4: study tactics, positioning, decision-making, or film.",
+"Day 4: practice timing multiple components.",
 
-"Day 5: apply what you studied during another skill session.",
+"Day 5: learn and use one new culinary technique.",
 
-"Day 6: complete a lighter recovery and preparation day.",
+"Day 6: complete an organization, plating, or kitchen-efficiency challenge.",
 
-"Day 7: retest your target skill and review the week's progress."
+"Day 7: cook a final dish and compare it with Day 1."
 
 ];
 
 }
 
-else if(
-g.domains.includes("chef")
-){
+else if(domain==="fitness"){
 
 title=
-"7-DAY KITCHEN ASCENSION BOSS";
+"7-DAY FITNESS ASCENSION";
+
 
 steps=[
 
-"Day 1: cook a complete dish and record your current strengths and weaknesses.",
+"Day 1: establish your current safe baseline.",
 
-"Day 2: practice one preparation or knife skill and use it in actual cooking.",
+"Day 2: complete a full-body strength session.",
 
-"Day 3: cook a dish focused on seasoning and flavor balance.",
+"Day 3: complete an endurance session.",
 
-"Day 4: practice timing multiple components so they finish together.",
+"Day 4: complete mobility and light recovery.",
 
-"Day 5: study one professional culinary technique and use it in a dish.",
+"Day 5: complete another controlled strength session.",
 
-"Day 6: complete a kitchen organization, efficiency, or presentation challenge.",
+"Day 6: complete an active recovery or easier movement day.",
 
-"Day 7: cook a complete final dish, photograph it, taste critically, and compare it with Day 1."
+"Day 7: retest one baseline measure and record improvement."
 
 ];
 
 }
 
-else if(
-g.domains.includes("language")
-){
+else if(domain==="language"){
 
 title=
 "7-DAY LANGUAGE RAID";
 
+
 steps=[
 
-"Day 1: learn useful vocabulary around one conversation topic.",
+"Day 1: establish vocabulary for one real conversation topic.",
 
-"Day 2: practice listening and identify common phrases.",
+"Day 2: complete listening practice.",
 
-"Day 3: speak aloud and record yourself.",
+"Day 3: complete speaking practice.",
 
-"Day 4: complete a reading challenge.",
+"Day 4: complete reading practice.",
 
-"Day 5: complete a writing challenge using the week's material.",
+"Day 5: complete writing practice.",
 
-"Day 6: review only what you are still getting wrong.",
+"Day 6: review weaknesses from the week.",
 
-"Day 7: complete a conversation, recording, or written story using what you learned."
+"Day 7: complete a final conversation, recording, or written story."
 
 ];
 
 }
 
-else if(
-g.domains.includes("business")
-){
+else if(domain==="business"){
 
 title=
 "7-DAY BUSINESS BUILD BOSS";
 
-steps=[
-
-"Day 1: define one real customer and one meaningful problem.",
-
-"Day 2: research competitors and the market.",
-
-"Day 3: build or improve an offer.",
-
-"Day 4: work on branding, messaging, or presentation.",
-
-"Day 5: get real feedback or contact a potential customer.",
-
-"Day 6: improve the offer using what you learned.",
-
-"Day 7: create a concrete 30-day action plan."
-
-];
-
-}
-
-else if(
-g.domains.includes("creative")
-){
-
-title=
-"7-DAY CREATOR BOSS";
 
 steps=[
 
-"Day 1: select one technical weakness and create a baseline study.",
+"Day 1: identify one real customer problem.",
 
-"Day 2: practice the technique through several focused studies.",
+"Day 2: research competitors and alternatives.",
 
-"Day 3: create an original concept.",
+"Day 3: build or improve one offer.",
 
-"Day 4: develop the concept into a finished piece.",
+"Day 4: develop marketing or messaging.",
 
-"Day 5: critique the work or get useful feedback.",
+"Day 5: seek feedback or customer contact.",
 
-"Day 6: revise and improve presentation.",
+"Day 6: improve the offer.",
 
-"Day 7: add the finished work to your portfolio and record what improved."
+"Day 7: create the next 30-day action plan."
 
 ];
 
@@ -3934,21 +3437,22 @@ else{
 title=
 "7-DAY DREAM-TO-REALITY BOSS";
 
+
 steps=[
 
-"Day 1: define one measurable milestone connected to your goal.",
+"Day 1: establish one measurable milestone.",
 
-"Day 2: study the skills and requirements needed for the milestone.",
+"Day 2: study the skills required.",
 
-"Day 3: complete focused skill practice.",
+"Day 3: complete deliberate practice.",
 
 "Day 4: apply the skill to something real.",
 
-"Day 5: seek feedback, information, or opportunity from the real world.",
+"Day 5: seek real-world feedback or opportunity.",
 
-"Day 6: improve your result.",
+"Day 6: improve the result.",
 
-"Day 7: complete the milestone or establish the next measurable target."
+"Day 7: finish the milestone or establish the next target."
 
 ];
 
@@ -3961,67 +3465,77 @@ id:
 Date.now()+
 Math.random(),
 
-goalId:g.id,
+goalId:
+goal.id,
 
 title,
 
-desc:
-"Complete this multi-day Boss Quest for "+
-g.name+
-". Each stage trains a different part of the path.",
-
 steps,
+
+skill:
+"Discipline",
 
 xp:1000,
 
-stat:"discipline",
+stat:
+"discipline",
 
-difficulty:"BOSS",
+difficulty:
+"BOSS",
 
-done:false,
+levelReward:7,
 
-levelReward:7
+proofRequired:true,
+
+proofSubmitted:false,
+
+proofFileName:"",
+
+proofType:"",
+
+verificationStatus:"none",
+
+done:false
 
 };
 
 }
 
 
-/* =========================================
+/* =========================================================
    AUTOMATIC ASSIGNMENT
-========================================= */
+========================================================= */
 
 function initializeAssignments(){
 
-const d=
-dayKey();
+const currentDay=
+today();
 
 
-const w=
-isoWeekKey();
+const currentWeek=
+weekKey();
 
 
 if(
-game.dailyKey!==d
+game.dailyKey!==
+currentDay
 ){
 
-game.dailyKey=d;
+game.dailyKey=
+currentDay;
+
 
 game.daily=[];
 
 
-/*
-Two core missions per goal.
+game.goals
+.filter(
+goal=>
+goal.assessmentComplete
+)
+.forEach(
+(goal,index)=>{
 
-If there is only one goal,
-the player receives three.
-
-This gives variety without
-making multiple goals impossible.
-*/
-
-game.goals.forEach(
-(g,index)=>{
 
 const count=
 game.goals.length===1
@@ -4036,8 +3550,8 @@ i++
 ){
 
 game.daily.push(
-makeDaily(
-g,
+createDailyMission(
+goal,
 index+i
 )
 );
@@ -4051,15 +3565,22 @@ index+i
 
 
 if(
-game.weekKey!==w
+game.weeklyKey!==
+currentWeek
 ){
 
-game.weekKey=w;
+game.weeklyKey=
+currentWeek;
 
 
 game.weekly=
-game.goals.map(
-makeBoss
+game.goals
+.filter(
+goal=>
+goal.assessmentComplete
+)
+.map(
+createWeeklyBoss
 );
 
 }
@@ -4070,11 +3591,176 @@ save();
 }
 
 
-/* =========================================
-   PLAYER XP
-========================================= */
+/* =========================================================
+   PROOF SUBMISSION
+========================================================= */
 
-function addXP(
+function submitProof(
+missionId,
+type
+){
+
+const list=
+type==="daily"
+?game.daily
+:game.weekly;
+
+
+const mission=
+list.find(
+m=>m.id==missionId
+);
+
+
+if(
+!mission||
+mission.done
+)
+return;
+
+
+const fileInput=
+document.getElementById(
+"proof_file_"+missionId
+);
+
+
+const note=
+document.getElementById(
+"proof_note_"+missionId
+);
+
+
+if(
+!fileInput||
+!fileInput.files||
+!fileInput.files.length
+){
+
+alert(
+"Upload proof before submitting this quest."
+);
+
+return;
+
+}
+
+
+const file=
+fileInput.files[0];
+
+
+mission.proofSubmitted=true;
+
+mission.proofFileName=
+file.name;
+
+mission.proofType=
+file.type||
+"file";
+
+mission.proofNote=
+note
+?note.value.trim()
+:"";
+
+
+mission.verificationStatus=
+"verifying";
+
+
+save();
+
+render();
+
+
+setTimeout(
+()=>{
+
+verifyProof(
+missionId,
+type
+);
+
+},
+1200
+);
+
+}
+
+
+/* =========================================================
+   PROTOTYPE VERIFICATION
+========================================================= */
+
+function verifyProof(
+missionId,
+type
+){
+
+const list=
+type==="daily"
+?game.daily
+:game.weekly;
+
+
+const mission=
+list.find(
+m=>m.id==missionId
+);
+
+
+if(!mission)
+return;
+
+
+/*
+IMPORTANT:
+
+This is prototype verification.
+
+A real ASCEND app would send
+the evidence to a secure backend
+for automated/manual verification.
+
+For now, requiring an uploaded file
+prevents XP from being awarded
+through a normal button press.
+*/
+
+
+if(
+mission.proofSubmitted&&
+mission.proofFileName
+){
+
+mission.verificationStatus=
+"verified";
+
+
+mission.done=true;
+
+
+awardMission(
+mission,
+type
+);
+
+}
+
+
+save();
+
+render();
+
+}
+
+
+/* =========================================================
+   REWARDS
+========================================================= */
+
+function addPlayerXP(
 amount,
 stat
 ){
@@ -4130,10 +3816,11 @@ levels===1
 ".<br><br>"+
 "NEW LEVEL: <b>"+
 game.level+
-"</b>"+
-"<br>"+
+"</b><br>"+
 "RANK: <b>"+
-rank(game.level)+
+playerRank(
+game.level
+)+
 "</b>"
 
 );
@@ -4143,42 +3830,120 @@ rank(game.level)+
 }
 
 
-/* =========================================
-   BOSS REWARD
-========================================= */
+function addSkillXP(
+goal,
+skillName,
+amount
+){
 
-function awardBoss(m){
+let skill=
+goal.skills.find(
+s=>
+s.name===
+skillName
+);
 
-addXP(
-m.xp,
-m.stat
+
+if(!skill){
+
+skill={
+
+name:
+skillName,
+
+level:1,
+
+xp:0
+
+};
+
+
+goal.skills.push(
+skill
+);
+
+}
+
+
+skill.xp+=amount;
+
+
+while(
+skill.xp>=100
+){
+
+skill.xp-=100;
+
+skill.level++;
+
+}
+
+}
+
+
+function addGoalXP(
+goal,
+amount
+){
+
+goal.xp+=amount;
+
+
+while(
+goal.xp>=
+goalXPRequired(
+goal
+)
+){
+
+goal.xp-=
+goalXPRequired(
+goal
+);
+
+goal.level++;
+
+}
+
+}
+
+
+function awardMission(
+mission,
+type
+){
+
+const goal=
+game.goals.find(
+g=>
+g.id===
+mission.goalId
+);
+
+
+if(type==="weekly"){
+
+addPlayerXP(
+mission.xp,
+mission.stat
 );
 
 
 game.level+=
-m.levelReward;
+mission.levelReward;
 
 
 showLevel(
 
 "BOSS QUEST CLEARED",
 
-"Weekly Boss defeated."+
-
-"<br><br>"+
-
+"VERIFIED BOSS QUEST<br><br>"+
 "<b>+"+
-m.xp+
-" XP</b>"+
-
-"<br>"+
-
+mission.xp+
+" XP</b><br>"+
 "<b>+"+
-m.levelReward+
-" PLAYER LEVELS</b>"+
-
-"<br><br>"+
-
+mission.levelReward+
+" PLAYER LEVELS</b><br><br>"+
 "NEW LEVEL: <b>"+
 game.level+
 "</b>"
@@ -4186,94 +3951,42 @@ game.level+
 );
 
 }
+else{
 
-
-/* =========================================
-   COMPLETE MISSION
-========================================= */
-
-function completeMission(
-id,
-type
-){
-
-const list=
-type==="daily"
-?game.daily
-:game.weekly;
-
-
-const m=
-list.find(
-x=>
-x.id==id
-);
-
-
-if(
-!m||
-m.done
-){
-
-return;
-
-}
-
-
-m.done=true;
-
-
-if(
-type==="weekly"
-){
-
-awardBoss(m);
-
-}else{
-
-addXP(
-m.xp,
-m.stat
+addPlayerXP(
+mission.xp,
+mission.stat
 );
 
 }
 
 
-if(m.goalId){
+if(goal){
 
-const g=
-game.goals.find(
-x=>
-x.id===
-m.goalId
+goal.verifiedCompleted++;
+
+addGoalXP(
+goal,
+mission.xp
 );
 
 
-if(g){
-
-g.completed++;
-
-g.xp+=m.xp;
-
-
-while(
-g.xp>=
-goalNeed(g)
-){
-
-g.xp-=
-goalNeed(g);
-
-g.level++;
-
-}
-
-}
+addSkillXP(
+goal,
+mission.skill,
+Math.max(
+15,
+Math.round(
+mission.xp/
+2
+)
+)
+);
 
 }
 
 
-game.completed++;
+game.verifiedCompleted++;
 
 
 updateStreak();
@@ -4282,49 +3995,32 @@ updateStreak();
 checkAchievements();
 
 
-save();
-
-
 toast(
-
-type==="weekly"
-
-?"BOSS QUEST CLEARED! +7 LEVELS"
-
-:"QUEST COMPLETE +"+
-m.xp+
-" XP"
-
+"PROOF VERIFIED • XP AWARDED"
 );
-
-
-render();
 
 }
 
 
-/* =========================================
+/* =========================================================
    STREAK
-========================================= */
+========================================================= */
 
 function updateStreak(){
 
 const d=
-dayKey();
+today();
 
 
 if(
 game.lastComplete===d
-){
-
+)
 return;
-
-}
 
 
 if(game.lastComplete){
 
-const days=
+const difference=
 Math.floor(
 (
 new Date(d)-
@@ -4337,11 +4033,12 @@ game.lastComplete
 
 
 game.streak=
-days===1
+difference===1
 ?game.streak+1
 :1;
 
-}else{
+}
+else{
 
 game.streak=1;
 
@@ -4353,26 +4050,30 @@ game.lastComplete=d;
 }
 
 
-/* =========================================
-   NAV
-========================================= */
+/* =========================================================
+   NAVIGATION
+========================================================= */
 
-function page(p){
+function page(name){
 
 document
 .querySelectorAll(
 ".screen"
 )
 .forEach(
-x=>
-x.classList
-.remove("active")
+screen=>
+screen.classList
+.remove(
+"active"
+)
 );
 
 
-$(p)
+$(name)
 .classList
-.add("active");
+.add(
+"active"
+);
 
 
 document
@@ -4380,15 +4081,19 @@ document
 ".nav button"
 )
 .forEach(
-x=>
-x.classList
-.remove("active")
+button=>
+button.classList
+.remove(
+"active"
+)
 );
 
 
-$("n-"+p)
+$("n-"+name)
 .classList
-.add("active");
+.add(
+"active"
+);
 
 
 render();
@@ -4396,9 +4101,116 @@ render();
 }
 
 
-/* =========================================
+/* =========================================================
+   PROOF HTML
+========================================================= */
+
+function proofHTML(
+mission,
+type
+){
+
+if(
+mission.verificationStatus===
+"verified"
+){
+
+return(
+
+'<div class="proofbox verified">'+
+
+'<div class="proof-title">'+
+'✓ PROOF VERIFIED'+
+'</div>'+
+
+'<div class="small">'+
+'Evidence: '+
+esc(
+mission.proofFileName
+)+
+'</div>'+
+
+'<div class="verified-text">'+
+'XP AWARDED'+
+'</div>'+
+
+'</div>'
+
+);
+
+}
+
+
+if(
+mission.verificationStatus===
+"verifying"
+){
+
+return(
+
+'<div class="proofbox">'+
+
+'<div class="proof-title">'+
+'SYSTEM VERIFICATION'+
+'</div>'+
+
+'<div class="verify-status">'+
+'ANALYZING PROOF...'+
+'</div>'+
+
+'</div>'
+
+);
+
+}
+
+
+return(
+
+'<div class="proofbox">'+
+
+'<div class="proof-title">'+
+'SUBMIT PROOF'+
+'</div>'+
+
+'<div class="small">'+
+'Upload a photo, video, screenshot, or document showing the completed work.'+
+'</div>'+
+
+'<input '+
+'type="file" '+
+'id="proof_file_'+
+mission.id+
+'" '+
+'accept="image/*,video/*,audio/*,.pdf,.txt,.doc,.docx">'+
+
+'<textarea '+
+'id="proof_note_'+
+mission.id+
+'" '+
+'placeholder="Optional: describe what you completed, result, score, reps, time, or what improved.">'+
+'</textarea>'+
+
+'<button onclick="submitProof('+
+mission.id+
+',\''+
+type+
+'\')">'+
+
+'SUBMIT FOR VERIFICATION'+
+
+'</button>'+
+
+'</div>'
+
+);
+
+}
+
+
+/* =========================================================
    STEPS HTML
-========================================= */
+========================================================= */
 
 function stepsHTML(
 steps,
@@ -4410,28 +4222,28 @@ return(
 '<div class="steps">'+
 
 steps.map(
-(s,i)=>
+(step,index)=>
 
 '<div class="step">'+
 
 '<div class="stepnum '+
 (
 boss
-?'daybadge'
-:''
+?"daybadge"
+:""
 )+
 '">'+
 
 (
 boss
-?"D"+(i+1)
-:(i+1)
+?"D"+(index+1)
+:index+1
 )+
 
 '</div>'+
 
 '<div>'+
-esc(s)+
+esc(step)+
 '</div>'+
 
 '</div>'
@@ -4445,13 +4257,13 @@ esc(s)+
 }
 
 
-/* =========================================
+/* =========================================================
    MISSION HTML
-========================================= */
+========================================================= */
 
 function missionHTML(
-m,
-g,
+mission,
+goal,
 type
 ){
 
@@ -4464,14 +4276,14 @@ return(
 '<div class="'+
 (
 boss
-?'boss'
-:'quest'
+?"boss"
+:"quest"
 )+
 ' '+
 (
-m.done
-?'completed'
-:''
+mission.done
+?"completed"
+:""
 )+
 '">'+
 
@@ -4482,12 +4294,14 @@ m.done
 '<div class="questtitle">'+
 
 (
-m.done
-?'✓ '
-:''
+mission.done
+?"✓ "
+:"◆ "
 )+
 
-esc(m.title)+
+esc(
+mission.title
+)+
 
 '</div>'+
 
@@ -4496,9 +4310,9 @@ esc(m.title)+
 
 (
 boss
-?'👑 BOSS'
-:m.difficulty+
-'-RANK'
+?"👑 BOSS"
+:mission.difficulty+
+"-RANK"
 )+
 
 '</div>'+
@@ -4507,30 +4321,35 @@ boss
 '</div>'+
 
 
-'<div class="desc">'+
-esc(m.desc)+
-'</div>'+
+(
+goal
+
+?'<div class="goaltype">'+
+esc(
+goal.name
+)+
+'</div>'
+
+:""
+)+
 
 
 stepsHTML(
-m.steps,
+mission.steps,
 boss
 )+
 
 
-(
-g
-
-?'<span class="tag">'+
-esc(g.name)+
-'</span>'
-
-:''
+'<span class="tag">'+
+esc(
+mission.skill
 )+
+'</span>'+
 
 
 '<span class="tag">'+
-m.stat.toUpperCase()+
+mission.stat
+.toUpperCase()+
 '</span>'+
 
 
@@ -4539,51 +4358,24 @@ m.stat.toUpperCase()+
 (
 boss
 
-?'👑 +'+
-m.xp+
-' XP • +'+
-m.levelReward+
-' PLAYER LEVELS'
+?"👑 +"+
+mission.xp+
+" XP • +"+
+mission.levelReward+
+" LEVELS"
 
-:'✦ +'+
-m.xp+
-' XP'
+:"✦ +"+
+mission.xp+
+" XP"
+
 )+
 
 '</div>'+
 
 
-(
-m.done
-
-?'<div class="small">'+
-'REWARD CLAIMED'+
-'</div>'
-
-:'<button onclick="completeMission('+
-m.id+
-',\''+
-type+
-'\')">'+
-
-(
-boss
-?'CLAIM BOSS VICTORY'
-:'COMPLETE QUEST'
-)+
-
-'</button>'
-)+
-
-
-(
-boss
-
-?'<div class="safe">'+
-'Boss Quests are meant to be completed across the week rather than rushed in one day.'+
-'</div>'
-
-:''
+proofHTML(
+mission,
+type
 )+
 
 
@@ -4594,28 +4386,35 @@ boss
 }
 
 
-/* =========================================
+/* =========================================================
    GOAL HTML
-========================================= */
+========================================================= */
 
-function goalHTML(g){
+function goalHTML(
+goal
+){
 
-const req=
-goalNeed(g);
+const required=
+goalXPRequired(
+goal
+);
 
 
 return(
 
 '<div class="goal">'+
 
+
 '<div class="goalname">'+
 '⚔️ '+
-esc(g.name)+
+esc(
+goal.name
+)+
 '</div>'+
 
 
 '<div class="goaltype">'+
-g.domains
+goal.domains
 .join(" // ")
 .toUpperCase()+
 '</div>'+
@@ -4624,12 +4423,12 @@ g.domains
 '<div class="small">'+
 
 'GOAL LEVEL '+
-g.level+
+goal.level+
 
 ' • '+
 
-g.completed+
-' QUESTS COMPLETE'+
+goal.verifiedCompleted+
+' VERIFIED QUESTS'+
 
 '</div>'+
 
@@ -4640,8 +4439,8 @@ g.completed+
 
 Math.min(
 100,
-g.xp/
-req*
+goal.xp/
+required*
 100
 )+
 
@@ -4655,9 +4454,9 @@ req*
 
 '<div class="xp">'+
 
-g.xp+
+goal.xp+
 ' / '+
-req+
+required+
 ' GOAL XP'+
 
 '</div>'+
@@ -4670,9 +4469,9 @@ req+
 }
 
 
-/* =========================================
-   RENDER
-========================================= */
+/* =========================================================
+   RENDER MAIN
+========================================================= */
 
 function render(){
 
@@ -4695,134 +4494,137 @@ $("create")
 initializeAssignments();
 
 
-$("player")
+$("headerPlayer")
 .textContent=
+
 "PLAYER // "+
 game.player;
 
 
-$("level")
+$("playerLevel")
 .textContent=
 game.level;
 
 
-$("rank")
+$("playerRank")
 .textContent=
-rank(game.level);
+playerRank(
+game.level
+);
 
 
-const req=
+const required=
 requiredXP(
 game.level
 );
 
 
-$("xpText")
+$("playerXPText")
 .textContent=
+
 game.xp+
 " / "+
-req+
+required+
 " XP";
 
 
-$("xpFill")
+$("playerXPFill")
 .style
 .width=
+
 Math.min(
 100,
 game.xp/
-req*
+required*
 100
 )+
 "%";
 
 
-const done=
-game.daily
-.filter(
-x=>x.done
-)
-.length;
-
-
-$("dailyDone")
+$("verifiedCount")
 .textContent=
-done;
+game.verifiedCompleted;
 
 
-$("goalCount")
+$("activeGoalCount")
 .textContent=
 game.goals.length;
 
 
-$("streak")
+$("streakCount")
 .textContent=
 game.streak;
 
 
-$("bossCount")
+$("weeklyCount")
 .textContent=
 game.weekly.length;
+
+
+const dailyVerified=
+game.daily
+.filter(
+mission=>
+mission.done
+)
+.length;
 
 
 $("todayStatus")
 .textContent=
 
-done+
+dailyVerified+
 " / "+
 game.daily.length+
-" DAILY QUESTS COMPLETE // THE SYSTEM TRAINS EVERY PART OF YOUR QUESTLINES";
+" VERIFIED DAILY QUESTS";
 
 
 $("dailyStatus")
 .textContent=
 
-done+
+dailyVerified+
 " / "+
 game.daily.length+
-" COMPLETE // NEW ASSIGNMENTS ARRIVE AUTOMATICALLY EACH DAY";
+" VERIFIED // XP REQUIRES PROOF";
 
 
 $("homeGoals")
 .innerHTML=
 
 game.goals
-
 .map(
-g=>
-goalHTML(g)
+goal=>
+goalHTML(
+goal
 )
-
+)
 .join("");
 
 
-$("homeDaily")
+$("homeMissions")
 .innerHTML=
 
 game.daily
-
 .slice(
 0,
 6
 )
-
 .map(
-m=>
+mission=>
 missionHTML(
 
-m,
+mission,
 
 game.goals.find(
-g=>
-g.id===
-m.goalId
+goal=>
+goal.id===
+mission.goalId
 ),
 
 "daily"
 
 )
 )
-
 .join("");
 
 
@@ -4830,24 +4632,22 @@ $("homeBoss")
 .innerHTML=
 
 game.weekly
-
 .map(
-m=>
+mission=>
 missionHTML(
 
-m,
+mission,
 
 game.goals.find(
-g=>
-g.id===
-m.goalId
+goal=>
+goal.id===
+mission.goalId
 ),
 
 "weekly"
 
 )
 )
-
 .join("");
 
 
@@ -4855,24 +4655,22 @@ $("dailyList")
 .innerHTML=
 
 game.daily
-
 .map(
-m=>
+mission=>
 missionHTML(
 
-m,
+mission,
 
 game.goals.find(
-g=>
-g.id===
-m.goalId
+goal=>
+goal.id===
+mission.goalId
 ),
 
 "daily"
 
 )
 )
-
 .join("");
 
 
@@ -4880,138 +4678,166 @@ $("weeklyList")
 .innerHTML=
 
 game.weekly
-
 .map(
-m=>
+mission=>
 missionHTML(
 
-m,
+mission,
 
 game.goals.find(
-g=>
-g.id===
-m.goalId
+goal=>
+goal.id===
+mission.goalId
 ),
 
 "weekly"
 
 )
 )
-
 .join("");
 
 
-$("questList")
-.innerHTML=
-
-game.goals
-
-.map(
-g=>
-
-'<div class="quest">'+
-
-'<div class="questtitle">'+
-
-'⚔ '+
-esc(g.name)+
-
-'</div>'+
-
-
-'<div class="desc">'+
-
-'QUEST LEVEL '+
-g.level+
-
-'<br><br>'+
-
-'CURRENT PHASE: <b>'+
-
-esc(
-g.roadmap[
-Math.min(
-g.level-1,
-g.roadmap.length-1
-)
-].name
-)+
-
-'</b>'+
-
-'</div>'+
-
-
-'<span class="tag">'+
-g.domains
-.join(" / ")
-.toUpperCase()+
-'</span>'+
-
-
-'<span class="tag">'+
-g.time+
-' MIN/DAY'+
-'</span>'+
-
-
-'<span class="tag">'+
-g.exp
-.toUpperCase()+
-'</span>'+
-
-
-'</div>'
-
-)
-
-.join("");
-
-
-$("settingsPlayer")
-.innerHTML=
-
-'<b>'+
-esc(game.player)+
-'</b>'+
-
-'<br><br>'+
-
-'PLAYER LEVEL: '+
-game.level+
-
-'<br>'+
-
-'RANK: '+
-rank(game.level)+
-
-'<br>'+
-
-'ACTIVE GOALS: '+
-game.goals.length+
-
-'<br>'+
-
-'QUESTS COMPLETED: '+
-game.completed;
-
+renderQuestList();
 
 renderProgress();
 
 renderAchievements();
+
+renderSettings();
+
 
 save();
 
 }
 
 
-/* =========================================
+/* =========================================================
+   QUEST LIST
+========================================================= */
+
+function renderQuestList(){
+
+$("questList")
+.innerHTML=
+
+game.goals
+.map(
+goal=>{
+
+
+const assessment=
+Object.entries(
+goal.assessment||
+{}
+)
+.filter(
+([key,value])=>
+value
+);
+
+
+return(
+
+'<div class="quest">'+
+
+
+'<div class="questtitle">'+
+'⚔ '+
+esc(
+goal.name
+)+
+'</div>'+
+
+
+'<div class="goaltype">'+
+goal.domains
+.join(" // ")
+.toUpperCase()+
+'</div>'+
+
+
+'<div class="desc">'+
+
+'GOAL LEVEL: <b>'+
+goal.level+
+'</b><br><br>'+
+
+'ASSESSMENT: <b>'+
+(
+goal.assessmentComplete
+?"COMPLETE"
+:"REQUIRED"
+)+
+'</b>'+
+
+'</div>'+
+
+
+(
+goal.assessmentComplete
+
+?'<button onclick="openAssessment('+
+goal.id+
+')">'+
+'UPDATE ASSESSMENT'+
+'</button>'
+
+:'<button onclick="openAssessment('+
+goal.id+
+')">'+
+'COMPLETE ASSESSMENT'+
+'</button>'
+
+)+
+
+
+(
+assessment.length
+
+?'<div class="steps">'+
+
+assessment
+.slice(
+0,
+4
+)
+.map(
+([key,value])=>
+
+'<div class="assessment-answer">'+
+'<b>'+
+esc(key)+
+':</b> '+
+esc(value)+
+'</div>'
+
+)
+.join("")+
+
+'</div>'
+
+:""
+)+
+
+
+'</div>'
+
+);
+
+}
+)
+.join("");
+
+}
+
+
+/* =========================================================
    PROGRESS
-========================================= */
+========================================================= */
 
 function renderProgress(){
 
-$("stats")
+$("statsList")
 .innerHTML=
 
 Object.entries(
@@ -5019,18 +4845,18 @@ game.stats
 )
 
 .map(
-([n,v])=>
+([name,value])=>
 
 '<div class="skill">'+
 
 '<div class="skillhead">'+
 
 '<span>'+
-n.toUpperCase()+
+name.toUpperCase()+
 '</span>'+
 
 '<span>'+
-v+
+value+
 '</span>'+
 
 '</div>'+
@@ -5042,7 +4868,8 @@ v+
 
 Math.min(
 100,
-v*4
+value*
+4
 )+
 
 '%">'+
@@ -5064,12 +4891,76 @@ $("progressGoals")
 .innerHTML=
 
 game.goals
+.map(
+goal=>
+goalHTML(
+goal
+)
+)
+.join("");
+
+
+$("skillTrees")
+.innerHTML=
+
+game.goals
+.map(
+goal=>
+
+'<div class="goal">'+
+
+'<div class="goalname">'+
+esc(
+goal.name
+)+
+'</div>'+
+
+
+'<div class="skilltree">'+
+
+goal.skills
 
 .map(
-g=>
-goalHTML(g)
+skill=>
+
+'<div class="skillnode">'+
+
+'<h4>'+
+esc(
+skill.name
+)+
+'</h4>'+
+
+'<div class="skilllevel">'+
+'SKILL LV '+skill.level+
+'</div>'+
+
+'<div class="bar" style="margin-top:8px">'+
+
+'<div class="fill" style="width:'+
+skill.xp+
+'%">'+
+'</div>'+
+
+'</div>'+
+
+'<div class="xp">'+
+skill.xp+
+' / 100 SKILL XP'+
+'</div>'+
+
+'</div>'
+
 )
 
+.join("")+
+
+'</div>'+
+
+
+'</div>'
+
+)
 .join("");
 
 
@@ -5077,56 +4968,53 @@ $("roadmaps")
 .innerHTML=
 
 game.goals
-
 .map(
-g=>
+goal=>
 
 '<div class="goal">'+
 
 '<div class="goalname">'+
-esc(g.name)+
+esc(
+goal.name
+)+
 '</div>'+
 
 
-g.roadmap
+goal.roadmap
 
 .map(
-(p,i)=>
+(phase,index)=>
 
 '<div class="quest">'+
 
 '<div class="questtitle">'+
 
 (
-i<g.level
-?'◆'
-:'◇'
+index<
+Math.min(
+goal.level,
+goal.roadmap.length
+)
+?"◆"
+:"◇"
 )+
 
 ' '+
 
-esc(p.name)+
+esc(
+phase.name
+)+
 
 '</div>'+
 
 
 '<div class="desc">'+
-esc(p.desc)+
+esc(
+phase.desc
+)+
 '</div>'+
 
 
-p.skills
-
-.map(
-s=>
-'<span class="tag">'+
-esc(s)+
-'</span>'
-)
-
-.join("")+
-
-
 '</div>'
 
 )
@@ -5137,113 +5025,66 @@ esc(s)+
 '</div>'
 
 )
-
 .join("");
 
 }
 
 
-/* =========================================
+/* =========================================================
    ACHIEVEMENTS
-========================================= */
+========================================================= */
 
-const ACH=[
+const ACHIEVEMENTS=[
 
 [
-
-"FIRST STEP",
-
-"Complete your first quest.",
-
-()=>
-game.completed>=1
-
+"FIRST PROOF",
+"Complete and verify your first quest.",
+()=>game.verifiedCompleted>=1
 ],
 
-
 [
-
 "QUEST HUNTER",
-
-"Complete 10 quests.",
-
-()=>
-game.completed>=10
-
+"Verify 10 completed quests.",
+()=>game.verifiedCompleted>=10
 ],
 
-
 [
-
-"CONSISTENCY",
-
-"Complete 25 quests.",
-
-()=>
-game.completed>=25
-
+"PROVEN",
+"Verify 25 completed quests.",
+()=>game.verifiedCompleted>=25
 ],
 
-
 [
-
 "BOSS SLAYER",
-
-"Complete a weekly Boss Quest.",
-
-()=>
-game.weekly.some(
-x=>x.done
+"Complete a verified weekly Boss Quest.",
+()=>game.weekly.some(
+mission=>
+mission.done
 )
-
 ],
 
-
 [
-
 "DOUBLE DIGITS",
-
-"Reach Level 10.",
-
-()=>
-game.level>=10
-
+"Reach Player Level 10.",
+()=>game.level>=10
 ],
 
-
 [
-
 "SEVEN DAY STREAK",
-
-"Reach a 7-day streak.",
-
-()=>
-game.streak>=7
-
+"Reach a seven-day verified streak.",
+()=>game.streak>=7
 ],
 
-
 [
-
 "MULTI-PATH",
-
-"Maintain 2 active goals.",
-
-()=>
-game.goals.length>=2
-
+"Maintain at least two active goals.",
+()=>game.goals.length>=2
 ],
 
-
 [
-
 "CENTURY",
-
-"Complete 100 quests.",
-
-()=>
-game.completed>=100
-
+"Verify 100 quests.",
+()=>game.verifiedCompleted>=100
 ]
 
 ];
@@ -5251,20 +5092,21 @@ game.completed>=100
 
 function checkAchievements(){
 
-ACH.forEach(
-a=>{
+ACHIEVEMENTS
+.forEach(
+achievement=>{
 
 if(
-a[2]()&&
+achievement[2]()&&
 !game.achievements
 .includes(
-a[0]
+achievement[0]
 )
 ){
 
 game.achievements
 .push(
-a[0]
+achievement[0]
 );
 
 }
@@ -5280,29 +5122,30 @@ function renderAchievements(){
 checkAchievements();
 
 
-$("achievementsList")
+$("achievementList")
 .innerHTML=
 
-ACH.map(
-a=>{
+ACHIEVEMENTS
+
+.map(
+achievement=>{
+
 
 const unlocked=
 game.achievements
 .includes(
-a[0]
+achievement[0]
 );
 
 
 return(
 
 '<div class="quest '+
-
 (
 unlocked
-?''
-:'completed'
+?""
+:"completed"
 )+
-
 '">'+
 
 
@@ -5310,21 +5153,19 @@ unlocked
 
 (
 unlocked
-?'◆'
-:'◇'
+?"◆"
+:"◇"
 )+
 
 ' '+
 
-a[0]+
+achievement[0]+
 
 '</div>'+
 
 
 '<div class="desc">'+
-
-a[1]+
-
+achievement[1]+
 '</div>'+
 
 
@@ -5340,27 +5181,73 @@ a[1]+
 }
 
 
-/* =========================================
-   RESET PLAYER
-========================================= */
+/* =========================================================
+   SETTINGS
+========================================================= */
 
-function resetPlayer(){
+function renderSettings(){
 
-const confirmReset=
-confirm(
-"RESET ASCEND PLAYER?\n\nThis will permanently erase your current player, goals, levels, XP, streaks, missions, and achievements on this device."
-);
+$("settingsProfile")
+.innerHTML=
 
+'<b>'+
+esc(
+game.player
+)+
+'</b>'+
 
-if(!confirmReset){
+'<br><br>'+
 
-return;
+'PLAYER LEVEL: '+
+game.level+
+
+'<br>'+
+
+'RANK: '+
+playerRank(
+game.level
+)+
+
+'<br>'+
+
+'VERIFIED QUESTS: '+
+game.verifiedCompleted+
+
+'<br>'+
+
+'ACTIVE GOALS: '+
+game.goals.length+
+
+'<br>'+
+
+'CURRENT STREAK: '+
+game.streak+
+' DAYS';
 
 }
 
 
+/* =========================================================
+   RESET
+========================================================= */
+
+function resetPlayer(){
+
+const yes=
+confirm(
+
+"RESET ASCEND PLAYER?\n\n"+
+"This permanently deletes your player, goals, assessments, XP, skill trees, quests, achievements, and streaks stored on this device."
+
+);
+
+
+if(!yes)
+return;
+
+
 localStorage.removeItem(
-KEY
+SAVE_KEY
 );
 
 
@@ -5369,13 +5256,13 @@ location.reload();
 }
 
 
-/* =========================================
-   LEVEL MODAL
-========================================= */
+/* =========================================================
+   LEVEL MESSAGE
+========================================================= */
 
 function showLevel(
 title,
-msg
+message
 ){
 
 $("levelMessage")
@@ -5383,11 +5270,8 @@ $("levelMessage")
 
 '<b style="color:#c7fbff">'+
 title+
-'</b>'+
-
-'<br><br>'+
-
-msg;
+'</b><br><br>'+
+message;
 
 
 $("levelModal")
@@ -5397,7 +5281,7 @@ $("levelModal")
 }
 
 
-function closeLevel(){
+function closeLevelModal(){
 
 $("levelModal")
 .style
@@ -5406,39 +5290,42 @@ $("levelModal")
 }
 
 
-/* =========================================
+/* =========================================================
    TOAST
-========================================= */
+========================================================= */
 
-function toast(s){
+function toast(
+message
+){
 
-const t=
+const box=
 $("toast");
 
 
-t.textContent=s;
+box.textContent=
+message;
 
 
-t.style.display=
+box.style.display=
 "block";
 
 
 setTimeout(
 ()=>{
 
-t.style.display=
+box.style.display=
 "none";
 
 },
-2300
+2400
 );
 
 }
 
 
-/* =========================================
+/* =========================================================
    BOOT
-========================================= */
+========================================================= */
 
 render();
 
